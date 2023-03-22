@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4180AEAE2839753E0054FEA9 /* SentinelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEAD2839753E0054FEA9 /* SentinelApp.swift */; };
+		4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4180AEB12839753F0054FEA9 /* Assets.xcassets */; };
+		4180AEBD283975670054FEA9 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEBC283975670054FEA9 /* MainScene.swift */; };
+		4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEEA2839A0280054FEA9 /* AboutCommand.swift */; };
+		4180AEEE2839A0660054FEA9 /* Bundle+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEED2839A0660054FEA9 /* Bundle+Name.swift */; };
+		4180AEF12839A0830054FEA9 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEF02839A0830054FEA9 /* Bundle+Version.swift */; };
+		4180AEF32839A0950054FEA9 /* Bundle+Copyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEF22839A0950054FEA9 /* Bundle+Copyright.swift */; };
+		4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEF82839A21F0054FEA9 /* AboutWindow.swift */; };
+		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
+		4180AF052839A89A0054FEA9 /* DropTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AF042839A89A0054FEA9 /* DropTarget.swift */; };
+		C733F76929CA584200DADADD /* ScriptCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76829CA584200DADADD /* ScriptCmd.swift */; };
+		C733F76B29CA59AE00DADADD /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Shell.swift */; };
+		C733F76D29CA59C600DADADD /* TerminalOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76C29CA59C600DADADD /* TerminalOutput.swift */; };
+		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
+		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
+		C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* CmdRunner.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4180AEAA2839753E0054FEA9 /* Sentinel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sentinel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4180AEAD2839753E0054FEA9 /* SentinelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentinelApp.swift; sourceTree = "<group>"; };
+		4180AEB12839753F0054FEA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SentinelApp.entitlements; sourceTree = "<group>"; };
+		4180AEBC283975670054FEA9 /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
+		4180AEEA2839A0280054FEA9 /* AboutCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommand.swift; sourceTree = "<group>"; };
+		4180AEED2839A0660054FEA9 /* Bundle+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Name.swift"; sourceTree = "<group>"; };
+		4180AEF02839A0830054FEA9 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
+		4180AEF22839A0950054FEA9 /* Bundle+Copyright.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Copyright.swift"; sourceTree = "<group>"; };
+		4180AEF82839A21F0054FEA9 /* AboutWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindow.swift; sourceTree = "<group>"; };
+		4180AEFA2839A32F0054FEA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		4180AF042839A89A0054FEA9 /* DropTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTarget.swift; sourceTree = "<group>"; };
+		C733F76829CA584200DADADD /* ScriptCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCmd.swift; sourceTree = "<group>"; };
+		C733F76A29CA59AE00DADADD /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
+		C733F76C29CA59C600DADADD /* TerminalOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalOutput.swift; sourceTree = "<group>"; };
+		C733F76E29CA65AC00DADADD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		C7BB802B29CA299700006CDB /* CmdRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdRunner.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4180AEA72839753E0054FEA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4180AEA12839753E0054FEA9 = {
+			isa = PBXGroup;
+			children = (
+				4180AEAC2839753E0054FEA9 /* Sentinel */,
+				4180AEAB2839753E0054FEA9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4180AEAB2839753E0054FEA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4180AEAA2839753E0054FEA9 /* Sentinel.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4180AEAC2839753E0054FEA9 /* Sentinel */ = {
+			isa = PBXGroup;
+			children = (
+				4180AEEC2839A0560054FEA9 /* Utilities */,
+				4180AF032839A87B0054FEA9 /* Custom Views */,
+				4180AEF72839A2010054FEA9 /* About Window */,
+				4180AEBC283975670054FEA9 /* MainScene.swift */,
+				4180AEAD2839753E0054FEA9 /* SentinelApp.swift */,
+				4180AEB12839753F0054FEA9 /* Assets.xcassets */,
+				4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */,
+				C7BB802929CA28B400006CDB /* Dashboard.swift */,
+				C733F76E29CA65AC00DADADD /* AppState.swift */,
+			);
+			path = Sentinel;
+			sourceTree = "<group>";
+		};
+		4180AEEC2839A0560054FEA9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4180AEEF2839A0720054FEA9 /* Bundle Extensions */,
+				C7BB802B29CA299700006CDB /* CmdRunner.swift */,
+				C733F76829CA584200DADADD /* ScriptCmd.swift */,
+				C733F76A29CA59AE00DADADD /* Shell.swift */,
+				C733F76C29CA59C600DADADD /* TerminalOutput.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4180AEEF2839A0720054FEA9 /* Bundle Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4180AEED2839A0660054FEA9 /* Bundle+Name.swift */,
+				4180AEF02839A0830054FEA9 /* Bundle+Version.swift */,
+				4180AEF22839A0950054FEA9 /* Bundle+Copyright.swift */,
+			);
+			path = "Bundle Extensions";
+			sourceTree = "<group>";
+		};
+		4180AEF72839A2010054FEA9 /* About Window */ = {
+			isa = PBXGroup;
+			children = (
+				4180AEEA2839A0280054FEA9 /* AboutCommand.swift */,
+				4180AEF82839A21F0054FEA9 /* AboutWindow.swift */,
+				4180AEFA2839A32F0054FEA9 /* AboutView.swift */,
+			);
+			path = "About Window";
+			sourceTree = "<group>";
+		};
+		4180AF032839A87B0054FEA9 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				4180AF042839A89A0054FEA9 /* DropTarget.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4180AEA92839753E0054FEA9 /* Sentinel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4180AEB92839753F0054FEA9 /* Build configuration list for PBXNativeTarget "Sentinel" */;
+			buildPhases = (
+				4180AEA62839753E0054FEA9 /* Sources */,
+				4180AEA72839753E0054FEA9 /* Frameworks */,
+				4180AEA82839753E0054FEA9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sentinel;
+			productName = SidebarApp;
+			productReference = 4180AEAA2839753E0054FEA9 /* Sentinel.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4180AEA22839753E0054FEA9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					4180AEA92839753E0054FEA9 = {
+						CreatedOnToolsVersion = 13.4;
+					};
+				};
+			};
+			buildConfigurationList = 4180AEA52839753E0054FEA9 /* Build configuration list for PBXProject "Sentinel" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4180AEA12839753E0054FEA9;
+			productRefGroup = 4180AEAB2839753E0054FEA9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4180AEA92839753E0054FEA9 /* Sentinel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4180AEA82839753E0054FEA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4180AEA62839753E0054FEA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4180AEBD283975670054FEA9 /* MainScene.swift in Sources */,
+				4180AEF12839A0830054FEA9 /* Bundle+Version.swift in Sources */,
+				4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */,
+				4180AEEE2839A0660054FEA9 /* Bundle+Name.swift in Sources */,
+				C733F76929CA584200DADADD /* ScriptCmd.swift in Sources */,
+				C733F76F29CA65AC00DADADD /* AppState.swift in Sources */,
+				4180AF052839A89A0054FEA9 /* DropTarget.swift in Sources */,
+				C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */,
+				4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */,
+				4180AEF32839A0950054FEA9 /* Bundle+Copyright.swift in Sources */,
+				4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */,
+				C733F76D29CA59C600DADADD /* TerminalOutput.swift in Sources */,
+				C733F76B29CA59AE00DADADD /* Shell.swift in Sources */,
+				C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */,
+				4180AEAE2839753E0054FEA9 /* SentinelApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4180AEB72839753F0054FEA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4180AEB82839753F0054FEA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		4180AEBA2839753F0054FEA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sentinel/SentinelApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = BK8443AXLU;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Sentinel;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.sentinel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4180AEBB2839753F0054FEA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sentinel/SentinelApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = BK8443AXLU;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Sentinel;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.sentinel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4180AEA52839753E0054FEA9 /* Build configuration list for PBXProject "Sentinel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4180AEB72839753F0054FEA9 /* Debug */,
+				4180AEB82839753F0054FEA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4180AEB92839753F0054FEA9 /* Build configuration list for PBXNativeTarget "Sentinel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4180AEBA2839753F0054FEA9 /* Debug */,
+				4180AEBB2839753F0054FEA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4180AEA22839753E0054FEA9 /* Project object */;
+}
