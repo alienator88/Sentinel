@@ -24,10 +24,11 @@ func CmdRun(cmd: String, appState: AppState) async {
             
             if result_disabled {
                     appState.isGatekeeperEnabled = false
+                    appState.active = false
                 } else if result_enabled {
                     appState.isGatekeeperEnabled = true
+                    appState.active = true
                 }
-
         } catch let Error as NSError {
             print(Error)
         }

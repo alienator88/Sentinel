@@ -18,8 +18,6 @@ struct MainScene: Scene {
 //                .background(VisualEffect().ignoresSafeArea())
                 .fixedSize()
                 .environmentObject(appState)
-
-                
         }
         .commands {
             AboutCommand()

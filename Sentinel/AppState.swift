@@ -10,6 +10,7 @@ import Foundation
 class AppState: ObservableObject {
     @Published var isLoading: Bool = true
     @Published var isGatekeeperEnabled: Bool = true
+    @Published var active: Bool = true
     @Published var status: String = "Ready"
 
 }

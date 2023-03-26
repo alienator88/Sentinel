@@ -17,6 +17,7 @@
 		4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEF82839A21F0054FEA9 /* AboutWindow.swift */; };
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
 		4180AF052839A89A0054FEA9 /* DropTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AF042839A89A0054FEA9 /* DropTarget.swift */; };
+		C719A10029CE43D7009F7C7A /* Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719A0FF29CE43D7009F7C7A /* Toggle.swift */; };
 		C733F76929CA584200DADADD /* ScriptCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76829CA584200DADADD /* ScriptCmd.swift */; };
 		C733F76B29CA59AE00DADADD /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Shell.swift */; };
 		C733F76D29CA59C600DADADD /* TerminalOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76C29CA59C600DADADD /* TerminalOutput.swift */; };
@@ -38,6 +39,7 @@
 		4180AEF82839A21F0054FEA9 /* AboutWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindow.swift; sourceTree = "<group>"; };
 		4180AEFA2839A32F0054FEA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		4180AF042839A89A0054FEA9 /* DropTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTarget.swift; sourceTree = "<group>"; };
+		C719A0FF29CE43D7009F7C7A /* Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toggle.swift; sourceTree = "<group>"; };
 		C733F76829CA584200DADADD /* ScriptCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCmd.swift; sourceTree = "<group>"; };
 		C733F76A29CA59AE00DADADD /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		C733F76C29CA59C600DADADD /* TerminalOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalOutput.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				4180AF042839A89A0054FEA9 /* DropTarget.swift */,
+				C719A0FF29CE43D7009F7C7A /* Toggle.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				4180AF052839A89A0054FEA9 /* DropTarget.swift in Sources */,
 				C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */,
 				4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */,
+				C719A10029CE43D7009F7C7A /* Toggle.swift in Sources */,
 				4180AEF32839A0950054FEA9 /* Bundle+Copyright.swift in Sources */,
 				4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */,
 				C733F76D29CA59C600DADADD /* TerminalOutput.swift in Sources */,

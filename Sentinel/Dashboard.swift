@@ -12,13 +12,14 @@ private let dropTypes = [UTType.fileURL]
 
 struct Dashboard: View {
     
-    //    @EnvironmentObject var appState: AppState
-    @ObservedObject var appState: AppState = AppState()
+        @EnvironmentObject var appState: AppState
+//    @ObservedObject var appState: AppState = AppState()
     @State private var isLoading = true
-    @State private var isHovered1 = false
-    @State private var isHovered2 = false
-//    @State private var isHovered3 = false
-//    @State private var isHovered4 = false
+//    @State private var active = true
+//    @AppStorage("active") var active: Bool = true
+//    @State private var isHovered1 = false
+//    @State private var isHovered2 = false
+
     
     
     var body: some View {
@@ -36,6 +37,7 @@ struct Dashboard: View {
                     GridItem(.flexible(), spacing: 0)
                 ]
                 
+                // LOGO - TITLEBAR //////////////////////////////////////////////////////
                 HStack(alignment: .center) {
                     HStack{
                         
@@ -70,7 +72,7 @@ struct Dashboard: View {
                 .padding()
                 
                 
-                
+                // GIANT STATUS //////////////////////////////////////////////////////
                 HStack {
                     
                     Image(systemName: appState.isGatekeeperEnabled ? "lock.shield" : "shield.slash")
@@ -88,7 +90,6 @@ struct Dashboard: View {
                         .stroke(appState.isGatekeeperEnabled ? .green : .red, lineWidth: 2)
                 )
                 .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
-                //                .padding(.top, 10)
                 
                 HStack(alignment: .center){
                     Text(appState.status)
@@ -98,137 +99,22 @@ struct Dashboard: View {
                         .font(.system(size: 12))
                         .background(RoundedRectangle(cornerRadius: 10)
                             .fill(Color("bg").opacity(0.5)))
-                        
                 }
                 .padding(4)
                 .padding(.top, 4)
                 
+                // GRID //////////////////////////////////////////////////////
+                
+                Toggle(isOn: $appState.active) {
+                }
+                .toggleStyle(MyToggleStyle())
+
+
+
                 LazyVGrid(columns: dashColumns) {
                     
+
                     // Item 1 //////////////////////////////////////////////////////////////////////////
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(Color("stroke").opacity(1), style: StrokeStyle(lineWidth: 1, dashPhase: 0))
-                            .background(RoundedRectangle(cornerRadius: 8).fill(isHovered1 ? Color("bg").opacity(1) : Color("bg").opacity(0.5)))
-                            .frame(width: 200, height: 150 )
-                            
-                        
-                        
-                        VStack {
-                            
-                            HStack {
-                                Image(systemName: "lock.shield")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 26, height: 26)
-                                    .padding(.leading, 10)
-                                    .padding(.top, 10)
-                                    .opacity(1)
-                                    .foregroundColor(.green)
-                                Spacer()
-                            }
-                            
-                            
-                            HStack {
-                                
-                                Text("Turn ON Gatekeeper")
-                                    .font(.title2)
-                            }
-                            .padding(.top, 25)
-                            Spacer()
-                            
-                            
-                        }
-                        
-                    }
-                    .onHover{ isHovered1 in
-                        withAnimation(.linear(duration: 0.1)) {
-                            self.isHovered1 = isHovered1
-                        }
-                        
-                    }
-                    .scaleEffect(isHovered1 ? 1.02 : 1.0)
-                    .frame(width: 200, height: 150 )
-                    .onTapGesture {
-                        Task {
-                            
-                            appState.status = "Attempting to turn on gatekeeper, enter your root password"
-
-                            _ = await CmdRunSudo(cmd: "spctl --global-enable", type: "enable", appState: appState)
-                            
-//                            appState.status = "Gatekeeper has been enabled"
-
-                        }
-                    }
-                    .padding(.bottom, 20)
-                    .padding(.trailing, 20)
-                    .padding(.leading, 20)
-
-                    
-                    // Item 2 //////////////////////////////////////////////////////////////////////////
-                    
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(Color("stroke").opacity(1), style: StrokeStyle(lineWidth: 1, dashPhase: 0))
-                            .background(RoundedRectangle(cornerRadius: 8).fill(isHovered2 ? Color("bg").opacity(1) : Color("bg").opacity(0.5)))
-                            .frame(width: 200, height: 150 )
-                            
-                        
-                        
-                        VStack {
-                            
-                            HStack {
-                                Image(systemName: "shield.slash")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 26, height: 26)
-                                    .padding(.leading, 10)
-                                    .padding(.top, 10)
-                                    .opacity(1)
-                                    .foregroundColor(.red)
-                                Spacer()
-                            }
-                            
-                            
-                            HStack {
-                                Text("Turn OFF Gatekeeper")
-                                    .font(.title2)
-                                
-                            }
-                            .padding(.top, 25)
-                            Spacer()
-                            
-                            
-                        }
-                        
-                    }
-                    .onHover{ isHovered2 in
-                        withAnimation(.linear(duration: 0.1)) {
-                            self.isHovered2 = isHovered2
-                        }
-                        
-                    }
-                    .scaleEffect(isHovered2 ? 1.02 : 1.0)
-                    .frame(width: 200, height: 150 )
-                    .onTapGesture {
-                        Task {
-
-                            appState.status = "Attempting to turn off gatekeeper, enter your root password"
-
-                            _ = await CmdRunSudo(cmd: "spctl --global-disable", type: "disable", appState: appState)
-                            
-//                            appState.status = "Gatekeeper has been disabled"
-
-                        }
-                    }
-                    .padding(.bottom, 20)
-                    .padding(.trailing, 20)
-                    
-                    
-                    // Item 3 //////////////////////////////////////////////////////////////////////////
-                    
                     
                     ZStack {
                         
@@ -238,22 +124,13 @@ struct Dashboard: View {
                             .padding()
                         
                     }
-//                    .onHover{ isHovered3 in
-//                        withAnimation(.linear(duration: 0.1)) {
-//                            self.isHovered3 = isHovered3
-//                        }
-//
-//                    }
-//                    .scaleEffect(isHovered3 ? 1.02 : 1.0)
                     .frame(width: 200, height: 150 )
                     .padding(.trailing, 20)
                     .padding(.leading, 20)
 
                     
                     
-                    // Item 4 //////////////////////////////////////////////////////////////////////////
-                    
-                    
+                    // Item 2 //////////////////////////////////////////////////////////////////////////
                     
                     ZStack {
                         
@@ -263,30 +140,40 @@ struct Dashboard: View {
                             .padding()
                         
                     }
-//                    .onHover{ isHovered4 in
-//                        withAnimation(.linear(duration: 0.1)) {
-//                            self.isHovered4 = isHovered4
-//                        }
-//
-//                    }
-//                    .scaleEffect(isHovered4 ? 1.02 : 1.0)
                     .frame(width: 200, height: 150 )
                     .padding(.trailing, 20)
                     
                     
-                } // LazyVGrid Container
+                }
                 .padding()
-                
+                /// LazyVGrid Container
                 
             }
             
             
-        } // Main VStack Container
+        } /// Main VStack Container
         .onAppear{
             Task(priority: .high) {
                 isLoading = true
                 _ = await CmdRun(cmd: "spctl --status", appState: appState)
                 isLoading = false
+            }
+        }
+        .onChange(of: appState.active) { value in
+            if value == true && appState.isGatekeeperEnabled {
+                return
+            } else if value == false && !appState.isGatekeeperEnabled {
+                return
+            } else if value == true && !appState.isGatekeeperEnabled{
+                Task {
+                    appState.status = "Attempting to turn on gatekeeper, enter your root password"
+                    _ = await CmdRunSudo(cmd: "spctl --global-enable", type: "enable", appState: appState)
+                }
+            } else if value == false && appState.isGatekeeperEnabled {
+                Task {
+                    appState.status = "Attempting to turn off gatekeeper, enter your root password"
+                    _ = await CmdRunSudo(cmd: "spctl --global-disable", type: "disable", appState: appState)
+                }
             }
         }
         .edgesIgnoringSafeArea(.top) /// Allow AboutWindow button to tuck into top right corner
