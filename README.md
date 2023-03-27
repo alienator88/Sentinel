@@ -2,13 +2,12 @@
 
 <img src="https://user-images.githubusercontent.com/6263626/227031704-96a1b004-b0bc-4286-a66a-5807b0c6807a.png" width="100" height="100" />
 
-A fast GUI for Gatekeeper written in SwiftUI.
-Adding in features and redesigning the look to fit more of my needs. Also using this as a learning opportunity for Swift as I'm new to it.
+A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a learning opportunity for Swift as I'm new to it.
 
 ## Screenshots
 
-![Screenshot 2023-03-22 at 2 31 25 PM](https://user-images.githubusercontent.com/6263626/227030852-2c450dc7-1e9a-4b2a-8dbb-05057f24cd13.png)
-![Screenshot 2023-03-22 at 2 31 16 PM](https://user-images.githubusercontent.com/6263626/227030854-a976ca4a-9f47-4561-835d-182606f840b3.png)
+![Screenshot 2023-03-27 at 1 24 39 PM](https://user-images.githubusercontent.com/6263626/228045682-b806bb2c-065d-429f-b9ea-33899d25d5ed.png)
+![Screenshot 2023-03-27 at 1 24 34 PM](https://user-images.githubusercontent.com/6263626/228045684-f59a9d03-cae0-4b15-b945-da81e4a3b1ff.png)
 
 ## Getting Sentinel
 
@@ -16,7 +15,7 @@ Pre-compiled, always up-to-date versions are available from my releases page. (S
 
 You might need to run this before opening the app as I don't have a paid developer account: 
 
-`sudo xattr -r -d com.apple.quarantine "PATH_TO_APP"`
+`sudo xattr -rd com.apple.quarantine "PATH_TO_APP"`
 
 ## Compiling Sentinel
 
@@ -52,12 +51,12 @@ Instructions:
 
 ## Thanks
 
-Much appreciation to wynioux for the CLI based version to base this idea on: https://github.com/wynioux/macOS-GateKeeper-Helper
+Much appreciation to wynioux for their awesome CLI tool to base this idea on: https://github.com/wynioux/macOS-GateKeeper-Helper
 
 ## License
 
-McBrew is licensed under [Commons Clause](https://commonsclause.com).
+Sentinel is licensed under [Commons Clause](https://commonsclause.com).
 
-This means that McBrew open-source and you can do whatever you want with McBrew's source, like modifying it, contributing to it etc., but you can't sell McBrew or modified versions of it.
+This means that Sentinel open-source and you can do whatever you want with Sentinel's source, like modifying it, contributing to it etc., but you can't sell Sentinel or modified versions of it.
 
  
