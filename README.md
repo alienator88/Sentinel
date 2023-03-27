@@ -55,8 +55,6 @@ Much appreciation to wynioux for their awesome CLI tool to base this idea on: ht
 
 ## License
 
-Sentinel is licensed under [Commons Clause](https://commonsclause.com).
+Sentinel is licensed under [TheUnlicense](https://unlicense.org/).
 
-This means that Sentinel open-source and you can do whatever you want with Sentinel's source, like modifying it, contributing to it etc., but you can't sell Sentinel or modified versions of it.
-
- 
+Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
