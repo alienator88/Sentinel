@@ -14,10 +14,12 @@ struct MainScene: Scene {
         
         WindowGroup {
             Dashboard()
-                .frame(minWidth: 550, minHeight: 400)
-//                .background(VisualEffect().ignoresSafeArea())
-                .fixedSize()
+                .frame(minWidth: 550, minHeight: 370)
+//                .background(VisualEffect().edgesIgnoringSafeArea(.all))
                 .environmentObject(appState)
+                .edgesIgnoringSafeArea(.all)
+                .fixedSize()
+
         }
         .commands {
             AboutCommand()
@@ -31,3 +33,5 @@ struct MainScene: Scene {
 
     }
 }
+
+

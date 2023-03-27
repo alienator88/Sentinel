@@ -13,8 +13,22 @@ struct AboutView: View {
 
         VStack {
             HStack(alignment: .top) {
-                Image(nsImage: icon)
-                    .padding()
+                VStack(alignment: .center){
+                    Image(nsImage: icon)
+                        .padding()
+                        .padding(.bottom, 5)
+                    HStack(alignment: .center){
+                        Button
+                        {
+                            NSWorkspace.shared.open(URL(string: "https://github.com/alienator88/Sentinel")!)
+                        } label: {
+                            Label("alienator88", systemImage: "ellipsis.curlybraces")
+                        }
+                    }
+                    
+                    Spacer()
+                }
+                
                 VStack(alignment: .leading) {
                     HStack(alignment: .firstTextBaseline) {
                         Text(name)
@@ -102,17 +116,17 @@ struct AboutView: View {
                 }
                 .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 30))
             }
-            HStack {
-                Spacer()
-                Button
-                {
-                    NSWorkspace.shared.open(URL(string: "https://github.com/alienator88/Sentinel")!)
-                } label: {
-                    Label("GitHub", systemImage: "ellipsis.curlybraces")
-                }
-                .padding(.bottom, 30)
-                .padding(.trailing, 20)
-            }
+//            HStack {
+//                Spacer()
+//                Button
+//                {
+//                    NSWorkspace.shared.open(URL(string: "https://github.com/alienator88/Sentinel")!)
+//                } label: {
+//                    Label("GitHub", systemImage: "ellipsis.curlybraces")
+//                }
+//                .padding(.bottom, 30)
+//                .padding(.trailing, 20)
+//            }
         }
     }
 }

@@ -51,7 +51,7 @@ func CmdRunSudo(cmd: String, type: String,  appState: AppState) async {
             switch type {
             case "enable":
                 if canceled {
-                    appState.status = "Process cancelled"
+                    appState.status = "Gatekeeper enablement cancelled by user"
                     _ = await CmdRun(cmd: "spctl --status", appState: appState)
                 } else {
                     appState.isGatekeeperEnabled = true
@@ -60,7 +60,7 @@ func CmdRunSudo(cmd: String, type: String,  appState: AppState) async {
                 }
             case "disable":
                 if canceled {
-                    appState.status = "Process cancelled"
+                    appState.status = "Gatekeeper disablement cancelled by user"
                     _ = await CmdRun(cmd: "spctl --status", appState: appState)
                 } else {
                     appState.isGatekeeperEnabled = false

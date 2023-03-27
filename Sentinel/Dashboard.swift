@@ -15,11 +15,6 @@ struct Dashboard: View {
         @EnvironmentObject var appState: AppState
 //    @ObservedObject var appState: AppState = AppState()
     @State private var isLoading = true
-//    @State private var active = true
-//    @AppStorage("active") var active: Bool = true
-//    @State private var isHovered1 = false
-//    @State private var isHovered2 = false
-
     
     
     var body: some View {
@@ -65,52 +60,56 @@ struct Dashboard: View {
                         AboutWindow.show()
                     } label: {
                         Image(systemName: "info.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 16, height: 16)
                     }
                     .padding()
                     .buttonStyle(PlainButtonStyle())
+                    .help("About")
                 }
                 .padding()
                 
                 
-                // GIANT STATUS //////////////////////////////////////////////////////
-                HStack {
-                    
-                    Image(systemName: appState.isGatekeeperEnabled ? "lock.shield" : "shield.slash")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 32, height: 32)
-                        .foregroundColor(appState.isGatekeeperEnabled ? .green : .red)
-                    Text(appState.isGatekeeperEnabled ? "ENABLED" : "DISABLED")
-                        .foregroundColor(appState.isGatekeeperEnabled ? .green : .red)
-                        .font(.title)
-                }
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(appState.isGatekeeperEnabled ? .green : .red, lineWidth: 2)
-                )
-                .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
-                
-                HStack(alignment: .center){
-                    Text(appState.status)
-                        .padding(5)
-                        .padding(.horizontal, 4)
-                        .textCase(.uppercase)
-                        .font(.system(size: 12))
-                        .background(RoundedRectangle(cornerRadius: 10)
-                            .fill(Color("bg").opacity(0.5)))
-                }
-                .padding(4)
-                .padding(.top, 4)
-                
-                // GRID //////////////////////////////////////////////////////
+                // GK STATUS //////////////////////////////////////////////////////
+//                HStack {
+//
+//                    Image(systemName: appState.isGatekeeperEnabled ? "lock.shield" : "shield.slash")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 32, height: 32)
+//                        .foregroundColor(appState.isGatekeeperEnabled ? .green : .red)
+//                    Text(appState.isGatekeeperEnabled ? "ENABLED" : "DISABLED")
+//                        .foregroundColor(appState.isGatekeeperEnabled ? .green : .red)
+//                        .font(.title)
+//                }
+//                .padding()
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .stroke(appState.isGatekeeperEnabled ? .green : .red, lineWidth: 2)
+//                )
+//                .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
                 
                 Toggle(isOn: $appState.active) {
                 }
                 .toggleStyle(MyToggleStyle())
-
-
-
+                .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
+                .padding(.bottom)
+                
+//                HStack(alignment: .center){
+//                    Text(appState.status)
+//                        .padding(5)
+//                        .padding(.horizontal, 4)
+//                        .textCase(.uppercase)
+//                        .font(.system(size: 12))
+//                        .background(RoundedRectangle(cornerRadius: 10)
+//                            .fill(Color("bg").opacity(0.5)))
+//                }
+//                .padding(4)
+//                .padding(.top, 4)
+                
+                // GRID //////////////////////////////////////////////////////
+                
                 LazyVGrid(columns: dashColumns) {
                     
 
@@ -148,6 +147,25 @@ struct Dashboard: View {
                 .padding()
                 /// LazyVGrid Container
                 
+                HStack(alignment: .center){
+                    Text(appState.status)
+                        .padding(5)
+                        .padding(.horizontal, 4)
+                        .padding(.bottom, 0)
+//                        .textCase(.uppercase)
+                        .font(.system(size: 12))
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 8)
+//                            .fill(Color("bg").opacity(1))
+//                        )
+//                        .overlay(
+//                        RoundedRectangle(cornerRadius: 8)
+//                            .strokeBorder(Color("drop").opacity(0.5), lineWidth: 0.5)
+//                        )
+                }
+                .padding()
+                .padding(.bottom, 0)
+                
             }
             
             
@@ -176,8 +194,8 @@ struct Dashboard: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.top) /// Allow AboutWindow button to tuck into top right corner
-        
+        .edgesIgnoringSafeArea(.all) /// Allow AboutWindow button to tuck into top right corner
+        .padding(.bottom, 0)
         
     }
     
@@ -185,7 +203,7 @@ struct Dashboard: View {
     @ViewBuilder private var dropOverlayQuarantine: some View {
         
         VStack(alignment: .center) {
-            Image(systemName: "stethoscope")
+            Image(systemName: "plus.square.dashed")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 26, height: 26)
@@ -197,26 +215,26 @@ struct Dashboard: View {
                 .padding(.horizontal)
                 .multilineTextAlignment(.center)
         }
-        .help("This will change the app attributes in com.apple.quarantine using 'xattr'")
+        .help("This will unquarantine the app by changing attributes in com.apple.quarantine")
         
     }
     
     @ViewBuilder private var dropOverlaySign: some View {
         
         VStack(alignment: .center) {
-            Image(systemName: "pencil.line")
+            Image(systemName: "plus.square.dashed")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 26, height: 26)
                 .foregroundColor(Color("drop")).opacity(1)
-            Text("Drop application here to self-sign")
+            Text("Drop application here to ad-hoc self-sign")
                 .foregroundColor(Color("drop"))
                 .opacity(1)
                 .font(.title3)
                 .padding(.horizontal)
                 .multilineTextAlignment(.center)
         }
-        .help("This will replace the app signature by performing an ad-hoc signing")
+        .help("This will replace the app signature by performing an ad-hoc signing without a certificate")
         
     }
     
