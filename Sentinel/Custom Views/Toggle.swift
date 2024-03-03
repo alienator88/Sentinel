@@ -15,7 +15,7 @@ struct MyToggleStyle: ToggleStyle {
             
             ZStack{
                 RoundedRectangle(cornerRadius: 50)
-                    .fill(configuration.isOn ? greenBG : redBG)
+                    .fill(backgroundStyle(forConfiguration: configuration))
                     .frame(width: 100, height: 60)
                 HStack{
                     Image(systemName: "lock.shield")
@@ -63,13 +63,28 @@ struct MyToggleStyle: ToggleStyle {
 }
 
 
-
-private let greenBG: AnyShapeStyle = AnyShapeStyle(
-    .green.shadow(.inner(radius: 2, x: 0, y: 1))
-)
-
-private let redBG: AnyShapeStyle = AnyShapeStyle(
-    .red.shadow(.inner(radius: 2, x: 0, y: 1))
-)
+func backgroundStyle(forConfiguration configuration: ToggleStyleConfiguration) -> AnyShapeStyle {
+    if #available(macOS 13.0, *) {
+        return AnyShapeStyle(
+            configuration.isOn ?
+            AnyShapeStyle(.green).shadow(.inner(radius: 2, x: 0, y: 1)) :
+                AnyShapeStyle(.red).shadow(.inner(radius: 2, x: 0, y: 1))
+        )
+    } else {
+        return AnyShapeStyle(
+            configuration.isOn ?
+            AnyShapeStyle(.green) :
+                AnyShapeStyle(.red
+                             )
+        )
+    }
+}
+//private let greenBG: AnyShapeStyle = AnyShapeStyle(
+//    .green.shadow(.inner(radius: 2, x: 0, y: 1))
+//)
+//
+//private let redBG: AnyShapeStyle = AnyShapeStyle(
+//    .red.shadow(.inner(radius: 2, x: 0, y: 1))
+//)
 
 

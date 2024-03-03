@@ -14,7 +14,7 @@ struct MainScene: Scene {
         
         WindowGroup {
             Dashboard()
-                .frame(minWidth: 550, minHeight: 370)
+                .frame(width: 550, height: 370)
 //                .background(VisualEffect().edgesIgnoringSafeArea(.all))
                 .environmentObject(appState)
                 .edgesIgnoringSafeArea(.all)
@@ -29,7 +29,6 @@ struct MainScene: Scene {
         }
         .windowToolbarStyle(.automatic)
         .windowStyle(.hiddenTitleBar)
-        .windowResizability(.contentSize)
 
     }
 }
