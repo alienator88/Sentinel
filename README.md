@@ -1,10 +1,10 @@
 # Sentinel
 <p align="center">
-  <img src="https://github.com/alienator88/Sentinel/assets/6263626/50d470e2-6e1d-423c-bbf4-73f277730ad9" width="100" height="100" />
+  <img src="https://github.com/alienator88/Sentinel/assets/6263626/2c3d699d-eea6-49db-8a7d-cc66e0ce9b97" width="100" height="100" />
    <br />
    <strong>Status: </strong>Maintained 
    <br />
-   <strong>Version: </strong>1.3
+   <strong>Version: </strong>1.4
    <br />
    <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
     · 
