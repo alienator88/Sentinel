@@ -1,64 +1,61 @@
 # Sentinel
-
-<img src="https://user-images.githubusercontent.com/6263626/227031704-96a1b004-b0bc-4286-a66a-5807b0c6807a.png" width="100" height="100" />
+<p align="center">
+  <img src="https://github.com/alienator88/Sentinel/assets/6263626/50d470e2-6e1d-423c-bbf4-73f277730ad9" width="100" height="100" />
+   <br />
+   <strong>Status: </strong>Maintained 
+   <br />
+   <strong>Version: </strong>1.3
+   <br />
+   <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
+    · 
+   <a href="https://github.com/alienator88/Sentinel/commits">Commits</a>
+   <br />
+   <br />
+</p>
+</br>
 
 A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a learning opportunity for Swift as I'm new to it.
 
+
+## Features
+- 100% Swift
+- Small app size (<1MB)
+- Can drop an app in the drop target to unquarantine
+- Can drop an app in the drop target to ad-hoc self sign and replace the certificate
+- Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Pearcleaner has to run from /Applications folder for this to work because of permissions)
+
+
+
 ## Screenshots
 
-![Screenshot 2024-03-26 at 6 17 57 PM](https://github.com/alienator88/Sentinel/assets/6263626/43a8bab1-9bb1-40b2-82ce-62c91b57e066)
-![Screenshot 2024-03-26 at 6 18 05 PM](https://github.com/alienator88/Sentinel/assets/6263626/7cbf2e86-e73c-49d6-9fca-cfeb0273bab2)
+<img src="https://github.com/alienator88/Sentinel/assets/6263626/43a8bab1-9bb1-40b2-82ce-62c91b57e066" align="left" width="400" />
+
+<img src="https://github.com/alienator88/Sentinel/assets/6263626/7cbf2e86-e73c-49d6-9fca-cfeb0273bab2" align="center" width="400" />
+
+
+## Requirements
+- MacOS 12.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than 12.0)
+- Open Sentinel first time by right clicking and selecting Open. This adds an exception to Gatekeeper so it doesn't complain about the app not being signed with an Apple Developer certificate
+
 
 ## Getting Sentinel
 
-Pre-compiled, always up-to-date versions are available from my releases page. (See compilation instructions below)
+<details>
+  <summary>Releases</summary>
 
-You might need to run this before opening the app as I don't have a paid developer account: 
+> Pre-compiled, always up-to-date versions are available from my releases page.
+</details>
 
-`sudo xattr -rd com.apple.quarantine "PATH_TO_APP"`
-
-## Homebrew:
-`brew install alienator88/homebrew-cask/sentinel`
-
-
-## Compiling Sentinel
-
-Compiling Sentinel is simple, as it does not have many dependencies.
-
-Prerequisites:
-
-* macOS Ventura or newer
-* Xcode 14.2 or newer
-* Git
-* An Apple Developer accout. **You don't need a paid one! Even a free one works perfectly**
-
-Instructions:
-
-**Before you begin**
-
-0. Enroll your account in the developer program at [https://developer.apple.com/](https://developer.apple.com/)
-1. Install Xcode
-2. Add your Developer account to Xcode. To do so, in the Menu bar, click `Xcode → Settings`, and in the window that opens, click `Accounts`. You can add your account there
-3. After you add your account, it will appear in the list of Apple IDs on the left od the screen. Select your account there
-4. At the bottom of the screen, click `Manage Certificates...`
-5. On the bottom left, click the **+** icon and select `Apple Development`
-6. When a new item appears in the list called `Apple Development Certificates`, you can press `Done` to close the account manager
-
-**Compiling Sentinel**
-
-1. Clone this repo using `git clone https://github.com/alienator88/Sentinel.git && cd Sentinel && open .`
-2. Double-click `Sentinel.xcodeproj`. Xcode should open the project
-3. In the Menu Bar, click `Product → Archive` and wait for the building to finish
-4. A new window will open. From the list of Sentinel rows, select the topmost one, and click `Distribute App`
-5. Click `Copy App`
-6. Open the resulting folder. You'll see an app called Sentinel. Drag Sentinel to your `/Applications/` folder, and you're done!
+<details>
+  <summary>Homebrew</summary>
+   
+> Since I don't have a paid developer account, I can't submit to the main Homebrew cask repo.
+You can still add the app via Homebrew by tapping my homebrew repo:
+```
+brew install alienator88/homebrew-cask/sentinel
+```
+</details>
 
 ## Thanks
 
-Much appreciation to wynioux for their awesome CLI tool to base this idea on: https://github.com/wynioux/macOS-GateKeeper-Helper
-
-## License
-
-Sentinel is licensed under [TheUnlicense](https://unlicense.org/).
-
-Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
+Much appreciation to [Wynioux]([https://freemacsoft.net/appcleaner/](https://github.com/wynioux/macOS-GateKeeper-Helper)) for their Gatekeeper script used as inspiration.
