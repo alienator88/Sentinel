@@ -9,19 +9,18 @@
 /* Begin PBXBuildFile section */
 		4180AEAE2839753E0054FEA9 /* SentinelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEAD2839753E0054FEA9 /* SentinelApp.swift */; };
 		4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4180AEB12839753F0054FEA9 /* Assets.xcassets */; };
-		4180AEBD283975670054FEA9 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEBC283975670054FEA9 /* MainScene.swift */; };
 		4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEEA2839A0280054FEA9 /* AboutCommand.swift */; };
-		4180AEEE2839A0660054FEA9 /* Bundle+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEED2839A0660054FEA9 /* Bundle+Name.swift */; };
-		4180AEF12839A0830054FEA9 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEF02839A0830054FEA9 /* Bundle+Version.swift */; };
-		4180AEF32839A0950054FEA9 /* Bundle+Copyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEF22839A0950054FEA9 /* Bundle+Copyright.swift */; };
 		4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEF82839A21F0054FEA9 /* AboutWindow.swift */; };
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
-		4180AF052839A89A0054FEA9 /* DropTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AF042839A89A0054FEA9 /* DropTarget.swift */; };
-		C719A10029CE43D7009F7C7A /* Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719A0FF29CE43D7009F7C7A /* Toggle.swift */; };
-		C733F76929CA584200DADADD /* ScriptCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76829CA584200DADADD /* ScriptCmd.swift */; };
-		C733F76B29CA59AE00DADADD /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Shell.swift */; };
-		C733F76D29CA59C600DADADD /* TerminalOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76C29CA59C600DADADD /* TerminalOutput.swift */; };
+		C733F76B29CA59AE00DADADD /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Script.swift */; };
 		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
+		C78AAAAF2BB33F3C002AD918 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAAE2BB33F3C002AD918 /* UpdateView.swift */; };
+		C78AAAB12BB33F56002AD918 /* NewWin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB02BB33F56002AD918 /* NewWin.swift */; };
+		C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */; };
+		C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB42BB33F9A002AD918 /* Styles.swift */; };
+		C78AAAB72BB3400B002AD918 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB62BB3400B002AD918 /* Utilities.swift */; };
+		C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */; };
+		C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAABA2BB399DD002AD918 /* BundleExt.swift */; };
 		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
 		C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* CmdRunner.swift */; };
 /* End PBXBuildFile section */
@@ -31,19 +30,18 @@
 		4180AEAD2839753E0054FEA9 /* SentinelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentinelApp.swift; sourceTree = "<group>"; };
 		4180AEB12839753F0054FEA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SentinelApp.entitlements; sourceTree = "<group>"; };
-		4180AEBC283975670054FEA9 /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
 		4180AEEA2839A0280054FEA9 /* AboutCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommand.swift; sourceTree = "<group>"; };
-		4180AEED2839A0660054FEA9 /* Bundle+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Name.swift"; sourceTree = "<group>"; };
-		4180AEF02839A0830054FEA9 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
-		4180AEF22839A0950054FEA9 /* Bundle+Copyright.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Copyright.swift"; sourceTree = "<group>"; };
 		4180AEF82839A21F0054FEA9 /* AboutWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindow.swift; sourceTree = "<group>"; };
 		4180AEFA2839A32F0054FEA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		4180AF042839A89A0054FEA9 /* DropTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTarget.swift; sourceTree = "<group>"; };
-		C719A0FF29CE43D7009F7C7A /* Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toggle.swift; sourceTree = "<group>"; };
-		C733F76829CA584200DADADD /* ScriptCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCmd.swift; sourceTree = "<group>"; };
-		C733F76A29CA59AE00DADADD /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
-		C733F76C29CA59C600DADADD /* TerminalOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalOutput.swift; sourceTree = "<group>"; };
+		C733F76A29CA59AE00DADADD /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		C733F76E29CA65AC00DADADD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		C78AAAAE2BB33F3C002AD918 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
+		C78AAAB02BB33F56002AD918 /* NewWin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWin.swift; sourceTree = "<group>"; };
+		C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
+		C78AAAB42BB33F9A002AD918 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		C78AAAB62BB3400B002AD918 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
+		C78AAABA2BB399DD002AD918 /* BundleExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExt.swift; sourceTree = "<group>"; };
 		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		C7BB802B29CA299700006CDB /* CmdRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdRunner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,15 +76,15 @@
 		4180AEAC2839753E0054FEA9 /* Sentinel */ = {
 			isa = PBXGroup;
 			children = (
+				C78AAAAD2BB33F2E002AD918 /* Updater */,
 				4180AEEC2839A0560054FEA9 /* Utilities */,
-				4180AF032839A87B0054FEA9 /* Custom Views */,
 				4180AEF72839A2010054FEA9 /* About Window */,
-				4180AEBC283975670054FEA9 /* MainScene.swift */,
 				4180AEAD2839753E0054FEA9 /* SentinelApp.swift */,
 				4180AEB12839753F0054FEA9 /* Assets.xcassets */,
 				4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */,
 				C7BB802929CA28B400006CDB /* Dashboard.swift */,
 				C733F76E29CA65AC00DADADD /* AppState.swift */,
+				C78AAAB42BB33F9A002AD918 /* Styles.swift */,
 			);
 			path = Sentinel;
 			sourceTree = "<group>";
@@ -94,23 +92,12 @@
 		4180AEEC2839A0560054FEA9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				4180AEEF2839A0720054FEA9 /* Bundle Extensions */,
 				C7BB802B29CA299700006CDB /* CmdRunner.swift */,
-				C733F76829CA584200DADADD /* ScriptCmd.swift */,
-				C733F76A29CA59AE00DADADD /* Shell.swift */,
-				C733F76C29CA59C600DADADD /* TerminalOutput.swift */,
+				C733F76A29CA59AE00DADADD /* Script.swift */,
+				C78AAAB62BB3400B002AD918 /* Utilities.swift */,
+				C78AAABA2BB399DD002AD918 /* BundleExt.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		4180AEEF2839A0720054FEA9 /* Bundle Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4180AEED2839A0660054FEA9 /* Bundle+Name.swift */,
-				4180AEF02839A0830054FEA9 /* Bundle+Version.swift */,
-				4180AEF22839A0950054FEA9 /* Bundle+Copyright.swift */,
-			);
-			path = "Bundle Extensions";
 			sourceTree = "<group>";
 		};
 		4180AEF72839A2010054FEA9 /* About Window */ = {
@@ -123,13 +110,15 @@
 			path = "About Window";
 			sourceTree = "<group>";
 		};
-		4180AF032839A87B0054FEA9 /* Custom Views */ = {
+		C78AAAAD2BB33F2E002AD918 /* Updater */ = {
 			isa = PBXGroup;
 			children = (
-				4180AF042839A89A0054FEA9 /* DropTarget.swift */,
-				C719A0FF29CE43D7009F7C7A /* Toggle.swift */,
+				C78AAAAE2BB33F3C002AD918 /* UpdateView.swift */,
+				C78AAAB02BB33F56002AD918 /* NewWin.swift */,
+				C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */,
+				C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */,
 			);
-			path = "Custom Views";
+			path = Updater;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,22 +190,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4180AEBD283975670054FEA9 /* MainScene.swift in Sources */,
-				4180AEF12839A0830054FEA9 /* Bundle+Version.swift in Sources */,
 				4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */,
-				4180AEEE2839A0660054FEA9 /* Bundle+Name.swift in Sources */,
-				C733F76929CA584200DADADD /* ScriptCmd.swift in Sources */,
+				C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */,
+				C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */,
 				C733F76F29CA65AC00DADADD /* AppState.swift in Sources */,
-				4180AF052839A89A0054FEA9 /* DropTarget.swift in Sources */,
+				C78AAAB72BB3400B002AD918 /* Utilities.swift in Sources */,
+				C78AAAAF2BB33F3C002AD918 /* UpdateView.swift in Sources */,
 				C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */,
+				C78AAAB12BB33F56002AD918 /* NewWin.swift in Sources */,
 				4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */,
-				C719A10029CE43D7009F7C7A /* Toggle.swift in Sources */,
-				4180AEF32839A0950054FEA9 /* Bundle+Copyright.swift in Sources */,
+				C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */,
 				4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */,
-				C733F76D29CA59C600DADADD /* TerminalOutput.swift in Sources */,
-				C733F76B29CA59AE00DADADD /* Shell.swift in Sources */,
+				C733F76B29CA59AE00DADADD /* Script.swift in Sources */,
 				C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */,
 				4180AEAE2839753E0054FEA9 /* SentinelApp.swift in Sources */,
+				C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +342,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BK8443AXLU;
@@ -369,7 +357,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -388,7 +376,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BK8443AXLU;
@@ -403,7 +391,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

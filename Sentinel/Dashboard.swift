@@ -11,246 +11,178 @@ import UniformTypeIdentifiers
 private let dropTypes = [UTType.fileURL]
 
 struct Dashboard: View {
-    
-        @EnvironmentObject var appState: AppState
-//    @ObservedObject var appState: AppState = AppState()
-    @State private var isLoading = true
-    
-    
-    var body: some View {
-        VStack {
-            
-            if isLoading {
-                ProgressView
-                {
-                    Text("Loading Gatekeeper Status")
-                }
-            } else {
-                
-                let dashColumns : [GridItem] = [
-                    GridItem(.flexible(), spacing: 0),
-                    GridItem(.flexible(), spacing: 0)
-                ]
-                
-                // LOGO - TITLEBAR //////////////////////////////////////////////////////
-                HStack(alignment: .center) {
-                    HStack{
-                        
-                    }
-                    Spacer()
-                    HStack{
-                        Image(nsImage: NSApp.applicationIconImage ?? NSImage())
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 32, height: 32)
-                        Text("Sentinel")
-                            .font(.title2)
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.purple, .pink, .orange],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                    }
-                    .padding(.leading, 30)
-                    
-                    Spacer()
-                    Button{
-                        AboutWindow.show()
-                    } label: {
-                        Image(systemName: "info.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 16, height: 16)
-                    }
-                    .padding()
-                    .buttonStyle(PlainButtonStyle())
-                    .help("About")
-                }
-                .padding()
-                
-                
-                // GK STATUS //////////////////////////////////////////////////////
-//                HStack {
-//
-//                    Image(systemName: appState.isGatekeeperEnabled ? "lock.shield" : "shield.slash")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 32, height: 32)
-//                        .foregroundColor(appState.isGatekeeperEnabled ? .green : .red)
-//                    Text(appState.isGatekeeperEnabled ? "ENABLED" : "DISABLED")
-//                        .foregroundColor(appState.isGatekeeperEnabled ? .green : .red)
-//                        .font(.title)
-//                }
-//                .padding()
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 8)
-//                        .stroke(appState.isGatekeeperEnabled ? .green : .red, lineWidth: 2)
-//                )
-//                .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
-                
-                Toggle(isOn: $appState.active) {
-                }
-                .toggleStyle(MyToggleStyle())
-                .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
-                .padding(.bottom)
-                
-//                HStack(alignment: .center){
-//                    Text(appState.status)
-//                        .padding(5)
-//                        .padding(.horizontal, 4)
-//                        .textCase(.uppercase)
-//                        .font(.system(size: 12))
-//                        .background(RoundedRectangle(cornerRadius: 10)
-//                            .fill(Color("bg").opacity(0.5)))
-//                }
-//                .padding(4)
-//                .padding(.top, 4)
-                
-                // GRID //////////////////////////////////////////////////////
-                
-                LazyVGrid(columns: dashColumns) {
-                    
 
+    @EnvironmentObject var appState: AppState
+    @State private var bounce = false
+
+    var body: some View {
+        VStack(alignment: .center, spacing: 30) {
+
+            // LOGO - TITLEBAR //////////////////////////////////////////////////////
+            HStack(alignment: .center, spacing: 0) {
+                Spacer()
+                    Text("Sentinel")
+                        .font(.title2)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.purple, .pink, .orange],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+//                Spacer()
+
+            }
+            .frame(maxWidth: .infinity)
+
+            // Drop Zones //////////////////////////////////////////////////////
+
+
+
+            VStack(alignment: .center, spacing: 20) {
+
+                HStack() {
+                    Text("Drop an **app** below")
+                        .font(.title2).opacity(0.8)
+                    Image(systemName: "arrow.down")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 14)
+                        .offset(y: bounce ? -2 : 2)
+                        .animation(
+                            .easeInOut(duration: 0.4)
+                            .repeatCount(7, autoreverses: true),
+                            value: bounce
+                        )
+                        .onAppear {
+                            bounce = true
+                        }
+                }
+
+
+                HStack(spacing: 50) {
                     // Item 1 //////////////////////////////////////////////////////////////////////////
-                    
+
                     ZStack {
-                        
+
                         DropTarget(delegate: DropQuarantine(appState: appState), types: dropTypes)
                             .frame(width: 200, height: 150)
                             .overlay(dropOverlayQuarantine, alignment: .center)
-                            .padding()
-                        
+                            .opacity(0.8)
+
                     }
                     .frame(width: 200, height: 150 )
-                    .padding(.trailing, 20)
-                    .padding(.leading, 20)
 
-                    
-                    
                     // Item 2 //////////////////////////////////////////////////////////////////////////
-                    
+
                     ZStack {
-                        
+
                         DropTarget(delegate: DropSign(appState: appState), types: dropTypes)
                             .frame(width: 200, height: 150)
                             .overlay(dropOverlaySign, alignment: .center)
-                            .padding()
-                        
+                            .opacity(0.8)
+
                     }
                     .frame(width: 200, height: 150 )
-                    .padding(.trailing, 20)
-                    
-                    
                 }
-                .padding()
-                /// LazyVGrid Container
-                
-                HStack(alignment: .center){
-                    Text(appState.status)
-                        .padding(5)
-                        .padding(.horizontal, 4)
-                        .padding(.bottom, 0)
-//                        .textCase(.uppercase)
-                        .font(.system(size: 12))
-//                        .background(
-//                            RoundedRectangle(cornerRadius: 8)
-//                            .fill(Color("bg").opacity(1))
-//                        )
-//                        .overlay(
-//                        RoundedRectangle(cornerRadius: 8)
-//                            .strokeBorder(Color("drop").opacity(0.5), lineWidth: 0.5)
-//                        )
-                }
-                .padding()
-                .padding(.bottom, 0)
-                
             }
-            
-            
-        } /// Main VStack Container
-        .onAppear{
-            Task(priority: .high) {
-                isLoading = true
+
+
+
+            // GK STATUS //////////////////////////////////////////////////////
+            Toggle("", isOn: $appState.isGatekeeperEnabled)
+                .toggleStyle(RedGreenShield())
+                .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
+
+
+            HStack(alignment: .center){
+                Text(appState.status)
+                    .font(.system(size: 12))
+                    .opacity(0.8)
+            }
+            .padding(.bottom)
+
+        }
+        .padding()
+        .onAppear {
+            Task{
                 _ = await CmdRun(cmd: "spctl --status", appState: appState)
-                isLoading = false
-            }
-        }
-        .onChange(of: appState.active) { value in
-            if value == true && appState.isGatekeeperEnabled {
-                return
-            } else if value == false && !appState.isGatekeeperEnabled {
-                return
-            } else if value == true && !appState.isGatekeeperEnabled{
-                Task {
-                    appState.status = "Attempting to turn on gatekeeper, enter your root password"
-                    _ = await CmdRunSudo(cmd: "spctl --global-enable", type: "enable", appState: appState)
-                }
-            } else if value == false && appState.isGatekeeperEnabled {
-                Task {
-                    appState.status = "Attempting to turn off gatekeeper, enter your root password"
-                    _ = await CmdRunSudo(cmd: "spctl --global-disable", type: "disable", appState: appState)
+                updateOnMain {
+                    appState.status = "\(appState.isGatekeeperEnabled ? "Gatekeeper is enabled" : "Gatekeeper is disabled")"
                 }
             }
         }
-        .edgesIgnoringSafeArea(.all) /// Allow AboutWindow button to tuck into top right corner
-        .padding(.bottom, 0)
-        
+        .onChange(of: appState.isGatekeeperEnabled) { isEnabled in
+            Task {
+                if isEnabled && !appState.isGatekeeperEnabledState {
+                    updateOnMain() {
+                        appState.status = "Attempting to turn on gatekeeper, enter your admin password"
+                    }
+                    CmdRunSudo(cmd: "spctl --global-enable", type: "enable", appState: appState)
+                } else if !isEnabled && appState.isGatekeeperEnabledState {
+                    updateOnMain() {
+                        appState.status = "Attempting to turn off gatekeeper, enter your admin password"
+                    }
+                    CmdRunSudo(cmd: "spctl --global-disable", type: "disable", appState: appState)
+                }
+            }
+        }
+        .edgesIgnoringSafeArea(.all)
+
     }
-    
-    
+
+
     @ViewBuilder private var dropOverlayQuarantine: some View {
-        
-        VStack(alignment: .center) {
+
+        VStack(alignment: .center, spacing: 20) {
             Image(systemName: "plus.square.dashed")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 26, height: 26)
                 .foregroundColor(Color("drop")).opacity(1)
-            Text("Drop application here to remove from quarantine")
+            Text("Remove app from quarantine")
                 .foregroundColor(Color("drop"))
                 .opacity(1)
-                .font(.title3)
+                .font(.callout)
                 .padding(.horizontal)
                 .multilineTextAlignment(.center)
         }
         .help("This will unquarantine the app by changing attributes in com.apple.quarantine")
-        
+
     }
-    
+
     @ViewBuilder private var dropOverlaySign: some View {
-        
-        VStack(alignment: .center) {
+
+        VStack(alignment: .center, spacing: 20) {
             Image(systemName: "plus.square.dashed")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 26, height: 26)
                 .foregroundColor(Color("drop")).opacity(1)
-            Text("Drop application here to ad-hoc self-sign")
+            Text("Self-sign the app")
                 .foregroundColor(Color("drop"))
                 .opacity(1)
-                .font(.title3)
+                .font(.callout)
                 .padding(.horizontal)
                 .multilineTextAlignment(.center)
         }
         .help("This will replace the app signature by performing an ad-hoc signing without a certificate")
-        
+
     }
-    
-    
+
+
 }
 
 
 // Drop Delegates
 struct DropQuarantine: DropDelegate {
-    
+
     @ObservedObject var appState: AppState
-    
+
     func performDrop(info: DropInfo) -> Bool {
-        
+
         let itemProviders = info.itemProviders(for: [UTType.fileURL])
-        
+
         guard itemProviders.count == 1 else {
             return false
         }
@@ -267,29 +199,25 @@ struct DropQuarantine: DropDelegate {
                 Task
                 {
                     appState.status = "Attempting to remove app from quarantine"
-                    
                     _ = await CmdRunDrop(cmd: "xattr -rd com.apple.quarantine \(url.path)", type: "quarantine", appState: appState)
-                    
-//                    appState.status = "Removed app from quarantine"
-                    
                 }
-                
+
             }
         }
-        
+
         return true
     }
 }
 
 
 struct DropSign: DropDelegate {
-    
+
     @ObservedObject var appState: AppState
-    
+
     func performDrop(info: DropInfo) -> Bool {
-        
+
         let itemProviders = info.itemProviders(for: [UTType.fileURL])
-        
+
         guard itemProviders.count == 1 else {
             return false
         }
@@ -305,18 +233,13 @@ struct DropSign: DropDelegate {
                 }
                 Task
                 {
-                    
                     appState.status = "Attempting to self-sign the app"
-                    
                     _ = await CmdRunDrop(cmd: "codesign -f -s - --deep \(url.path)", type: "sign", appState: appState)
-                    
-//                    appState.status = "App has been self-signed"
-                    
                 }
-                
+
             }
         }
-        
+
         return true
     }
 }

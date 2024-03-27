@@ -36,7 +36,6 @@
       "size" : "256x256"
     },
     {
-      "filename" : "install.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
@@ -47,6 +46,7 @@
       "size" : "512x512"
     },
     {
+      "filename" : "AppIcon.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
