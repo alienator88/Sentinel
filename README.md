@@ -6,8 +6,8 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 
 ## Screenshots
 
-![Screenshot 2023-03-27 at 1 24 39 PM](https://user-images.githubusercontent.com/6263626/228045682-b806bb2c-065d-429f-b9ea-33899d25d5ed.png)
-![Screenshot 2023-03-27 at 1 24 34 PM](https://user-images.githubusercontent.com/6263626/228045684-f59a9d03-cae0-4b15-b945-da81e4a3b1ff.png)
+![Screenshot 2024-03-26 at 6 17 57 PM](https://github.com/alienator88/Sentinel/assets/6263626/43a8bab1-9bb1-40b2-82ce-62c91b57e066)
+![Screenshot 2024-03-26 at 6 18 05 PM](https://github.com/alienator88/Sentinel/assets/6263626/7cbf2e86-e73c-49d6-9fca-cfeb0273bab2)
 
 ## Getting Sentinel
 
@@ -16,6 +16,10 @@ Pre-compiled, always up-to-date versions are available from my releases page. (S
 You might need to run this before opening the app as I don't have a paid developer account: 
 
 `sudo xattr -rd com.apple.quarantine "PATH_TO_APP"`
+
+## Homebrew:
+`brew install alienator88/homebrew-cask/sentinel`
+
 
 ## Compiling Sentinel
 
