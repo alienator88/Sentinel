@@ -25,7 +25,7 @@ struct Dashboard: View {
                         .font(.title2)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink, .orange],
+                                colors: [.blue, .purple, .pink],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
