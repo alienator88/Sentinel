@@ -59,3 +59,13 @@ brew install alienator88/homebrew-cask/sentinel
 ## Thanks
 
 Much appreciation to [Wynioux]([https://freemacsoft.net/appcleaner/](https://github.com/wynioux/macOS-GateKeeper-Helper)) for their Gatekeeper script used as inspiration.
+
+## Some of my apps
+
+[Pearcleaner](https://github.com/alienator88/Pearcleaner) - An opensource app cleaner with privacy in mind
+
+[Sentinel](https://github.com/alienator88/Sentinel) - A GUI for controlling gatekeeper status on your mac
+
+[Viz](https://github.com/alienator88/Viz) - Utility for extracting text from images, videos, qr/barcodes
+
+[McBrew](https://github.com/alienator88/McBrew) - A GUI for managing your homebrew
