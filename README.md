@@ -22,7 +22,7 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 - Small app size (<1MB)
 - Can drop an app in the drop target to unquarantine
 - Can drop an app in the drop target to ad-hoc self sign and replace the certificate
-- Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Pearcleaner has to run from /Applications folder for this to work because of permissions)
+- Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Sentinel should be ran from /Applications folder to avoid permission issues)
 
 
 
