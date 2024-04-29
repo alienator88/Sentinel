@@ -56,6 +56,12 @@ brew install alienator88/homebrew-cask/sentinel
 ```
 </details>
 
+
+## License
+> [!IMPORTANT]
+> Sentinel is licensed under Apache 2.0 with [Commons Clause](https://commonsclause.com/). This means that you can do anything you'd like with the source, modify it, contribute to it, etc., but the license explicitly prohibits any form of monetization for Sentinel or any modified versions of it. See full license [HERE](https://github.com/alienator88/Sentinel/blob/main/LICENSE.md)
+> 
+
 ## Thanks
 
 Much appreciation to [Wynioux]([https://freemacsoft.net/appcleaner/](https://github.com/wynioux/macOS-GateKeeper-Helper)) for their Gatekeeper script used as inspiration.
@@ -67,5 +73,3 @@ Much appreciation to [Wynioux]([https://freemacsoft.net/appcleaner/](https://git
 [Sentinel](https://github.com/alienator88/Sentinel) - A GUI for controlling gatekeeper status on your mac
 
 [Viz](https://github.com/alienator88/Viz) - Utility for extracting text from images, videos, qr/barcodes
-
-[McBrew](https://github.com/alienator88/McBrew) - A GUI for managing your homebrew
