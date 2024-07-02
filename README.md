@@ -4,7 +4,7 @@
    <br />
    <strong>Status: </strong>Maintained 
    <br />
-   <strong>Version: </strong>1.4
+   <strong>Version: </strong>1.5
    <br />
    <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
     · 
@@ -35,7 +35,7 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 
 ## Requirements
 - MacOS 12.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than 12.0)
-- Open Sentinel first time by right clicking and selecting Open. This adds an exception to Gatekeeper so it doesn't complain about the app not being signed with an Apple Developer certificate
+- Sentinel is now signed/notarized ~~Open Sentinel first time by right clicking and selecting Open. This adds an exception to Gatekeeper so it doesn't complain about the app not being signed with an Apple Developer certificate~~
 
 
 ## Getting Sentinel
