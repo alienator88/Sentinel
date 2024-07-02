@@ -49,6 +49,13 @@
             ReferencedContainer = "container:Sentinel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE"
+            value = "disable"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -78,7 +85,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "/Users/alin/Projects/Bash/xcode-release.sh Work:false Project:&quot;/Users/alin/GitHub/Sentinel&quot; Name:&quot;Sentinel&quot; Log:false&#10;"
+               scriptText = "#/Users/alin/Projects/Bash/xcode-release.sh Work:false Project:&quot;/Users/alin/GitHub/Sentinel&quot; Name:&quot;Sentinel&quot; Log:false&#10;"
                shellToInvoke = "/bin/sh">
                <EnvironmentBuildable>
                   <BuildableReference
