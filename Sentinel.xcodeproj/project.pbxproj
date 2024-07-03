@@ -21,6 +21,7 @@
 		C78AAAB72BB3400B002AD918 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB62BB3400B002AD918 /* Utilities.swift */; };
 		C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */; };
 		C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAABA2BB399DD002AD918 /* BundleExt.swift */; };
+		C799479A2C34D00F007279CC /* Builds in Resources */ = {isa = PBXBuildFile; fileRef = C79947992C34D00F007279CC /* Builds */; };
 		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
 		C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* CmdRunner.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		C78AAAB62BB3400B002AD918 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		C78AAABA2BB399DD002AD918 /* BundleExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExt.swift; sourceTree = "<group>"; };
+		C79947992C34D00F007279CC /* Builds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Builds; sourceTree = "<group>"; };
 		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		C7BB802B29CA299700006CDB /* CmdRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdRunner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 		4180AEAC2839753E0054FEA9 /* Sentinel */ = {
 			isa = PBXGroup;
 			children = (
+				C79947992C34D00F007279CC /* Builds */,
 				C78AAAAD2BB33F2E002AD918 /* Updater */,
 				4180AEEC2839A0560054FEA9 /* Utilities */,
 				4180AEF72839A2010054FEA9 /* About Window */,
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */,
+				C799479A2C34D00F007279CC /* Builds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
