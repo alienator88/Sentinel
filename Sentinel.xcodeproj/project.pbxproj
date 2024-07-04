@@ -14,6 +14,7 @@
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
 		C733F76B29CA59AE00DADADD /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Script.swift */; };
 		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
+		C766D28C2C34D10500F51BB9 /* Builds in Resources */ = {isa = PBXBuildFile; fileRef = C766D28B2C34D10500F51BB9 /* Builds */; };
 		C78AAAAF2BB33F3C002AD918 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAAE2BB33F3C002AD918 /* UpdateView.swift */; };
 		C78AAAB12BB33F56002AD918 /* NewWin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB02BB33F56002AD918 /* NewWin.swift */; };
 		C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */; };
@@ -21,7 +22,6 @@
 		C78AAAB72BB3400B002AD918 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB62BB3400B002AD918 /* Utilities.swift */; };
 		C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */; };
 		C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAABA2BB399DD002AD918 /* BundleExt.swift */; };
-		C799479A2C34D00F007279CC /* Builds in Resources */ = {isa = PBXBuildFile; fileRef = C79947992C34D00F007279CC /* Builds */; };
 		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
 		C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* CmdRunner.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +36,7 @@
 		4180AEFA2839A32F0054FEA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C733F76A29CA59AE00DADADD /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		C733F76E29CA65AC00DADADD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		C766D28B2C34D10500F51BB9 /* Builds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Builds; sourceTree = SOURCE_ROOT; };
 		C78AAAAE2BB33F3C002AD918 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
 		C78AAAB02BB33F56002AD918 /* NewWin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWin.swift; sourceTree = "<group>"; };
 		C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		C78AAAB62BB3400B002AD918 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		C78AAABA2BB399DD002AD918 /* BundleExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExt.swift; sourceTree = "<group>"; };
-		C79947992C34D00F007279CC /* Builds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Builds; sourceTree = "<group>"; };
 		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		C7BB802B29CA299700006CDB /* CmdRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdRunner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +78,7 @@
 		4180AEAC2839753E0054FEA9 /* Sentinel */ = {
 			isa = PBXGroup;
 			children = (
-				C79947992C34D00F007279CC /* Builds */,
+				C766D28B2C34D10500F51BB9 /* Builds */,
 				C78AAAAD2BB33F2E002AD918 /* Updater */,
 				4180AEEC2839A0560054FEA9 /* Utilities */,
 				4180AEF72839A2010054FEA9 /* About Window */,
@@ -183,7 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */,
-				C799479A2C34D00F007279CC /* Builds in Resources */,
+				C766D28C2C34D10500F51BB9 /* Builds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
