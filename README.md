@@ -52,7 +52,7 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 > Since I don't have a paid developer account, I can't submit to the main Homebrew cask repo.
 You can still add the app via Homebrew by tapping my homebrew repo:
 ```
-brew install alienator88/homebrew-cask/sentinel-app --no-quarantine
+brew install alienator88/homebrew-cask/sentinel-app
 ```
 </details>
 
