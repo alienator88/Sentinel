@@ -12,7 +12,6 @@ import AlinFoundation
 struct UpdateSettingsTab: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var updater: Updater
-    @EnvironmentObject var themeManager: ThemeManager
 
     var body: some View {
         VStack {
@@ -25,7 +24,6 @@ struct UpdateSettingsTab: View {
                 .frame(height: 400)
                 .frame(maxWidth: .infinity)
                 .background(.background.opacity(0.2))
-//                .backgroundAF(opacity: 0.5)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
 

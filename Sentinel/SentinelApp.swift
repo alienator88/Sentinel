@@ -7,7 +7,6 @@ struct SentinelApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var appState = AppState()
     @StateObject private var updater = Updater(owner: "alienator88", repo: "Sentinel")
-    @StateObject private var themeManager = ThemeManager.shared
 
     var body: some Scene {
         WindowGroup {
@@ -15,10 +14,6 @@ struct SentinelApp: App {
                 Dashboard()
                     .environmentObject(appState)
                     .environmentObject(updater)
-                    .environmentObject(themeManager)
-            }
-            .onAppear {
-                themeManager.displayMode = .dark
             }
         }
         .commands {
@@ -32,7 +27,6 @@ struct SentinelApp: App {
             SettingsView()
                 .environmentObject(appState)
                 .environmentObject(updater)
-                .environmentObject(themeManager)
         }
 
 

@@ -15,7 +15,6 @@ struct Dashboard: View {
 
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var updater: Updater
-    @EnvironmentObject var themeManager: ThemeManager
 //    @State private var bounce = false
 
     var body: some View {
