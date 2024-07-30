@@ -4,7 +4,7 @@
    <br />
    <strong>Status: </strong>Maintained 
    <br />
-   <strong>Version: </strong>1.5
+   <strong>Version: </strong>1.6
    <br />
    <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
     · 
@@ -27,10 +27,10 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 
 ## Features
 - 100% Swift
-- Small app size (<1MB)
 - Can drop an app in the drop target to unquarantine
 - Can drop an app in the drop target to ad-hoc self sign and replace the certificate
 - Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Sentinel should be ran from /Applications folder to avoid permission issues)
+- Supports macOS Sequoia and up gatekeeper modification using profiles since Apple disabled `spctl` command
 
 
 
@@ -43,8 +43,6 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 
 ## Requirements
 - MacOS 12.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than 12.0)
-- Sentinel is now signed/notarized ~~Open Sentinel first time by right clicking and selecting Open. This adds an exception to Gatekeeper so it doesn't complain about the app not being signed with an Apple Developer certificate~~
-
 
 ## Getting Sentinel
 
@@ -57,8 +55,7 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 <details>
   <summary>Homebrew</summary>
    
-> Since I don't have a paid developer account, I can't submit to the main Homebrew cask repo.
-You can still add the app via Homebrew by tapping my homebrew repo:
+> Execute the following command to install via Homebrew:
 ```
 brew install alienator88/homebrew-cask/sentinel-app
 ```
