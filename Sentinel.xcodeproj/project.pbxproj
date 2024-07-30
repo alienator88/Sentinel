@@ -15,8 +15,6 @@
 		C733F76B29CA59AE00DADADD /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Script.swift */; };
 		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
 		C766D28C2C34D10500F51BB9 /* Builds in Resources */ = {isa = PBXBuildFile; fileRef = C766D28B2C34D10500F51BB9 /* Builds */; };
-		C78AAAAF2BB33F3C002AD918 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAAE2BB33F3C002AD918 /* UpdateView.swift */; };
-		C78AAAB12BB33F56002AD918 /* NewWin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB02BB33F56002AD918 /* NewWin.swift */; };
 		C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */; };
 		C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB42BB33F9A002AD918 /* Styles.swift */; };
 		C78AAAB72BB3400B002AD918 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB62BB3400B002AD918 /* Utilities.swift */; };
@@ -24,6 +22,8 @@
 		C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAABA2BB399DD002AD918 /* BundleExt.swift */; };
 		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
 		C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* CmdRunner.swift */; };
+		C7EB1E0A2C594BD50085B695 /* AlinFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C7EB1E092C594BD50085B695 /* AlinFoundation */; };
+		C7EB1E0C2C5956F80085B695 /* GK.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = C7EB1E0B2C5956F80085B695 /* GK.mobileconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +37,6 @@
 		C733F76A29CA59AE00DADADD /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		C733F76E29CA65AC00DADADD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		C766D28B2C34D10500F51BB9 /* Builds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Builds; sourceTree = SOURCE_ROOT; };
-		C78AAAAE2BB33F3C002AD918 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
-		C78AAAB02BB33F56002AD918 /* NewWin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWin.swift; sourceTree = "<group>"; };
 		C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		C78AAAB42BB33F9A002AD918 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		C78AAAB62BB3400B002AD918 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -46,6 +44,7 @@
 		C78AAABA2BB399DD002AD918 /* BundleExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExt.swift; sourceTree = "<group>"; };
 		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		C7BB802B29CA299700006CDB /* CmdRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdRunner.swift; sourceTree = "<group>"; };
+		C7EB1E0B2C5956F80085B695 /* GK.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file; path = GK.mobileconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7EB1E0A2C594BD50085B695 /* AlinFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +88,7 @@
 				C7BB802929CA28B400006CDB /* Dashboard.swift */,
 				C733F76E29CA65AC00DADADD /* AppState.swift */,
 				C78AAAB42BB33F9A002AD918 /* Styles.swift */,
+				C7EB1E0B2C5956F80085B695 /* GK.mobileconfig */,
 			);
 			path = Sentinel;
 			sourceTree = "<group>";
@@ -116,8 +117,6 @@
 		C78AAAAD2BB33F2E002AD918 /* Updater */ = {
 			isa = PBXGroup;
 			children = (
-				C78AAAAE2BB33F3C002AD918 /* UpdateView.swift */,
-				C78AAAB02BB33F56002AD918 /* NewWin.swift */,
 				C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */,
 				C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */,
 			);
@@ -140,6 +139,9 @@
 			dependencies = (
 			);
 			name = Sentinel;
+			packageProductDependencies = (
+				C7EB1E092C594BD50085B695 /* AlinFoundation */,
+			);
 			productName = SidebarApp;
 			productReference = 4180AEAA2839753E0054FEA9 /* Sentinel.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +170,9 @@
 				Base,
 			);
 			mainGroup = 4180AEA12839753E0054FEA9;
+			packageReferences = (
+				C7EB1E082C594BD50085B695 /* XCRemoteSwiftPackageReference "AlinFoundation" */,
+			);
 			productRefGroup = 4180AEAB2839753E0054FEA9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,6 +189,7 @@
 			files = (
 				4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */,
 				C766D28C2C34D10500F51BB9 /* Builds in Resources */,
+				C7EB1E0C2C5956F80085B695 /* GK.mobileconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,9 +205,7 @@
 				C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */,
 				C733F76F29CA65AC00DADADD /* AppState.swift in Sources */,
 				C78AAAB72BB3400B002AD918 /* Utilities.swift in Sources */,
-				C78AAAAF2BB33F3C002AD918 /* UpdateView.swift in Sources */,
 				C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */,
-				C78AAAB12BB33F56002AD918 /* NewWin.swift in Sources */,
 				4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */,
 				C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */,
 				4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */,
@@ -346,7 +350,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -362,7 +366,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -382,7 +386,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -398,7 +402,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -430,6 +434,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C7EB1E082C594BD50085B695 /* XCRemoteSwiftPackageReference "AlinFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alienator88/AlinFoundation";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C7EB1E092C594BD50085B695 /* AlinFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7EB1E082C594BD50085B695 /* XCRemoteSwiftPackageReference "AlinFoundation" */;
+			productName = AlinFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4180AEA22839753E0054FEA9 /* Project object */;
 }

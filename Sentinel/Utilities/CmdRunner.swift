@@ -77,7 +77,20 @@ func CmdRunSudo(cmd: String, type: String,  appState: AppState) {
                         appState.status = "Gatekeeper has been disabled successfully"
                     }
                 }
-                
+
+            case "profile":
+                if canceled {
+                    updateOnMain {
+                        appState.status = "Profile removal cancelled"
+                    }
+                } else {
+                    updateOnMain {
+                        appState.isGatekeeperEnabled = true
+                        appState.isGatekeeperEnabledState = true
+                        appState.status = "Profile has been removed successfully"
+                    }
+                }
+
             default:
                 print("")
             }

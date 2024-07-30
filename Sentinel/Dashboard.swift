@@ -7,13 +7,16 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import AlinFoundation
 
 private let dropTypes = [UTType.fileURL]
 
 struct Dashboard: View {
 
     @EnvironmentObject var appState: AppState
-    @State private var bounce = false
+    @EnvironmentObject var updater: Updater
+    @EnvironmentObject var themeManager: ThemeManager
+//    @State private var bounce = false
 
     var body: some View {
         VStack(alignment: .center, spacing: 30) {
@@ -21,6 +24,11 @@ struct Dashboard: View {
             // LOGO - TITLEBAR //////////////////////////////////////////////////////
             HStack(alignment: .center, spacing: 0) {
                 Spacer()
+
+                if updater.updateAvailable {
+                    UpdateBadge(updater: updater)
+                        .frame(width: 250)
+                } else {
                     Text("Sentinel")
                         .font(.title2)
                         .foregroundStyle(
@@ -30,13 +38,15 @@ struct Dashboard: View {
                                 endPoint: .trailing
                             )
                         )
+
+                }
+
 //                Spacer()
 
             }
             .frame(maxWidth: .infinity)
 
             // Drop Zones //////////////////////////////////////////////////////
-
 
 
             VStack(alignment: .center, spacing: 20) {
@@ -48,15 +58,15 @@ struct Dashboard: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 14)
-                        .offset(y: bounce ? -2 : 2)
-                        .animation(
-                            .easeInOut(duration: 0.4)
-                            .repeatCount(7, autoreverses: true),
-                            value: bounce
-                        )
-                        .onAppear {
-                            bounce = true
-                        }
+//                        .offset(y: bounce ? -2 : 2)
+//                        .animation(
+//                            .easeInOut(duration: 0.4)
+//                            .repeatCount(7, autoreverses: true),
+//                            value: bounce
+//                        )
+//                        .onAppear {
+//                            bounce = true
+//                        }
                 }
 
 
@@ -90,17 +100,47 @@ struct Dashboard: View {
 
 
             // GK STATUS //////////////////////////////////////////////////////
-            Toggle("", isOn: $appState.isGatekeeperEnabled)
-                .toggleStyle(RedGreenShield())
-                .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
 
+            Spacer()
+
+            if #available(macOS 15, *) { //MARK: Change this to 15 after testing is done
+                InfoButton(text: "macOS Sequoia and up does not allow gatekeeper control via command line anymore. The only way to control this now is by adding a configuration profile.\n\nClick the install button and double click the 'Disable Gatekeeper' profile in the Settings pane to install it", color: .orange, label: "Please Read", warning: true)
+                HStack {
+
+                    Button(action: {
+                        openFileAndSystemPreferences(filename: "GK", withExtension: "mobileconfig", appState: appState)
+                    }) {
+                        Text("Install Profile")
+                            .padding(5)
+                    }
+
+                    Button(action: {
+                        CmdRunSudo(cmd: "profiles -R -p com.alienator88.Sentinel", type: "profile", appState: appState)
+                    }) {
+                        Text("Remove Profile")
+                            .padding(5)
+                    }
+
+
+
+                }
+
+            } else {
+                Toggle("", isOn: $appState.isGatekeeperEnabled)
+                    .toggleStyle(RedGreenShield())
+                    .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
+            }
+
+
+//            Spacer()
 
             HStack(alignment: .center){
                 Text(appState.status)
                     .font(.system(size: 12))
                     .opacity(0.8)
+                    .padding(.vertical)
             }
-            .padding(.bottom)
+            .padding(.vertical)
 
         }
         .padding()

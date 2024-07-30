@@ -11,19 +11,11 @@ class AppState: ObservableObject {
     @Published var isGatekeeperEnabled: Bool = true
     @Published var isGatekeeperEnabledState: Bool = true
     @Published var status: String = ""
-    @Published var releases = [Release]()
-    @Published var progressBar: (String, Double) = ("Ready", 0.0)
 
 
 
 }
 
-
-enum NewWindow:Int
-{
-    case update
-    case no_update
-}
 
 enum CurrentTabView:Int
 {

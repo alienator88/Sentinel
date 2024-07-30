@@ -1,27 +1,28 @@
 import SwiftUI
+import AlinFoundation
 
 @main
 struct SentinelApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var appState = AppState()
-    @AppStorage("settings.updater.updateTimeframe") private var updateTimeframe: Int = 1
+    @StateObject private var updater = Updater(owner: "alienator88", repo: "Sentinel")
+    @StateObject private var themeManager = ThemeManager.shared
 
     var body: some Scene {
         WindowGroup {
             Group {
                 Dashboard()
                     .environmentObject(appState)
+                    .environmentObject(updater)
+                    .environmentObject(themeManager)
             }
             .onAppear {
-                Task {
-                    ensureApplicationSupportFolderExists(appState: appState)
-                    loadGithubReleases(appState: appState)
-                }
+                themeManager.displayMode = .dark
             }
         }
         .commands {
-            AboutCommand(appState: appState)
+            AboutCommand(appState: appState, updater: updater)
             CommandGroup(replacing: .newItem, addition: { })
         }
         .windowToolbarStyle(.automatic)
@@ -30,7 +31,10 @@ struct SentinelApp: App {
         Settings {
             SettingsView()
                 .environmentObject(appState)
+                .environmentObject(updater)
+                .environmentObject(themeManager)
         }
+
 
     }
 

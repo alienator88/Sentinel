@@ -1,9 +1,12 @@
 import SwiftUI
+import AlinFoundation
 
 struct AboutCommand: Commands {
     let appState: AppState
-    init(appState: AppState) {
+    let updater: Updater
+    init(appState: AppState, updater: Updater) {
         self.appState = appState
+        self.updater = updater
     }
 
     var body: some Commands {
@@ -16,7 +19,7 @@ struct AboutCommand: Commands {
             }
 
             Button {
-                loadGithubReleases(appState: appState, manual: true)
+                updater.checkForUpdates(showSheet: false)
             } label: {
                 Text("Check for Updates")
             }

@@ -1,0 +1,15 @@
+{
+  "originHash" : "50739d16fb3b1c36e28568d832b61475022b29d5c6dad4328005a7afcef102b7",
+  "pins" : [
+    {
+      "identity" : "alinfoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alienator88/AlinFoundation",
+      "state" : {
+        "branch" : "main",
+        "revision" : "c23d071049676e849036bbfecfd6ea48ef3bbe94"
+      }
+    }
+  ],
+  "version" : 3
+}

@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import AlinFoundation
 
 struct SettingsView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var updater: Updater
+    @EnvironmentObject var themeManager: ThemeManager
 
     var body: some View {
 
