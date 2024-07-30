@@ -103,7 +103,7 @@ struct Dashboard: View {
 
             Spacer()
 
-            if #available(macOS 15, *) { //MARK: Change this to 15 after testing is done
+            if #available(macOS 15, *) { //MARK: Only for Sequoia and up
                 InfoButton(text: "macOS Sequoia and up does not allow gatekeeper control via command line anymore. The only way to control this now is by adding a configuration profile.\n\nClick the install button and double click the 'Disable Gatekeeper' profile in the Settings pane to install it", color: .orange, label: "Please Read", warning: true)
                 HStack {
 
