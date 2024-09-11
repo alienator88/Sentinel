@@ -26,17 +26,16 @@ func runShellCommand(_ command: String) -> String? {
     return output
 }
 
-func openFileAndSystemPreferences(filename: String, withExtension ext: String, appState: AppState) {
+func openFileAndSystemPreferences(filename: String, withExtension ext: String, disable: Bool, appState: AppState) {
     if let fileURL = Bundle.main.url(forResource: filename, withExtension: ext) {
         let command = """
         open \(fileURL.path) && open x-apple.systempreferences:com.apple.Profiles-Settings.extension
         """
-        if let output = runShellCommand(command) {
-            print(output)
+        if let _ = runShellCommand(command) {
             updateOnMain {
-                appState.isGatekeeperEnabled = false
-                appState.isGatekeeperEnabledState = false
-                appState.status = "Profile has been installed successfully"
+                appState.isGatekeeperEnabled = disable ? false : true
+                appState.isGatekeeperEnabledState = disable ? false : true
+                appState.status = disable ? "Gatekeeper disable profile has been added" : "Gatekeeper enable profile has been added"
             }
         }
     } else {

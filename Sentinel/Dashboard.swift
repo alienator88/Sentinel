@@ -102,36 +102,17 @@ struct Dashboard: View {
 
             Spacer()
 
-            if #available(macOS 15, *) { //MARK: Only for Sequoia and up
-                InfoButton(text: "macOS Sequoia and up does not allow gatekeeper control via command line anymore. The only way to control this now is by adding a configuration profile.\n\nClick the install button and double click the 'Disable Gatekeeper' profile in the Settings pane to install it", color: .orange, label: "Please Read", warning: true)
-                HStack {
-
-                    Button(action: {
-                        openFileAndSystemPreferences(filename: "GK", withExtension: "mobileconfig", appState: appState)
-                    }) {
-                        Text("Install Profile")
-                            .padding(5)
-                    }
-
-                    Button(action: {
-                        CmdRunSudo(cmd: "profiles -R -p com.alienator88.Sentinel", type: "profile", appState: appState)
-                    }) {
-                        Text("Remove Profile")
-                            .padding(5)
-                    }
-
-
-
-                }
-
-            } else {
+            VStack(spacing: 15) {
                 Toggle("", isOn: $appState.isGatekeeperEnabled)
                     .toggleStyle(RedGreenShield())
                     .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
+
+                if #available(macOS 15, *) {
+                    InfoButton(text: "macOS Sequoia and up does not allow gatekeeper control via command line(spctl) anymore. The only way to control this now is by adding a configuration profile.\n\nToggle the switch and double click the 'Disable Gatekeeper' profile or the 'Enable Gatekeeper' profile in the Settings pane to install", color: .primary, label: "", warning: false)
+                }
+
             }
 
-
-//            Spacer()
 
             HStack(alignment: .center){
                 Text(appState.status)
@@ -153,16 +134,30 @@ struct Dashboard: View {
         }
         .onChange(of: appState.isGatekeeperEnabled) { isEnabled in
             Task {
-                if isEnabled && !appState.isGatekeeperEnabledState {
-                    updateOnMain() {
-                        appState.status = "Attempting to turn on gatekeeper, enter your admin password"
+                if #available(macOS 15, *) {
+                    if isEnabled && !appState.isGatekeeperEnabledState {
+                        updateOnMain() {
+                            appState.status = "Installing gatekeeper enable profile, enter your admin password"
+                        }
+                        openFileAndSystemPreferences(filename: "enable", withExtension: "mobileconfig", disable: false, appState: appState)
+                    } else if !isEnabled && appState.isGatekeeperEnabledState {
+                        updateOnMain() {
+                            appState.status = "Installing gatekeeper disable profile, enter your admin password"
+                        }
+                        openFileAndSystemPreferences(filename: "disable", withExtension: "mobileconfig", disable: true, appState: appState)
                     }
-                    CmdRunSudo(cmd: "spctl --global-enable", type: "enable", appState: appState)
-                } else if !isEnabled && appState.isGatekeeperEnabledState {
-                    updateOnMain() {
-                        appState.status = "Attempting to turn off gatekeeper, enter your admin password"
+                } else {
+                    if isEnabled && !appState.isGatekeeperEnabledState {
+                        updateOnMain() {
+                            appState.status = "Attempting to turn on gatekeeper, enter your admin password"
+                        }
+                        CmdRunSudo(cmd: "spctl --global-enable", type: "enable", appState: appState)
+                    } else if !isEnabled && appState.isGatekeeperEnabledState {
+                        updateOnMain() {
+                            appState.status = "Attempting to turn off gatekeeper, enter your admin password"
+                        }
+                        CmdRunSudo(cmd: "spctl --global-disable", type: "disable", appState: appState)
                     }
-                    CmdRunSudo(cmd: "spctl --global-disable", type: "disable", appState: appState)
                 }
             }
         }
