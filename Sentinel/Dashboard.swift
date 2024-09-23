@@ -230,9 +230,11 @@ struct DropQuarantine: DropDelegate {
                     print("Error: Not a valid URL.")
                     return
                 }
+                updateOnMain {
+                    appState.status = "Attempting to remove app from quarantine"
+                }
                 Task
                 {
-                    appState.status = "Attempting to remove app from quarantine"
                     _ = await CmdRunDrop(cmd: "xattr -rd com.apple.quarantine \(url.path)", type: "quarantine", appState: appState)
                 }
 
@@ -265,9 +267,11 @@ struct DropSign: DropDelegate {
                     print("Error: Not a valid URL.")
                     return
                 }
+                updateOnMain {
+                    appState.status = "Attempting to self-sign the app"
+                }
                 Task
                 {
-                    appState.status = "Attempting to self-sign the app"
                     _ = await CmdRunDrop(cmd: "codesign -f -s - --deep \(url.path)", type: "sign", appState: appState)
                 }
 
