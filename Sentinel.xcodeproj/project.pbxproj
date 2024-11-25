@@ -17,15 +17,10 @@
 		C766D28C2C34D10500F51BB9 /* Builds in Resources */ = {isa = PBXBuildFile; fileRef = C766D28B2C34D10500F51BB9 /* Builds */; };
 		C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */; };
 		C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB42BB33F9A002AD918 /* Styles.swift */; };
-		C78AAAB72BB3400B002AD918 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB62BB3400B002AD918 /* Utilities.swift */; };
 		C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */; };
 		C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAABA2BB399DD002AD918 /* BundleExt.swift */; };
-		C79229272C9214E7008FF376 /* GK-disable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = C79229262C9214E7008FF376 /* GK-disable.mobileconfig */; };
-		C79229292C921508008FF376 /* GK-enable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = C79229282C921508008FF376 /* GK-enable.mobileconfig */; };
-		C792292D2C921F32008FF376 /* disable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = C792292B2C921D93008FF376 /* disable.mobileconfig */; };
-		C792292E2C921F36008FF376 /* enable.mobileconfig in Resources */ = {isa = PBXBuildFile; fileRef = C792292A2C921D93008FF376 /* enable.mobileconfig */; };
 		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
-		C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* CmdRunner.swift */; };
+		C7BB802C29CA299700006CDB /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* Commands.swift */; };
 		C7EB1E0A2C594BD50085B695 /* AlinFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C7EB1E092C594BD50085B695 /* AlinFoundation */; };
 /* End PBXBuildFile section */
 
@@ -42,15 +37,10 @@
 		C766D28B2C34D10500F51BB9 /* Builds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Builds; sourceTree = SOURCE_ROOT; };
 		C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		C78AAAB42BB33F9A002AD918 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
-		C78AAAB62BB3400B002AD918 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		C78AAABA2BB399DD002AD918 /* BundleExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExt.swift; sourceTree = "<group>"; };
-		C79229262C9214E7008FF376 /* GK-disable.mobileconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GK-disable.mobileconfig"; sourceTree = "<group>"; };
-		C79229282C921508008FF376 /* GK-enable.mobileconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "GK-enable.mobileconfig"; sourceTree = "<group>"; };
-		C792292A2C921D93008FF376 /* enable.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file; path = enable.mobileconfig; sourceTree = "<group>"; };
-		C792292B2C921D93008FF376 /* disable.mobileconfig */ = {isa = PBXFileReference; lastKnownFileType = file; path = disable.mobileconfig; sourceTree = "<group>"; };
 		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
-		C7BB802B29CA299700006CDB /* CmdRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdRunner.swift; sourceTree = "<group>"; };
+		C7BB802B29CA299700006CDB /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +84,6 @@
 				C7BB802929CA28B400006CDB /* Dashboard.swift */,
 				C733F76E29CA65AC00DADADD /* AppState.swift */,
 				C78AAAB42BB33F9A002AD918 /* Styles.swift */,
-				C792292C2C921EE0008FF376 /* Profiles */,
 			);
 			path = Sentinel;
 			sourceTree = "<group>";
@@ -102,9 +91,8 @@
 		4180AEEC2839A0560054FEA9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C7BB802B29CA299700006CDB /* CmdRunner.swift */,
+				C7BB802B29CA299700006CDB /* Commands.swift */,
 				C733F76A29CA59AE00DADADD /* Script.swift */,
-				C78AAAB62BB3400B002AD918 /* Utilities.swift */,
 				C78AAABA2BB399DD002AD918 /* BundleExt.swift */,
 			);
 			path = Utilities;
@@ -127,17 +115,6 @@
 				C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */,
 			);
 			path = Updater;
-			sourceTree = "<group>";
-		};
-		C792292C2C921EE0008FF376 /* Profiles */ = {
-			isa = PBXGroup;
-			children = (
-				C79229262C9214E7008FF376 /* GK-disable.mobileconfig */,
-				C79229282C921508008FF376 /* GK-enable.mobileconfig */,
-				C792292B2C921D93008FF376 /* disable.mobileconfig */,
-				C792292A2C921D93008FF376 /* enable.mobileconfig */,
-			);
-			path = Profiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,12 +181,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C79229292C921508008FF376 /* GK-enable.mobileconfig in Resources */,
 				4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */,
 				C766D28C2C34D10500F51BB9 /* Builds in Resources */,
-				C79229272C9214E7008FF376 /* GK-disable.mobileconfig in Resources */,
-				C792292E2C921F36008FF376 /* enable.mobileconfig in Resources */,
-				C792292D2C921F32008FF376 /* disable.mobileconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,8 +197,7 @@
 				C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */,
 				C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */,
 				C733F76F29CA65AC00DADADD /* AppState.swift in Sources */,
-				C78AAAB72BB3400B002AD918 /* Utilities.swift in Sources */,
-				C7BB802C29CA299700006CDB /* CmdRunner.swift in Sources */,
+				C7BB802C29CA299700006CDB /* Commands.swift in Sources */,
 				4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */,
 				C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */,
 				4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */,
@@ -370,7 +342,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -386,7 +358,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -406,7 +378,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -422,7 +394,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
