@@ -16,7 +16,8 @@ struct SentinelApp: App {
                     .environmentObject(appState)
                     .environmentObject(updater)
             }
-            .sheet(isPresented: $updater.showSheet, content: {
+            //.sheet(isPresented: $updater.showSheet, content: {
+            .sheet(isPresented: $updater.sheet, content: {
                 /// This will show the update sheet based on the frequency check function only
                 updater.getUpdateView()
                     .environmentObject(themeManager)

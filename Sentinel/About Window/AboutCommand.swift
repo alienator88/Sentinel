@@ -19,7 +19,8 @@ struct AboutCommand: Commands {
             }
 
             Button {
-                updater.checkForUpdatesForce(showSheet: true)
+                //updater.checkForUpdatesForce(showSheet: true)
+                updater.checkForUpdates(sheet: true, force: true)
             } label: {
                 Text("Check for Updates")
             }
