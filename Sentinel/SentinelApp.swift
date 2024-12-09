@@ -7,7 +7,6 @@ struct SentinelApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var appState = AppState()
     @StateObject private var updater = Updater(owner: "alienator88", repo: "Sentinel")
-    @StateObject private var themeManager = ThemeManager.shared
 
     var body: some Scene {
         WindowGroup {
@@ -16,11 +15,9 @@ struct SentinelApp: App {
                     .environmentObject(appState)
                     .environmentObject(updater)
             }
-            //.sheet(isPresented: $updater.showSheet, content: {
             .sheet(isPresented: $updater.sheet, content: {
-                /// This will show the update sheet based on the frequency check function only
+                /// This will show the update sheet based on the frequency check function
                 updater.getUpdateView()
-                    .environmentObject(themeManager)
             })
         }
         .commands {
