@@ -30,7 +30,8 @@ struct UpdateSettingsTab: View {
             HStack(alignment: .center, spacing: 20) {
 
                 Button(""){
-                    updater.checkForUpdatesForce(showSheet: false)
+                    //updater.checkForUpdatesForce(showSheet: false)
+                    updater.checkForUpdates(sheet: true, force: true)
                 }
                 .buttonStyle(SimpleButtonStyle(icon: "list.bullet.rectangle.portrait", label: "Refresh", help: "Refresh updater", color: .primary))
 
