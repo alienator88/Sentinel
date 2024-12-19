@@ -4,7 +4,7 @@
    <br />
    <strong>Status: </strong>Maintained 
    <br />
-   <strong>Version: </strong>1.9
+   <strong>Version: </strong>2.0
    <br />
    <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
     · 
@@ -22,7 +22,7 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 - Can drop an app in the drop target to unquarantine
 - Can drop an app in the drop target to ad-hoc self sign and replace the certificate
 - Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Sentinel should be ran from /Applications folder to avoid permission issues)
-- Supports macOS Sequoia and up gatekeeper modification using profiles since Apple disabled `spctl` command
+- Supports macOS Sequoia
 
 
 
