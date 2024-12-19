@@ -7,6 +7,7 @@
 
 import Foundation
 import AlinFoundation
+import AppKit
 
 func CmdRun(cmd: String, appState: AppState) async -> Bool {
     let source = """
@@ -57,8 +58,29 @@ func CmdRunSudo(cmd: String, type: String,  appState: AppState) {
                 }
             }
 
-            // Always refresh state after operation
-            getGatekeeperState(appState: appState)
+            // Refresh status manually on Sequoia
+            if type == "disable" {
+                if #available(macOS 15.0, *) {
+                    updateOnMain {
+                        showCustomAlert(title: "Attention", message: "On macOS Sequoia or higher, Gatekeeper won't be fully disabled until you choose the 'Anywhere' option in the Privacy & Security settings page under Security section. Click Okay to open the settings page now.", style: .critical, onOk: {
+                            // Open the Privacy & Security settings page
+                            if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy") {
+                                NSWorkspace.shared.open(url)
+                            }
+                            appState.isGatekeeperEnabled = false
+                            appState.isGatekeeperEnabledState = false
+                            appState.status = "Please select the 'Anywhere' option in the Privacy & Security > Security settings"
+                        })
+                    }
+                } else {
+                    // Refresh status via CLI on anything below Sequoia
+                    getGatekeeperState(appState: appState)
+                }
+            } else {
+                // Refresh status via CLI if enable command
+                getGatekeeperState(appState: appState)
+            }
+
         }
     }
 
