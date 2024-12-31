@@ -161,7 +161,7 @@ func CmdRunDrop(cmd: String, type: String, sudo: Bool = false, appState: AppStat
 
 func checkQuarantineRemoved(cmd: String) async -> Bool {
     // Adjust command to check for quarantine attribute, e.g., `xattr`
-    let checkCmd = "xattr -p com.apple.quarantine \(cmd)"
+    let checkCmd = cmd.replacingOccurrences(of: "xattr -rd", with: "xattr -p")
     let source = """
                     set the_script to "\(checkCmd)"
                     set the_result to do shell script the_script
