@@ -211,7 +211,7 @@ struct DropQuarantine: DropDelegate {
                 }
                 Task
                 {
-                    _ = await CmdRunDrop(cmd: "xattr -rd com.apple.quarantine \(url.path)", type: "quarantine", appState: appState)
+                    _ = await CmdRunDrop(cmd: "xattr -rd com.apple.quarantine", path: url.path, type: "quarantine", appState: appState)
                 }
 
             }
@@ -248,7 +248,7 @@ struct DropSign: DropDelegate {
                 }
                 Task
                 {
-                    _ = await CmdRunDrop(cmd: "codesign -f -s - --deep \(url.path)", type: "sign", appState: appState)
+                    _ = await CmdRunDrop(cmd: "codesign -f -s - --deep", path: url.path, type: "sign", appState: appState)
                 }
 
             }

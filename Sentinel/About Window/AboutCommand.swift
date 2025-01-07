@@ -2,6 +2,7 @@ import SwiftUI
 import AlinFoundation
 
 struct AboutCommand: Commands {
+    @State private var windowController = WindowManager()
     let appState: AppState
     let updater: Updater
     init(appState: AppState, updater: Updater) {
@@ -24,6 +25,13 @@ struct AboutCommand: Commands {
                 Text("Check for Updates")
             }
             .keyboardShortcut("u", modifiers: .command)
+
+            Button {
+                windowController.open(with: ConsoleView(), width: 600, height: 400)
+            } label: {
+                Text("Debug Console")
+            }
+            .keyboardShortcut("d", modifiers: .command)
 
         }
     }

@@ -93,14 +93,15 @@ func getGatekeeperState(appState: AppState) {
     }
 }
 
-func CmdRunDrop(cmd: String, type: String, sudo: Bool = false, appState: AppState) async {
+func CmdRunDrop(cmd: String, path: String, type: String, sudo: Bool = false, appState: AppState) async {
+    let fullCMD = "\(cmd) '\(path)'"
     let source = """
-                    set the_script to "\(cmd)"
+                    set the_script to "\(fullCMD)"
                     set the_result to do shell script the_script
                     return the_result
                     """
     let sourceSudo = """
-                    set the_script to "\(cmd)"
+                    set the_script to "\(fullCMD)"
                     set the_result to do shell script the_script with prompt "Sentinel requires elevated privileges" with administrator privileges
                     return the_result
                     """
@@ -111,7 +112,7 @@ func CmdRunDrop(cmd: String, type: String, sudo: Bool = false, appState: AppStat
             switch type {
             case "quarantine":
                 // Check if the quarantine attribute is removed
-                let removed = await checkQuarantineRemoved(cmd: cmd)
+                let removed = await checkQuarantineRemoved(path: path)
                 if removed {
                     updateOnMain {
                         appState.status = "App has been removed from quarantine"
@@ -121,7 +122,7 @@ func CmdRunDrop(cmd: String, type: String, sudo: Bool = false, appState: AppStat
                     updateOnMain {
                         appState.status = "Retrying with elevated privileges"
                     }
-                    _ = await CmdRunDrop(cmd: cmd, type: "quarantine", sudo: true, appState: appState)
+                    _ = await CmdRunDrop(cmd: cmd, path: path, type: "quarantine", sudo: true, appState: appState)
                 } else {
                     printOS(out.standardError)
                     updateOnMain {
@@ -131,7 +132,8 @@ func CmdRunDrop(cmd: String, type: String, sudo: Bool = false, appState: AppStat
 
             case "sign":
                 // Check if the app was self-signed successfully
-                let signed = await checkAppSigned(cmd: cmd)
+                let signed = await checkAppSigned(path: path)
+
                 if signed {
                     updateOnMain {
                         appState.status = "App has been successfully self-signed"
@@ -141,7 +143,7 @@ func CmdRunDrop(cmd: String, type: String, sudo: Bool = false, appState: AppStat
                     updateOnMain {
                         appState.status = "Retrying with elevated privileges"
                     }
-                    _ = await CmdRunDrop(cmd: cmd, type: "sign", sudo: true, appState: appState)
+                    _ = await CmdRunDrop(cmd: cmd, path: path, type: "sign", sudo: true, appState: appState)
                 } else {
                     printOS(out.standardError)
                     updateOnMain {
@@ -159,9 +161,9 @@ func CmdRunDrop(cmd: String, type: String, sudo: Bool = false, appState: AppStat
 }
 
 
-func checkQuarantineRemoved(cmd: String) async -> Bool {
+func checkQuarantineRemoved(path: String) async -> Bool {
     // Adjust command to check for quarantine attribute, e.g., `xattr`
-    let checkCmd = "xattr -p com.apple.quarantine \(cmd)"
+    let checkCmd = "xattr -p com.apple.quarantine '\(path)'"
     let source = """
                     set the_script to "\(checkCmd)"
                     set the_result to do shell script the_script
@@ -171,10 +173,11 @@ func checkQuarantineRemoved(cmd: String) async -> Bool {
     return !out.standardOutput.contains("com.apple.quarantine")
 }
 
-func checkAppSigned(cmd: String) async -> Bool {
+func checkAppSigned(path: String) async -> Bool {
     // Adjust the command to extract the path from the original command if necessary
-    let path = extractPathFromCmd(cmd)
-    let checkCmd = "codesign -v \(path)"
+//    let path = extractPathFromCmd(cmd)
+    print(path)
+    let checkCmd = "codesign -v '\(path)'"
     let source = """
                     set the_script to "\(checkCmd)"
                     set the_result to do shell script the_script
@@ -184,10 +187,10 @@ func checkAppSigned(cmd: String) async -> Bool {
     return out.standardError.isEmpty // If there's no error, the app is correctly signed
 }
 
-func extractPathFromCmd(_ cmd: String) -> String {
-    // Extract the path from the provided command (assumes path is the last argument)
-    return cmd.components(separatedBy: " ").last ?? ""
-}
+//func extractPathFromCmd(_ cmd: String) -> String {
+//    // Extract the path from the provided command (assumes path is the last argument)
+//    return cmd.components(separatedBy: " ").last ?? ""
+//}
 
 
 func runShellCommand(_ command: String) -> TerminalOutput {
