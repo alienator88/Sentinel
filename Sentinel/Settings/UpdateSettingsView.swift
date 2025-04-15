@@ -20,7 +20,9 @@ struct UpdateSettingsTab: View {
                 .padding(5)
                 .padding(.horizontal)
 
-            ReleasesView(updater: updater)
+            Divider()
+
+            RecentReleasesView(updater: updater)
                 .frame(height: 400)
                 .frame(maxWidth: .infinity)
                 .background(.background.opacity(0.2))
@@ -59,8 +61,6 @@ struct UpdateSettingsTab: View {
 
 
         }
-        .padding(20)
-        .frame(width: 500, height: 520)
     }
 
 }

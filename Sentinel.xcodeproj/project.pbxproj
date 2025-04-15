@@ -10,7 +10,6 @@
 		4180AEAE2839753E0054FEA9 /* SentinelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEAD2839753E0054FEA9 /* SentinelApp.swift */; };
 		4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4180AEB12839753F0054FEA9 /* Assets.xcassets */; };
 		4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEEA2839A0280054FEA9 /* AboutCommand.swift */; };
-		4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEF82839A21F0054FEA9 /* AboutWindow.swift */; };
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
 		C733F76B29CA59AE00DADADD /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Script.swift */; };
 		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
@@ -18,10 +17,10 @@
 		C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */; };
 		C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB42BB33F9A002AD918 /* Styles.swift */; };
 		C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */; };
-		C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAABA2BB399DD002AD918 /* BundleExt.swift */; };
 		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
 		C7BB802C29CA299700006CDB /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* Commands.swift */; };
 		C7EB1E0A2C594BD50085B695 /* AlinFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C7EB1E092C594BD50085B695 /* AlinFoundation */; };
+		C7FBD9EA2DAD722700151934 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FBD9E92DAD721F00151934 /* GeneralSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +29,6 @@
 		4180AEB12839753F0054FEA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SentinelApp.entitlements; sourceTree = "<group>"; };
 		4180AEEA2839A0280054FEA9 /* AboutCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommand.swift; sourceTree = "<group>"; };
-		4180AEF82839A21F0054FEA9 /* AboutWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindow.swift; sourceTree = "<group>"; };
 		4180AEFA2839A32F0054FEA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C733F76A29CA59AE00DADADD /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		C733F76E29CA65AC00DADADD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -38,9 +36,9 @@
 		C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		C78AAAB42BB33F9A002AD918 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
-		C78AAABA2BB399DD002AD918 /* BundleExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExt.swift; sourceTree = "<group>"; };
 		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		C7BB802B29CA299700006CDB /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
+		C7FBD9E92DAD721F00151934 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				C766D28B2C34D10500F51BB9 /* Builds */,
-				C78AAAAD2BB33F2E002AD918 /* Updater */,
+				C78AAAAD2BB33F2E002AD918 /* Settings */,
 				4180AEEC2839A0560054FEA9 /* Utilities */,
-				4180AEF72839A2010054FEA9 /* About Window */,
 				4180AEAD2839753E0054FEA9 /* SentinelApp.swift */,
 				4180AEB12839753F0054FEA9 /* Assets.xcassets */,
 				4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */,
@@ -93,28 +90,20 @@
 			children = (
 				C7BB802B29CA299700006CDB /* Commands.swift */,
 				C733F76A29CA59AE00DADADD /* Script.swift */,
-				C78AAABA2BB399DD002AD918 /* BundleExt.swift */,
+				4180AEEA2839A0280054FEA9 /* AboutCommand.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		4180AEF72839A2010054FEA9 /* About Window */ = {
+		C78AAAAD2BB33F2E002AD918 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				4180AEEA2839A0280054FEA9 /* AboutCommand.swift */,
-				4180AEF82839A21F0054FEA9 /* AboutWindow.swift */,
-				4180AEFA2839A32F0054FEA9 /* AboutView.swift */,
-			);
-			path = "About Window";
-			sourceTree = "<group>";
-		};
-		C78AAAAD2BB33F2E002AD918 /* Updater */ = {
-			isa = PBXGroup;
-			children = (
+				C7FBD9E92DAD721F00151934 /* GeneralSettingsView.swift */,
 				C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */,
 				C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */,
+				4180AEFA2839A32F0054FEA9 /* AboutView.swift */,
 			);
-			path = Updater;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,10 +184,9 @@
 			files = (
 				4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */,
 				C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */,
-				C78AAABB2BB399DD002AD918 /* BundleExt.swift in Sources */,
+				C7FBD9EA2DAD722700151934 /* GeneralSettingsView.swift in Sources */,
 				C733F76F29CA65AC00DADADD /* AppState.swift in Sources */,
 				C7BB802C29CA299700006CDB /* Commands.swift in Sources */,
-				4180AEF92839A21F0054FEA9 /* AboutWindow.swift in Sources */,
 				C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */,
 				4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */,
 				C733F76B29CA59AE00DADADD /* Script.swift in Sources */,
@@ -342,7 +330,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -357,8 +345,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -378,7 +366,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -393,8 +381,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -15,11 +15,11 @@ struct SettingsView: View {
     var body: some View {
 
         TabView() {
-//            GeneralSettingsTab(showPopover: $showPopover, search: $search)
-//                .tabItem {
-//                    Label(CurrentTabView.general.title, systemImage: "gear")
-//                }
-//                .tag(CurrentTabView.general)
+            GeneralSettingsTab()
+                .tabItem {
+                    Label(CurrentTabView.general.title, systemImage: "gear")
+                }
+                .tag(CurrentTabView.general)
 
             UpdateSettingsTab()
                 .tabItem {
@@ -27,18 +27,15 @@ struct SettingsView: View {
                 }
                 .tag(CurrentTabView.update)
 
-            AboutView(
-                icon: NSApp.applicationIconImage ?? NSImage(),
-                name: Bundle.main.name,
-                version: Bundle.main.version,
-                build: Bundle.main.buildVersion,
-                developerName: "Alin Lupascu")
+            AboutView()
                 .tabItem {
                     Label(CurrentTabView.about.title, systemImage: "info.circle")
                 }
                 .tag(CurrentTabView.about)
 
         }
+        .padding(20)
+        .frame(width: 500, height: 520)
 
     }
 

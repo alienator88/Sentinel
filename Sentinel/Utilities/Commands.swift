@@ -8,6 +8,7 @@
 import Foundation
 import AlinFoundation
 import AppKit
+import SwiftUI
 
 func CmdRun(cmd: String, appState: AppState) async -> Bool {
     let source = """
@@ -60,9 +61,9 @@ func CmdRunSudo(cmd: String, type: String,  appState: AppState) {
 
             // Refresh status manually on Sequoia
             if type == "disable" {
-                if #available(macOS 15.0, *) {
-                    updateOnMain {
-                        showCustomAlert(title: "Attention", message: "On macOS Sequoia or higher, Gatekeeper won't be fully disabled until you choose the 'Anywhere' option in the Privacy & Security settings page under Security section. Click Okay to open the settings page now.", style: .critical, onOk: {
+                if #available(macOS 13.0, *) {
+                    if !canceled {
+                        showCustomAlert(title: "Attention", message: "On macOS 14.0 and up, Gatekeeper won't be fully disabled until you choose 'Anywhere' option in the Privacy & Security settings page under Security section. Click Okay to open the settings page now.", style: .critical, onOk: {
                             // Open the Privacy & Security settings page
                             if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy") {
                                 NSWorkspace.shared.open(url)
@@ -93,36 +94,62 @@ func getGatekeeperState(appState: AppState) {
     }
 }
 
-func CmdRunDrop(cmd: String, path: String, type: String, sudo: Bool = false, appState: AppState) async {
-    let fullCMD = "\(cmd) '\(path)'"
+func CmdRunDrop(cmd: String, path: String, type: cmdType, sudo: Bool = false, appState: AppState) async {
+    @AppStorage("sentinel.general.autoLaunch") var autoLaunch = true
+    @AppStorage("sentinel.general.notaryProfile") var notaryProfile = ""
+
+    let fullCMD: String
+    if type == .signDev {
+        fullCMD = "xattr -cr '\(path)' && \(cmd) '\(path)'"
+    } else {
+        fullCMD = "\(cmd) '\(path)'"
+    }
     let source = """
                     set the_script to "\(fullCMD)"
                     set the_result to do shell script the_script
                     return the_result
                     """
-    let sourceSudo = """
-                    set the_script to "\(fullCMD)"
-                    set the_result to do shell script the_script with prompt "Sentinel requires elevated privileges" with administrator privileges
-                    return the_result
-                    """
+    let sourceSudo: String
+    if type == .signDev {
+        // Run xattr with sudo, then codesign without
+        let sourceXattr = "xattr -cr '\(path)'"
+        let sourceSign = "\(cmd) '\(path)'"
+        sourceSudo = """
+        set the_script to "\(sourceXattr)"
+        set the_result to do shell script the_script with prompt "Sentinel requires elevated privileges" with administrator privileges
+        set the_script2 to "\(sourceSign)"
+        set the_result2 to do shell script the_script2
+        return the_result2
+        """
+    } else {
+        sourceSudo = """
+        set the_script to "\(fullCMD)"
+        set the_result to do shell script the_script with prompt "Sentinel requires elevated privileges" with administrator privileges
+        return the_result
+        """
+    }
+
     Task {
         do{
             let out = OsaScript(source: sudo ? sourceSudo : source)
 
             switch type {
-            case "quarantine":
+            case .quarantine:
                 // Check if the quarantine attribute is removed
                 let removed = await checkQuarantineRemoved(path: path)
                 if removed {
                     updateOnMain {
                         appState.status = "App has been removed from quarantine"
                     }
+                    if autoLaunch {
+                        NSWorkspace.shared.open(URL(fileURLWithPath: path))
+                    }
                 } else if !sudo { // Retry with sudo
                     printOS(out.standardError)
                     updateOnMain {
                         appState.status = "Retrying with elevated privileges"
                     }
-                    _ = await CmdRunDrop(cmd: cmd, path: path, type: "quarantine", sudo: true, appState: appState)
+                    _ = await CmdRunDrop(cmd: cmd, path: path, type: .quarantine, sudo: true, appState: appState)
                 } else {
                     printOS(out.standardError)
                     updateOnMain {
@@ -130,7 +157,7 @@ func CmdRunDrop(cmd: String, path: String, type: String, sudo: Bool = false, app
                     }
                 }
 
-            case "sign":
+            case .signAH:
                 // Check if the app was self-signed successfully
                 let signed = await checkAppSigned(path: path)
 
@@ -143,7 +170,7 @@ func CmdRunDrop(cmd: String, path: String, type: String, sudo: Bool = false, app
                     updateOnMain {
                         appState.status = "Retrying with elevated privileges"
                     }
-                    _ = await CmdRunDrop(cmd: cmd, path: path, type: "sign", sudo: true, appState: appState)
+                    _ = await CmdRunDrop(cmd: cmd, path: path, type: .signAH, sudo: true, appState: appState)
                 } else {
                     printOS(out.standardError)
                     updateOnMain {
@@ -151,13 +178,44 @@ func CmdRunDrop(cmd: String, path: String, type: String, sudo: Bool = false, app
                     }
                 }
 
-            default:
-                print("")
+            case .signDev:
+                // Check if the app was signed with dev identity successfully
+                let signed = await checkAppSigned(path: path)
+
+                if signed {
+                    if !notaryProfile.isEmpty {
+                        updateOnMain {
+                            appState.status = "App is being notarized.."
+                        }
+                        notarizeApp(path: path, profile: notaryProfile, appState: appState)
+                    } else {
+                        updateOnMain {
+                            appState.status = "App has been successfully signed with development identity"
+                        }
+                    }
+                    //                    updateOnMain {
+                    //                        appState.status = "App has been successfully signed with development identity"
+                    //                    }
+                } else if !sudo { // Retry with sudo
+                    printOS(out.standardError)
+                    updateOnMain {
+                        appState.status = "Retrying with elevated privileges"
+                    }
+                    _ = await CmdRunDrop(cmd: cmd, path: path, type: .signDev, sudo: true, appState: appState)
+                } else {
+                    printOS(out.standardError)
+                    updateOnMain {
+                        appState.status = "Failed to sign the app with development identity"
+                    }
+                }
             }
-            
+
+            updateOnMain {
+                appState.isLoading = false
+            }
         }
     }
-    
+
 }
 
 
@@ -175,8 +233,8 @@ func checkQuarantineRemoved(path: String) async -> Bool {
 
 func checkAppSigned(path: String) async -> Bool {
     // Adjust the command to extract the path from the original command if necessary
-//    let path = extractPathFromCmd(cmd)
-    print(path)
+    //    let path = extractPathFromCmd(cmd)
+    //    print(path)
     let checkCmd = "codesign -v '\(path)'"
     let source = """
                     set the_script to "\(checkCmd)"
@@ -187,13 +245,54 @@ func checkAppSigned(path: String) async -> Bool {
     return out.standardError.isEmpty // If there's no error, the app is correctly signed
 }
 
-//func extractPathFromCmd(_ cmd: String) -> String {
-//    // Extract the path from the provided command (assumes path is the last argument)
-//    return cmd.components(separatedBy: " ").last ?? ""
-//}
+
+func notarizeApp(path: String, profile: String, appState: AppState) {
+    let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+    let zipDir = appSupport.appendingPathComponent(Bundle.main.name)
+    let zipPath = zipDir.appendingPathComponent((path as NSString).lastPathComponent + ".zip").path
+
+    // Step 1: Zip the app
+    let zipCmd = "ditto -c -k --keepParent '\(path)' '\(zipPath)'"
+    let zipResult = runShCommand(zipCmd)
+    printOS(zipResult.standardError)
+    if !zipResult.standardError.isEmpty {
+        updateOnMain {
+            appState.status = "Notarization zipping failed, check Debug console for more info (CMD+D)"
+        }
+    }
+
+    // Step 2: Submit to notarytool
+    let notaryCmd = "xcrun notarytool submit '\(zipPath)' --keychain-profile \"\(profile)\" --wait"
+    let notaryResult = runShCommand(notaryCmd)
+    printOS(notaryResult.standardError)
+    if !notaryResult.standardError.isEmpty {
+        updateOnMain {
+            appState.status = "Notarization failed, check Debug console for more info (CMD+D)"
+        }
+    }
 
 
-func runShellCommand(_ command: String) -> TerminalOutput {
+    // Step 3: Staple the ticket
+    let stapleCmd = "xcrun stapler staple '\(path)'"
+    let stapleResult = runShCommand(stapleCmd)
+    printOS(stapleResult.standardError)
+    if !stapleResult.standardError.isEmpty {
+        updateOnMain {
+            appState.status = "Notarization staple failed, check Debug console for more info (CMD+D)"
+        }
+    }
+
+    // Step 4: Remove zip
+    try? FileManager.default.removeItem(atPath: zipPath)
+
+    updateOnMain {
+        appState.status = "App has been signed and notarized successfully"
+    }
+}
+
+
+
+func runShCommand(_ command: String) -> TerminalOutput {
     let process = Process()
     let stdout = Pipe()
     let sterr = Pipe()

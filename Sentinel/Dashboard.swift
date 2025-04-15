@@ -8,6 +8,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import AlinFoundation
+import Security
 
 private let dropTypes = [UTType.fileURL]
 
@@ -15,18 +16,17 @@ struct Dashboard: View {
 
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var updater: Updater
-//    @State private var bounce = false
+    @AppStorage("sentinel.general.codesignIdentity") private var selectedIdentity = "None"
 
     var body: some View {
-        VStack(alignment: .center, spacing: 30) {
+        VStack(alignment: .center, spacing: 10) {
 
             // LOGO - TITLEBAR //////////////////////////////////////////////////////
             HStack(alignment: .center, spacing: 0) {
                 Spacer()
 
                 if updater.updateAvailable {
-                    UpdateBadge(updater: updater)
-                        .frame(width: 250)
+                    UpdateBadge(updater: updater, hideLabel: true)
                 } else {
                     Text("Sentinel")
                         .font(.title2)
@@ -37,13 +37,11 @@ struct Dashboard: View {
                                 endPoint: .trailing
                             )
                         )
-
                 }
-
-//                Spacer()
-
             }
             .frame(maxWidth: .infinity)
+
+            Spacer()
 
             // Drop Zones //////////////////////////////////////////////////////
 
@@ -51,48 +49,47 @@ struct Dashboard: View {
             VStack(alignment: .center, spacing: 20) {
 
                 HStack() {
+                    Image(systemName: "arrow.down")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 14)
                     Text("Drop an **app** below")
                         .font(.title2).opacity(0.8)
                     Image(systemName: "arrow.down")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 14)
-//                        .offset(y: bounce ? -2 : 2)
-//                        .animation(
-//                            .easeInOut(duration: 0.4)
-//                            .repeatCount(7, autoreverses: true),
-//                            value: bounce
-//                        )
-//                        .onAppear {
-//                            bounce = true
-//                        }
                 }
 
 
                 HStack(spacing: 50) {
                     // Item 1 //////////////////////////////////////////////////////////////////////////
 
-                    ZStack {
+                    VStack {
 
                         DropTarget(delegate: DropQuarantine(appState: appState), types: dropTypes)
                             .frame(width: 200, height: 150)
                             .overlay(dropOverlayQuarantine, alignment: .center)
                             .opacity(0.8)
 
+                        InfoButton(text: "If you download an unsigned app outside of the app store, it will be quarantined by macOS when trying to launch it and will prevent you from opening it. Dropping an app here will remove it from quarantine manually and let you launch it. \n\nDetails:\n- Removes quarantine flag\n- Skips transparency, consent and control checks\n- Quick workaround to bypass macOS protections without touching the code signature\n-In short, this skips Gatekeeper completely")
+
                     }
-                    .frame(width: 200, height: 150 )
+//                    .frame(width: 200, height: 150 )
 
                     // Item 2 //////////////////////////////////////////////////////////////////////////
 
-                    ZStack {
+                    VStack {
 
                         DropTarget(delegate: DropSign(appState: appState), types: dropTypes)
                             .frame(width: 200, height: 150)
                             .overlay(dropOverlaySign, alignment: .center)
                             .opacity(0.8)
 
+                        InfoButton(text: "This signs the app with a self-signed certificate or a development identity. This is useful for testing/development purposes, make macOS recognize it as 'signed' or avoiding 'unnotarized' warnings. This is not a replacement for real signing/notarization. \n\nDetails:\n- Adds an ad-hoc signature or identity, marking the app internally as 'valid'\n- Might be needed for certain sandboxed or permission-sensitive tasks\n- Makes the app appear 'signed' to macOS, but still not trusted/notarized\n- In short, this fakes Gatekeeper into thinking the app is signed")
+
                     }
-                    .frame(width: 200, height: 150 )
+//                    .frame(width: 200, height: 150 )
                 }
             }
 
@@ -102,20 +99,35 @@ struct Dashboard: View {
 
             Spacer()
 
-            VStack(spacing: 15) {
-                Toggle("", isOn: $appState.isGatekeeperEnabled)
-                    .toggleStyle(RedGreenShield())
-                    .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
+            GroupBox {
+                HStack(spacing: 10) {
+                    Text("If you want to fully disable Gatekeeper and not have to unquarantine unsigned apps manually each time, you can disable it system-wide here. This is not generally recommended for most users, but may be useful for more advanced cases.")
+                        .frame(maxWidth: .infinity)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                    Toggle("", isOn: $appState.isGatekeeperEnabled)
+                        .toggleStyle(RedGreenShield())
+                        .frame(width: 80, height: 45)
+                        .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
+                }
+                .padding()
             }
+
+
+            Spacer()
 
 
             HStack(alignment: .center){
+                if appState.isLoading {
+                    ProgressView().controlSize(.small)
+                }
                 Text(appState.status)
                     .font(.system(size: 12))
-                    .opacity(0.8)
-                    .padding(.vertical)
+                    .foregroundStyle(.secondary)
             }
-            .padding(.vertical)
+            .padding(.top)
 
         }
         .padding()
@@ -138,46 +150,30 @@ struct Dashboard: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
+        .frame(width: 650, height: 550)
 
     }
 
 
     @ViewBuilder private var dropOverlayQuarantine: some View {
-
         VStack(alignment: .center, spacing: 20) {
-            Image(systemName: "plus.square.dashed")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 26, height: 26)
-                .foregroundColor(Color("drop")).opacity(1)
-            Text("Remove app from quarantine")
-                .foregroundColor(Color("drop"))
-                .opacity(1)
+            Text("Allow unsigned app to launch")
+                .foregroundColor(.secondary)
                 .font(.callout)
                 .padding(.horizontal)
                 .multilineTextAlignment(.center)
         }
-        .help("This will unquarantine the app by changing attributes in com.apple.quarantine")
-
     }
 
     @ViewBuilder private var dropOverlaySign: some View {
-
         VStack(alignment: .center, spacing: 20) {
-            Image(systemName: "plus.square.dashed")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 26, height: 26)
-                .foregroundColor(Color("drop")).opacity(1)
-            Text("Self-sign the app")
-                .foregroundColor(Color("drop"))
-                .opacity(1)
+            Text(selectedIdentity == "None" ? "Sign app with: Ad-Hoc" : "Sign app with: \(selectedIdentity)")
+                .foregroundColor(.secondary)
                 .font(.callout)
                 .padding(.horizontal)
                 .multilineTextAlignment(.center)
+                .help(selectedIdentity)
         }
-        .help("This will replace the app signature by performing an ad-hoc signing without a certificate")
-
     }
 
 
@@ -208,10 +204,11 @@ struct DropQuarantine: DropDelegate {
                 }
                 updateOnMain {
                     appState.status = "Attempting to remove app from quarantine"
+                    appState.isLoading = true
                 }
                 Task
                 {
-                    _ = await CmdRunDrop(cmd: "xattr -rd com.apple.quarantine", path: url.path, type: "quarantine", appState: appState)
+                    _ = await CmdRunDrop(cmd: "xattr -rd com.apple.quarantine", path: url.path, type: .quarantine, appState: appState)
                 }
 
             }
@@ -245,10 +242,19 @@ struct DropSign: DropDelegate {
                 }
                 updateOnMain {
                     appState.status = "Attempting to self-sign the app"
+                    appState.isLoading = true
                 }
-                Task
-                {
-                    _ = await CmdRunDrop(cmd: "codesign -f -s - --deep", path: url.path, type: "sign", appState: appState)
+                Task {
+                    let identity = UserDefaults.standard.string(forKey: "sentinel.general.codesignIdentity") ?? "None"
+                    let signCmd = identity == "None" ? "codesign -f -s - --deep" : "codesign -f -s \\\"\(identity)\\\" --deep --options runtime"
+                    
+                    if identity != "None" {
+                        _ = await CmdRunDrop(cmd: signCmd, path: url.path, type: .signDev, sudo: true, appState: appState)
+                    } else {
+                        _ = await CmdRunDrop(cmd: signCmd, path: url.path, type: .signAH, appState: appState)
+                    }
+
+
                 }
 
             }

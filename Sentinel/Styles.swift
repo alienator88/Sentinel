@@ -11,64 +11,82 @@ import UniformTypeIdentifiers
 
 
 struct RedGreenShield: ToggleStyle {
+    @Environment(\.controlSize) var controlSize
 
     func makeBody(configuration: Configuration) -> some View {
+        GeometryReader { geo in
+            let width = geo.size.width
+            let height = geo.size.height
+            let cornerRadius = height / 2
+            let iconSize = height * 0.43
+            let offsetX = width * 0.22
 
-        HStack {
+            HStack {
+                ZStack {
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .fill(configuration.isOn ?
+                              Color.green.opacity(0.7) :
+                                Color.red.opacity(0.7))
+                        .frame(width: width, height: height)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: cornerRadius)
+                                .strokeBorder(.primary.opacity(0.2), lineWidth: 1)
+                        )
 
-            ZStack{
-                RoundedRectangle(cornerRadius: 50)
-                    .fill(backgroundStyle(forConfiguration: configuration))
-                    .frame(width: 100, height: 60)
-                    .shadow(color: Color("mode").opacity(0.3), radius: 3, x: 0, y: 0)
-                HStack{
-                    Image(systemName: "lock")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 26, height: 26)
-                        .padding(.leading, 14)
-                        .foregroundColor(.white)
-                        .opacity(configuration.isOn ? 1 : 0)
-                    Spacer()
-                    Image(systemName: "lock.open")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 26, height: 26)
-                        .padding(.trailing, 10)
-                        .foregroundColor(.white)
-                        .opacity(configuration.isOn ? 0 : 1)
+
+                    HStack {
+                        Image(systemName: "lock")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundStyle(.white)
+                            .frame(width: iconSize, height: iconSize)
+                            .padding(.leading, height * 0.25)
+                            .opacity(configuration.isOn ? 1 : 0)
+
+                        Spacer()
+
+                        Image(systemName: "lock.open")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundStyle(.white)
+                            .frame(width: iconSize, height: iconSize)
+                            .padding(.trailing, height * 0.20)
+                            .opacity(configuration.isOn ? 0 : 1)
+                    }
                 }
+                .frame(width: width, height: height, alignment: .center)
 
-            }
-            .frame(width: 100, height: 60, alignment: .center)
-            .overlay(
-                Circle()
-                    .padding(2)
-                    .foregroundColor(.white).opacity(0.8)
-                    .shadow(color: .black.opacity(0.8), radius: 3, x: 0, y: 0)
-                    .padding(.all, 4)
-                    .offset(x: configuration.isOn ? 20 : -20, y: 0)
-            )
-            .overlay(
-                Image(systemName: "power")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.black.opacity(0.7))
-                    .offset(x: configuration.isOn ? 20 : -20, y: 0)
-            )
-            .onTapGesture {
-                withAnimation(.easeInOut(duration: 0.7)) {
-                    configuration.isOn.toggle()
+                .overlay(
+                    ZStack {
+                        Circle()
+                            .fill(Color.white)
+                        Circle()
+                            .fill(
+                                AngularGradient(
+                                    gradient: Gradient(colors: [
+                                        .gray.opacity(0.7),
+                                        .gray.opacity(0.1),
+                                        .gray.opacity(0.7),
+                                        .gray.opacity(0.1),
+                                        .gray.opacity(0.7)
+                                    ]),
+                                    center: .center
+                                )
+                            )
+                    }
+                        .shadow(color: .black.opacity(0.3), radius: 1)
+                        .padding(4)
+                        .offset(x: configuration.isOn ? offsetX : -offsetX)
+                )
+                .onTapGesture {
+                    withAnimation(.spring(duration: 0.5)) {
+                        configuration.isOn.toggle()
+                    }
                 }
             }
         }
-
-
     }
-
 }
-
 
 
 struct DropTarget: View {
@@ -79,10 +97,10 @@ struct DropTarget: View {
 
     var body: some View {
         ZStack {
-//            RoundedRectangle(cornerRadius: 8)
-//                .fill(Color("bg").opacity(1))
+            //            RoundedRectangle(cornerRadius: 8)
+            //                .fill(Color("bg").opacity(1))
             RoundedRectangle(cornerRadius: 8)
-                .strokeBorder(Color("drop").opacity(0.5), style: StrokeStyle(lineWidth: 0.5, dash: [8, 4], dashPhase: 0))
+                .strokeBorder(Color.primary.opacity(0.5), style: StrokeStyle(lineWidth: 0.5, dash: [8, 4], dashPhase: 0))
             //                .strokeBorder(Color("stroke").opacity(1), style: StrokeStyle(lineWidth: 1, dashPhase: 0))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -111,38 +129,49 @@ func backgroundStyle(forConfiguration configuration: ToggleStyleConfiguration) -
 
 
 
-struct SimpleButtonStyle: ButtonStyle {
+public struct SimpleButtonStyle: ButtonStyle {
     @State private var hovered = false
     let icon: String
-    let label: String?
+    let iconFlip: String
+    let label: String
     let help: String
     let color: Color
+    let size: CGFloat
+    let padding: CGFloat
+    let rotate: Bool
 
-    init(icon: String, label: String? = "", help: String, color: Color) {
+    public init(icon: String, iconFlip: String = "", label: String = "", help: String, color: Color = .primary, size: CGFloat = 20, padding: CGFloat = 5, rotate: Bool = false) {
         self.icon = icon
+        self.iconFlip = iconFlip
         self.label = label
         self.help = help
         self.color = color
+        self.size = size
+        self.padding = padding
+        self.rotate = rotate
     }
 
-    func makeBody(configuration: Self.Configuration) -> some View {
-        HStack {
-            Image(systemName: icon)
+    public func makeBody(configuration: Self.Configuration) -> some View {
+        HStack(alignment: .center) {
+            Image(systemName: (hovered && !iconFlip.isEmpty) ? iconFlip : icon)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 20)
-            if let label = label, !label.isEmpty {
+                .frame(width: size, height: size)
+            //                .scaleEffect(hovered ? 1.05 : 1.0)
+                .rotationEffect(.degrees(rotate ? (hovered ? 90 : 0) : 0))
+                .animation(.easeInOut(duration: 0.2), value: hovered)
+            if !label.isEmpty {
                 Text(label)
             }
         }
-        .foregroundColor(hovered ? color : color.opacity(0.5))
-        .padding(5)
+        .foregroundColor(hovered ? color.opacity(0.5) : color)
+        .padding(padding)
         .onHover { hovering in
             withAnimation() {
                 hovered = hovering
             }
         }
-        .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        .scaleEffect(configuration.isPressed ? 0.90 : 1)
         .help(help)
     }
 }

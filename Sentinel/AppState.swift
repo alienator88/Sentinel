@@ -11,6 +11,7 @@ class AppState: ObservableObject {
     @Published var isGatekeeperEnabled: Bool = true
     @Published var isGatekeeperEnabledState: Bool = true
     @Published var status: String = ""
+    @Published var isLoading: Bool = false
 
 
 
@@ -30,4 +31,10 @@ enum CurrentTabView:Int
         case .about: return "About"
         }
     }
+}
+
+enum cmdType {
+    case quarantine
+    case signAH
+    case signDev
 }
