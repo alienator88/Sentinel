@@ -34,7 +34,7 @@ A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a l
 
 
 ## Requirements
-- MacOS 12.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than 12.0)
+- MacOS 13.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than Ventura)
 
 ## Getting Sentinel
 
