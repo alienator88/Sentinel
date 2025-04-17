@@ -28,10 +28,9 @@ A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
 
 ## Screenshots
 
-<img src="https://github.com/alienator88/Sentinel/assets/6263626/43a8bab1-9bb1-40b2-82ce-62c91b57e066" align="left" width="400" />
+<img src="https://github.com/user-attachments/assets/913d8415-1d79-48fa-b25c-034cb954d9ba" align="left" width="400" />
 
-<img src="https://github.com/alienator88/Sentinel/assets/6263626/7cbf2e86-e73c-49d6-9fca-cfeb0273bab2" align="center" width="400" />
-
+<img src="https://github.com/user-attachments/assets/062d1aa5-cb21-4bce-9d26-1f7d8ca85f30" align="center" width="400" />
 
 ## Requirements
 - MacOS 13.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than Ventura)
