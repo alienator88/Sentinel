@@ -4,7 +4,7 @@
    <br />
    <strong>Status: </strong>Maintained 
    <br />
-   <strong>Version: </strong>2.1
+   <strong>Version: </strong>2.2
    <br />
    <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
     · 
@@ -14,12 +14,12 @@
 </p>
 </br>
 
-A GUI for controlling Gatekeeper and more, written in SwiftUI. Using this as a learning opportunity for Swift as I'm new to it.
+A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
 
 
 ## Features
 - 100% Swift
-- Can drop an app in the drop target to unquarantine
+- Can drop an app in the drop target to unquarantine and optionally auto-open the app after it is unquarantined
 - Can drop an app in the drop target to ad-hoc self sign and replace the certificate
 - Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Sentinel should be ran from /Applications folder to avoid permission issues)
 - Supports macOS Sequoia
