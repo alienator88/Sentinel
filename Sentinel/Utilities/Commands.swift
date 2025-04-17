@@ -63,15 +63,17 @@ func CmdRunSudo(cmd: String, type: String,  appState: AppState) {
             if type == "disable" {
                 if #available(macOS 13.0, *) {
                     if !canceled {
-                        showCustomAlert(title: "Attention", message: "On macOS 14.0 and up, Gatekeeper won't be fully disabled until you choose 'Anywhere' option in the Privacy & Security settings page under Security section. Click Okay to open the settings page now.", style: .critical, onOk: {
-                            // Open the Privacy & Security settings page
-                            if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy") {
-                                NSWorkspace.shared.open(url)
-                            }
-                            appState.isGatekeeperEnabled = false
-                            appState.isGatekeeperEnabledState = false
-                            appState.status = "Please select the 'Anywhere' option in the Privacy & Security > Security settings"
-                        })
+                        updateOnMain {
+                            showCustomAlert(title: "Attention", message: "On macOS 14.0 and up, Gatekeeper won't be fully disabled until you choose 'Anywhere' option in the Privacy & Security settings page under Security section. Click Okay to open the settings page now.", style: .critical, onOk: {
+                                // Open the Privacy & Security settings page
+                                if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy") {
+                                    NSWorkspace.shared.open(url)
+                                }
+                                appState.isGatekeeperEnabled = false
+                                appState.isGatekeeperEnabledState = false
+                                appState.status = "Please select the 'Anywhere' option in the Privacy & Security > Security settings"
+                            })
+                        }
                     }
                 } else {
                     // Refresh status via CLI on anything below Sequoia
