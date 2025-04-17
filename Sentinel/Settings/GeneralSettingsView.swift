@@ -45,8 +45,13 @@ struct GeneralSettingsTab: View {
                         .labelsHidden()
 
                     }
-                    TextField("Keychain notarization profile", text: $notaryProfile)
-                        .textFieldStyle(.roundedBorder)
+                    HStack {
+                        TextField("Keychain notarization profile", text: $notaryProfile)
+                            .textFieldStyle(.roundedBorder)
+                        Link("Docs",
+                             destination: URL(string: "https://developer.apple.com/documentation/security/customizing-the-notarization-workflow#Upload-your-app-to-the-notarization-service")!)
+                    }
+
                 }
 
                 .padding()

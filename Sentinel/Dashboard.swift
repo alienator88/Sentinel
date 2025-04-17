@@ -86,7 +86,7 @@ struct Dashboard: View {
                             .overlay(dropOverlaySign, alignment: .center)
                             .opacity(0.8)
 
-                        InfoButton(text: "This signs the app with a self-signed certificate or a development identity. This is useful for testing/development purposes, make macOS recognize it as 'signed' or avoiding 'unnotarized' warnings. This is not a replacement for real signing/notarization. \n\nDetails:\n- Adds an ad-hoc signature or identity, marking the app internally as 'valid'\n- Might be needed for certain sandboxed or permission-sensitive tasks\n- Makes the app appear 'signed' to macOS, but still not trusted/notarized\n- In short, this fakes Gatekeeper into thinking the app is signed")
+                        InfoButton(text: "This signs the app with a self-signed certificate or a developer identity which can be set in Settings. You can also add the name of a notarization profile and it will sign/notarize the app with your own Apple Developer certificate. This is useful to make macOS recognize it as 'signed' or avoiding 'unnotarized' warnings. \n\nDetails:\n- Adds an ad-hoc signature or identity, marking the app internally as 'valid'\n- Might be needed for certain sandboxed or permission-sensitive tasks\n- Makes the app appear 'signed' to macOS, but still not trusted/notarized unless you also use your notarization profile\n- In short, this makes Gatekeeper see the app as signed")
 
                     }
 //                    .frame(width: 200, height: 150 )

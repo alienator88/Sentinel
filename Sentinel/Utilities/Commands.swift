@@ -254,6 +254,7 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
     // Step 1: Zip the app
     let zipCmd = "ditto -c -k --keepParent '\(path)' '\(zipPath)'"
     let zipResult = runShCommand(zipCmd)
+    printOS(zipResult.standardOutput)
     printOS(zipResult.standardError)
     if !zipResult.standardError.isEmpty {
         updateOnMain {
@@ -264,6 +265,7 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
     // Step 2: Submit to notarytool
     let notaryCmd = "xcrun notarytool submit '\(zipPath)' --keychain-profile \"\(profile)\" --wait"
     let notaryResult = runShCommand(notaryCmd)
+    printOS(notaryResult.standardOutput)
     printOS(notaryResult.standardError)
     if !notaryResult.standardError.isEmpty {
         updateOnMain {
@@ -275,6 +277,7 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
     // Step 3: Staple the ticket
     let stapleCmd = "xcrun stapler staple '\(path)'"
     let stapleResult = runShCommand(stapleCmd)
+    printOS(stapleResult.standardOutput)
     printOS(stapleResult.standardError)
     if !stapleResult.standardError.isEmpty {
         updateOnMain {
@@ -283,7 +286,13 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
     }
 
     // Step 4: Remove zip
-    try? FileManager.default.removeItem(atPath: zipPath)
+    do {
+        if FileManager.default.fileExists(atPath: zipPath) {
+            try FileManager.default.removeItem(atPath: zipPath)
+        }
+    } catch {
+        printOS("Failed to remove zip file at path \(zipPath): \(error)")
+    }
 
     updateOnMain {
         appState.status = "App has been signed and notarized successfully"
