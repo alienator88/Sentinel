@@ -80,24 +80,5 @@
    <ArchiveAction
       buildConfiguration = "Debug"
       revealArchiveInOrganizer = "YES">
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "#/Users/alin/Projects/Bash/xcode-release.sh Work:false Project:&quot;/Users/alin/GitHub/Sentinel&quot; Name:&quot;Sentinel&quot; Log:true&#10;"
-               shellToInvoke = "/bin/sh">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "4180AEA92839753E0054FEA9"
-                     BuildableName = "Sentinel.app"
-                     BlueprintName = "Sentinel"
-                     ReferencedContainer = "container:Sentinel.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
    </ArchiveAction>
 </Scheme>

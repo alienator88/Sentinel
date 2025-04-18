@@ -13,7 +13,6 @@
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
 		C733F76B29CA59AE00DADADD /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Script.swift */; };
 		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
-		C766D28C2C34D10500F51BB9 /* Builds in Resources */ = {isa = PBXBuildFile; fileRef = C766D28B2C34D10500F51BB9 /* Builds */; };
 		C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */; };
 		C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB42BB33F9A002AD918 /* Styles.swift */; };
 		C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */; };
@@ -171,7 +170,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */,
-				C766D28C2C34D10500F51BB9 /* Builds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

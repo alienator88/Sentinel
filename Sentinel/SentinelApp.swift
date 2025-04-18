@@ -5,7 +5,7 @@ import AlinFoundation
 struct SentinelApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject var appState = AppState()
+    @StateObject var appState = AppState.shared
     @StateObject private var updater = Updater(owner: "alienator88", repo: "Sentinel")
 
     var body: some Scene {
@@ -50,32 +50,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-//        if let window = NSApplication.shared.windows.first {
-//            window.delegate = windowDelegate
-//            // Set the fixed size of the window here
-//            let desiredWidth: CGFloat = 550
-//            let desiredHeight: CGFloat = 420
-//            let frame = CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: desiredWidth, height: desiredHeight)
-//            window.setFrame(frame, display: true)
-//        }
+        // Get GK status on application focus
+        NotificationCenter.default.addObserver(
+            forName: NSApplication.didBecomeActiveNotification,
+            object: nil,
+            queue: .main
+        ) { _ in
+            getGatekeeperState(appState: AppState.shared)
+        }
     }
-
-//    class WindowDelegate: NSObject, NSWindowDelegate {
-//        func windowDidBecomeMain(_ notification: Notification) {
-//            if let window = notification.object as? NSWindow {
-//                window.styleMask.remove(.resizable)
-//
-//                // Maintain the current bottom-left corner position
-//                let currentBottomLeft = CGPoint(x: window.frame.minX, y: window.frame.maxY)
-//
-//                let desiredWidth: CGFloat = 550
-//                let desiredHeight: CGFloat = 420
-//
-//                // Calculate new frame based on desired size but keeping the bottom-left corner anchored
-//                let frame = CGRect(x: currentBottomLeft.x, y: currentBottomLeft.y - desiredHeight, width: desiredWidth, height: desiredHeight)
-//                window.setFrame(frame, display: true, animate: false)
-//            }
-//        }
-//    }
 
 }

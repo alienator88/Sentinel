@@ -42,7 +42,7 @@ func CmdRun(cmd: String, appState: AppState) async -> Bool {
 
 }
 
-func CmdRunSudo(cmd: String, type: String,  appState: AppState) {
+func CmdRunSudo(cmd: String, type: gkType,  appState: AppState) {
     let source = """
                     set the_script to "sudo \(cmd)"
                     set the_result to do shell script the_script with prompt "Sentinel requires elevated privileges" with administrator privileges
@@ -55,35 +55,30 @@ func CmdRunSudo(cmd: String, type: String,  appState: AppState) {
 
             if canceled {
                 updateOnMain {
-                    appState.status = type == "enable" ? "Gatekeeper enablement has been cancelled" : "Gatekeeper disablement has been cancelled"
+                    appState.status = type == .enable ? "Gatekeeper enablement has been cancelled" : "Gatekeeper disablement has been cancelled"
                 }
-            }
-
-            // Refresh status manually on Sequoia
-            if type == "disable" {
-                if #available(macOS 13.0, *) {
-                    if !canceled {
-                        updateOnMain {
-                            showCustomAlert(title: "Attention", message: "On macOS 14.0 and up, Gatekeeper won't be fully disabled until you choose 'Anywhere' option in the Privacy & Security settings page under Security section. Click Okay to open the settings page now.", style: .critical, onOk: {
-                                // Open the Privacy & Security settings page
-                                if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy") {
-                                    NSWorkspace.shared.open(url)
-                                }
-                                appState.isGatekeeperEnabled = false
-                                appState.isGatekeeperEnabledState = false
-                                appState.status = "Please select the 'Anywhere' option in the Privacy & Security > Security settings"
-                            })
-                        }
-                    }
-                } else {
-                    // Refresh status via CLI on anything below Sequoia
-                    getGatekeeperState(appState: appState)
-                }
-            } else {
-                // Refresh status via CLI if enable command
+                // Refresh status via CLI
                 getGatekeeperState(appState: appState)
+                return
             }
 
+            if #available(macOS 14.0, *) {
+                if type == .disable {
+                    // Open the Privacy & Security settings page right away
+                    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy") {
+                        NSWorkspace.shared.open(url)
+                    }
+                    updateOnMain {
+                        appState.status = "Please select the 'Anywhere' option in the Privacy & Security > Security settings"
+                        showCustomAlert(title: "Attention", message: "On macOS 14.0 and up, Gatekeeper won't be fully disabled (toggle stays green) until you change the 'Allow applications from' dropdown to 'Anywhere' in Privacy & Security > Security section.\n\nThe settings window has been opened for you. Once you've made the change, click Task Completed.", okText: "Task Completed", style: .critical, onOk: {
+//                            getGatekeeperState(appState: appState)
+                        }, onCancel: {
+//                            getGatekeeperState(appState: appState)
+                            appState.status = "Gatekeeper disablement has been cancelled"
+                        })
+                    }
+                }
+            }
         }
     }
 

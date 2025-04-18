@@ -8,6 +8,7 @@
 import Foundation
 
 class AppState: ObservableObject {
+    static let shared = AppState()
     @Published var isGatekeeperEnabled: Bool = true
     @Published var isGatekeeperEnabledState: Bool = true
     @Published var status: String = ""
@@ -37,4 +38,9 @@ enum cmdType {
     case quarantine
     case signAH
     case signDev
+}
+
+enum gkType {
+    case enable
+    case disable
 }

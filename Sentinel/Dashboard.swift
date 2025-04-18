@@ -111,6 +111,14 @@ struct Dashboard: View {
                         .toggleStyle(RedGreenShield())
                         .frame(width: 80, height: 45)
                         .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
+                    Button {
+                        getGatekeeperState(appState: appState)
+                    } label: {
+                        Image(systemName: "arrow.counterclockwise")
+                            .font(.body)
+                    }
+                    .buttonStyle(.borderless)
+                    .help("Refresh gatekeeper status")
                 }
                 .padding()
             }
@@ -126,26 +134,28 @@ struct Dashboard: View {
                 Text(appState.status)
                     .font(.system(size: 12))
                     .foregroundStyle(.secondary)
+                    .frame(height: 20)
             }
             .padding(.top)
 
         }
         .padding()
         .onAppear {
-            getGatekeeperState(appState: appState)
+//            getGatekeeperState(appState: appState)
         }
         .onChange(of: appState.isGatekeeperEnabled) { isEnabled in
+            guard isEnabled != appState.isGatekeeperEnabledState else { return }
             Task {
                 if isEnabled && !appState.isGatekeeperEnabledState {
                     updateOnMain() {
                         appState.status = "Attempting to turn on gatekeeper, enter your admin password"
                     }
-                    CmdRunSudo(cmd: "spctl --global-enable", type: "enable", appState: appState)
+                    CmdRunSudo(cmd: "spctl --global-enable", type: .enable, appState: appState)
                 } else if !isEnabled && appState.isGatekeeperEnabledState {
                     updateOnMain() {
                         appState.status = "Attempting to turn off gatekeeper, enter your admin password"
                     }
-                    CmdRunSudo(cmd: "spctl --global-disable", type: "disable", appState: appState)
+                    CmdRunSudo(cmd: "spctl --global-disable", type: .disable, appState: appState)
                 }
             }
         }
