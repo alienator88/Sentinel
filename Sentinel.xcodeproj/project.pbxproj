@@ -11,13 +11,14 @@
 		4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4180AEB12839753F0054FEA9 /* Assets.xcassets */; };
 		4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEEA2839A0280054FEA9 /* AboutCommand.swift */; };
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
+		C716BB2D2DB2E255004A78E8 /* Gatekeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716BB2C2DB2E251004A78E8 /* Gatekeeper.swift */; };
 		C733F76B29CA59AE00DADADD /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Script.swift */; };
 		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
 		C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */; };
 		C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB42BB33F9A002AD918 /* Styles.swift */; };
 		C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */; };
 		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
-		C7BB802C29CA299700006CDB /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* Commands.swift */; };
+		C7BB802C29CA299700006CDB /* CmdDrops.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* CmdDrops.swift */; };
 		C7EB1E0A2C594BD50085B695 /* AlinFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C7EB1E092C594BD50085B695 /* AlinFoundation */; };
 		C7FBD9EA2DAD722700151934 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FBD9E92DAD721F00151934 /* GeneralSettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +30,7 @@
 		4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SentinelApp.entitlements; sourceTree = "<group>"; };
 		4180AEEA2839A0280054FEA9 /* AboutCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommand.swift; sourceTree = "<group>"; };
 		4180AEFA2839A32F0054FEA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		C716BB2C2DB2E251004A78E8 /* Gatekeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gatekeeper.swift; sourceTree = "<group>"; };
 		C733F76A29CA59AE00DADADD /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		C733F76E29CA65AC00DADADD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		C766D28B2C34D10500F51BB9 /* Builds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Builds; sourceTree = SOURCE_ROOT; };
@@ -36,7 +38,7 @@
 		C78AAAB42BB33F9A002AD918 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
-		C7BB802B29CA299700006CDB /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
+		C7BB802B29CA299700006CDB /* CmdDrops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdDrops.swift; sourceTree = "<group>"; };
 		C7FBD9E92DAD721F00151934 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +89,8 @@
 		4180AEEC2839A0560054FEA9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C7BB802B29CA299700006CDB /* Commands.swift */,
+				C716BB2C2DB2E251004A78E8 /* Gatekeeper.swift */,
+				C7BB802B29CA299700006CDB /* CmdDrops.swift */,
 				C733F76A29CA59AE00DADADD /* Script.swift */,
 				4180AEEA2839A0280054FEA9 /* AboutCommand.swift */,
 			);
@@ -155,7 +158,6 @@
 			packageReferences = (
 				C7EB1E082C594BD50085B695 /* XCRemoteSwiftPackageReference "AlinFoundation" */,
 			);
-			productRefGroup = 4180AEAB2839753E0054FEA9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -180,11 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C716BB2D2DB2E255004A78E8 /* Gatekeeper.swift in Sources */,
 				4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */,
 				C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */,
 				C7FBD9EA2DAD722700151934 /* GeneralSettingsView.swift in Sources */,
 				C733F76F29CA65AC00DADADD /* AppState.swift in Sources */,
-				C7BB802C29CA299700006CDB /* Commands.swift in Sources */,
+				C7BB802C29CA299700006CDB /* CmdDrops.swift in Sources */,
 				C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */,
 				4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */,
 				C733F76B29CA59AE00DADADD /* Script.swift in Sources */,

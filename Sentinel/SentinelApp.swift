@@ -3,7 +3,7 @@ import AlinFoundation
 
 @main
 struct SentinelApp: App {
-    
+
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var appState = AppState.shared
     @StateObject private var updater = Updater(owner: "alienator88", repo: "Sentinel")
@@ -32,18 +32,12 @@ struct SentinelApp: App {
                 .environmentObject(updater)
                 .toolbarBackground(.clear)
         }
-
-
     }
-
-
-    
 }
 
 // MARK: - App Delegate
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-//    var windowDelegate = WindowDelegate()
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
@@ -56,8 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil,
             queue: .main
         ) { _ in
-            getGatekeeperState(appState: AppState.shared)
+            // Only update Gatekeeper UI if the app is not in a loading/notarizing state
+            guard !AppState.shared.isLoading else { return }
+            updateGatekeeperUI(appState: AppState.shared)
         }
     }
-
 }

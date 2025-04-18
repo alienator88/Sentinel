@@ -75,7 +75,7 @@ struct Dashboard: View {
                         InfoButton(text: "If you download an unsigned app outside of the app store, it will be quarantined by macOS when trying to launch it and will prevent you from opening it. Dropping an app here will remove it from quarantine manually and let you launch it. \n\nDetails:\n- Removes quarantine flag\n- Skips transparency, consent and control checks\n- Quick workaround to bypass macOS protections without touching the code signature\n-In short, this skips Gatekeeper completely")
 
                     }
-//                    .frame(width: 200, height: 150 )
+                    //                    .frame(width: 200, height: 150 )
 
                     // Item 2 //////////////////////////////////////////////////////////////////////////
 
@@ -89,7 +89,7 @@ struct Dashboard: View {
                         InfoButton(text: "This signs the app with a self-signed certificate or a developer identity which can be set in Settings. You can also add the name of a notarization profile and it will sign/notarize the app with your own Apple Developer certificate. This is useful to make macOS recognize it as 'signed' or avoiding 'unnotarized' warnings. \n\nDetails:\n- Adds an ad-hoc signature or identity, marking the app internally as 'valid'\n- Might be needed for certain sandboxed or permission-sensitive tasks\n- Makes the app appear 'signed' to macOS, but still not trusted/notarized unless you also use your notarization profile\n- In short, this makes Gatekeeper see the app as signed")
 
                     }
-//                    .frame(width: 200, height: 150 )
+                    //                    .frame(width: 200, height: 150 )
                 }
             }
 
@@ -110,17 +110,28 @@ struct Dashboard: View {
                     Toggle("", isOn: $appState.isGatekeeperEnabled)
                         .toggleStyle(RedGreenShield())
                         .frame(width: 80, height: 45)
-                        .help("Your Gatekeeper assessments are \(appState.isGatekeeperEnabled ? "enabled" : "disabled")")
-                    Button {
-                        getGatekeeperState(appState: appState)
-                    } label: {
-                        Image(systemName: "arrow.counterclockwise")
-                            .font(.body)
-                    }
-                    .buttonStyle(.borderless)
-                    .help("Refresh gatekeeper status")
+                        .onChange(of: appState.isGatekeeperEnabled) { isEnabled in
+                            guard appState.hasInitializedGatekeeperState else {
+                                printOS("Skipping gatekeeper state check since gatekeeper state hasn't been initialized yet")
+                                return
+                            }
+                            setGatekeeperState(enabled: isEnabled, appState: appState)
+                        }
+                        .onAppear {
+                            //                            updateGatekeeperUI(appState: appState)
+                        }
+//                    Button {
+//                        updateGatekeeperUI(appState: appState)
+//                    } label: {
+//                        Image(systemName: "arrow.counterclockwise")
+//                            .font(.body)
+//                    }
+//                    .buttonStyle(.borderless)
+//                    .help("Refresh gatekeeper status")
                 }
                 .padding()
+
+//                Text("G: \(appState.isGatekeeperEnabled), S: \(appState.isGatekeeperEnabledState), I: \(appState.hasInitializedGatekeeperState)")
             }
 
 
@@ -140,25 +151,6 @@ struct Dashboard: View {
 
         }
         .padding()
-        .onAppear {
-//            getGatekeeperState(appState: appState)
-        }
-        .onChange(of: appState.isGatekeeperEnabled) { isEnabled in
-            guard isEnabled != appState.isGatekeeperEnabledState else { return }
-            Task {
-                if isEnabled && !appState.isGatekeeperEnabledState {
-                    updateOnMain() {
-                        appState.status = "Attempting to turn on gatekeeper, enter your admin password"
-                    }
-                    CmdRunSudo(cmd: "spctl --global-enable", type: .enable, appState: appState)
-                } else if !isEnabled && appState.isGatekeeperEnabledState {
-                    updateOnMain() {
-                        appState.status = "Attempting to turn off gatekeeper, enter your admin password"
-                    }
-                    CmdRunSudo(cmd: "spctl --global-disable", type: .disable, appState: appState)
-                }
-            }
-        }
         .edgesIgnoringSafeArea(.all)
         .frame(width: 650, height: 550)
 
@@ -256,8 +248,10 @@ struct DropSign: DropDelegate {
                 }
                 Task {
                     let identity = UserDefaults.standard.string(forKey: "sentinel.general.codesignIdentity") ?? "None"
-                    let signCmd = identity == "None" ? "codesign -f -s - --deep" : "codesign -f -s \\\"\(identity)\\\" --deep --options runtime"
-                    
+                    let signCmd = identity == "None"
+                    ? "codesign -f -s - --deep"
+                    : "codesign -f -s '\(identity)' --deep --options runtime"
+
                     if identity != "None" {
                         _ = await CmdRunDrop(cmd: signCmd, path: url.path, type: .signDev, sudo: true, appState: appState)
                     } else {
