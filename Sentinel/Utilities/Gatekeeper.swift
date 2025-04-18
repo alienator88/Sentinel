@@ -68,19 +68,20 @@ func CmdRunSudo(cmd: String, type: gkType, appState: AppState) {
 
 func updateGatekeeperUI(appState: AppState) {
     Task {
-        // Get status without side effects
+        // Get current Gatekeeper status
         let isEnabled = await getGatekeeperStatus()
 
+        // Phase 1: disable handler and sync toggle
         await MainActor.run {
             appState.hasInitializedGatekeeperState = false
-            // Sync both the actual state and the UI toggle
             appState.isGatekeeperEnabledState = isEnabled
             appState.isGatekeeperEnabled = isEnabled
         }
 
-        // Give SwiftUI a chance to process the toggle change before re-enabling
-        try? await Task.sleep(nanoseconds: 1_000_000)
+        // Yield to let SwiftUI process the toggle change while handler is off
+        await Task.yield()
 
+        // Phase 2: re-enable handler and update status
         await MainActor.run {
             appState.hasInitializedGatekeeperState = true
             appState.status = isEnabled ? "Gatekeeper is enabled" : "Gatekeeper is disabled"
