@@ -36,7 +36,14 @@ struct SettingsView: View {
         }
         .padding(20)
         .frame(width: 500, height: 520)
-
     }
+}
 
+func openAppSettings() {
+    if #available(macOS 14.0, *) {
+        @Environment(\.openSettings) var openSettings
+        openSettings()
+    } else {
+        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+    }
 }

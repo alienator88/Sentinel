@@ -11,6 +11,8 @@
 		4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4180AEB12839753F0054FEA9 /* Assets.xcassets */; };
 		4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEEA2839A0280054FEA9 /* AboutCommand.swift */; };
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
+		C708899A2DB42F6400AC3E2B /* Dashboardv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70889992DB42F5D00AC3E2B /* Dashboardv2.swift */; };
+		C708899C2DB42F8800AC3E2B /* DropDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708899B2DB42F8200AC3E2B /* DropDelegates.swift */; };
 		C716BB2D2DB2E255004A78E8 /* Gatekeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716BB2C2DB2E251004A78E8 /* Gatekeeper.swift */; };
 		C733F76B29CA59AE00DADADD /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Script.swift */; };
 		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
@@ -30,6 +32,8 @@
 		4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SentinelApp.entitlements; sourceTree = "<group>"; };
 		4180AEEA2839A0280054FEA9 /* AboutCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommand.swift; sourceTree = "<group>"; };
 		4180AEFA2839A32F0054FEA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		C70889992DB42F5D00AC3E2B /* Dashboardv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboardv2.swift; sourceTree = "<group>"; };
+		C708899B2DB42F8200AC3E2B /* DropDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDelegates.swift; sourceTree = "<group>"; };
 		C716BB2C2DB2E251004A78E8 /* Gatekeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gatekeeper.swift; sourceTree = "<group>"; };
 		C733F76A29CA59AE00DADADD /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		C733F76E29CA65AC00DADADD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 		4180AEAC2839753E0054FEA9 /* Sentinel */ = {
 			isa = PBXGroup;
 			children = (
+				C70889992DB42F5D00AC3E2B /* Dashboardv2.swift */,
 				C766D28B2C34D10500F51BB9 /* Builds */,
 				C78AAAAD2BB33F2E002AD918 /* Settings */,
 				4180AEEC2839A0560054FEA9 /* Utilities */,
@@ -89,6 +94,7 @@
 		4180AEEC2839A0560054FEA9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C708899B2DB42F8200AC3E2B /* DropDelegates.swift */,
 				C716BB2C2DB2E251004A78E8 /* Gatekeeper.swift */,
 				C7BB802B29CA299700006CDB /* CmdDrops.swift */,
 				C733F76A29CA59AE00DADADD /* Script.swift */,
@@ -187,11 +193,13 @@
 				C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */,
 				C7FBD9EA2DAD722700151934 /* GeneralSettingsView.swift in Sources */,
 				C733F76F29CA65AC00DADADD /* AppState.swift in Sources */,
+				C708899C2DB42F8800AC3E2B /* DropDelegates.swift in Sources */,
 				C7BB802C29CA299700006CDB /* CmdDrops.swift in Sources */,
 				C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */,
 				4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */,
 				C733F76B29CA59AE00DADADD /* Script.swift in Sources */,
 				C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */,
+				C708899A2DB42F6400AC3E2B /* Dashboardv2.swift in Sources */,
 				4180AEAE2839753E0054FEA9 /* SentinelApp.swift in Sources */,
 				C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */,
 			);

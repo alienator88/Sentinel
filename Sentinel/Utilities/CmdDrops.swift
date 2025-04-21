@@ -16,28 +16,37 @@ import SwiftUI
 func CmdRunDrop(cmd: String, path: String, type: cmdType, sudo: Bool = false, appState: AppState) async {
     @AppStorage("sentinel.general.autoLaunch") var autoLaunch = true
     @AppStorage("sentinel.general.notaryProfile") var notaryProfile = ""
-    
+
     let fullCMD: String
     if type == .signDev {
         fullCMD = "xattr -cr '\(path)' && \(cmd) '\(path)'"
     } else {
         fullCMD = "\(cmd) '\(path)'"
     }
-    
+
     Task {
         do {
             // Execute the command, using privileges if needed
             let out: TerminalOutput
             if sudo {
                 let (success, output) = performPrivilegedCommands(commands: fullCMD)
-                out = TerminalOutput(
-                    standardOutput: success ? output : "",
-                    standardError: success ? "" : output
-                )
+                guard success else {
+                    updateOnMain {
+                        appState.status = "Operation cancelled or failed"
+                        appState.isLoading = false
+                        if type == .quarantine {
+                            appState.quarantineUnlocked = false
+                        } else {
+                            appState.signUnlocked = false
+                        }
+                    }
+                    return
+                }
+                out = TerminalOutput(standardOutput: output, standardError: "")
             } else {
                 out = runShCommand(fullCMD)
             }
-            
+
             switch type {
             case .quarantine:
                 // Check if the quarantine attribute is removed
@@ -45,6 +54,7 @@ func CmdRunDrop(cmd: String, path: String, type: cmdType, sudo: Bool = false, ap
                 if removed {
                     updateOnMain {
                         appState.status = "App has been removed from quarantine"
+                        appState.quarantineUnlocked = true
                     }
                     if autoLaunch {
                         NSWorkspace.shared.open(URL(fileURLWithPath: path))
@@ -59,16 +69,18 @@ func CmdRunDrop(cmd: String, path: String, type: cmdType, sudo: Bool = false, ap
                     printOS(out.standardError)
                     updateOnMain {
                         appState.status = "Failed to remove app from quarantine"
+                        appState.quarantineUnlocked = false
                     }
                 }
-                
+
             case .signAH:
                 // Check if the app was self-signed successfully
                 let signed = await checkAppSigned(path: path)
-                
+
                 if signed {
                     updateOnMain {
                         appState.status = "App has been successfully self-signed"
+                        appState.signUnlocked = true
                     }
                 } else if !sudo { // Retry with sudo
                     printOS(out.standardError)
@@ -80,13 +92,14 @@ func CmdRunDrop(cmd: String, path: String, type: cmdType, sudo: Bool = false, ap
                     printOS(out.standardError)
                     updateOnMain {
                         appState.status = "Failed to self-sign the app"
+                        appState.signUnlocked = false
                     }
                 }
-                
+
             case .signDev:
                 // Check if the app was signed with dev identity successfully
                 let signed = await checkAppSigned(path: path)
-                
+
                 if signed {
                     if !notaryProfile.isEmpty {
                         updateOnMain {
@@ -96,6 +109,7 @@ func CmdRunDrop(cmd: String, path: String, type: cmdType, sudo: Bool = false, ap
                     } else {
                         updateOnMain {
                             appState.status = "App has been successfully signed with development identity"
+                            appState.signUnlocked = true
                         }
                     }
                 } else if !sudo { // Retry with sudo
@@ -108,16 +122,17 @@ func CmdRunDrop(cmd: String, path: String, type: cmdType, sudo: Bool = false, ap
                     printOS(out.standardError)
                     updateOnMain {
                         appState.status = "Failed to sign the app with development identity"
+                        appState.signUnlocked = false
                     }
                 }
             }
-            
+
             updateOnMain {
                 appState.isLoading = false
             }
         }
     }
-    
+
 }
 
 
@@ -136,7 +151,7 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
     let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
     let zipDir = appSupport.appendingPathComponent(Bundle.main.name)
     let zipPath = zipDir.appendingPathComponent((path as NSString).lastPathComponent + ".zip").path
-    
+
     // Step 1: Zip the app
     let zipCmd = "ditto -c -k --keepParent '\(path)' '\(zipPath)'"
     let zipResult = runShCommand(zipCmd)
@@ -147,7 +162,7 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
             appState.status = "Notarization zipping failed, check Debug console for more info (CMD+D)"
         }
     }
-    
+
     // Step 2: Submit to notarytool
     let notaryCmd = "xcrun notarytool submit '\(zipPath)' --keychain-profile \"\(profile)\" --wait"
     let notaryResult = runShCommand(notaryCmd)
@@ -158,8 +173,8 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
             appState.status = "Notarization failed, check Debug console for more info (CMD+D)"
         }
     }
-    
-    
+
+
     // Step 3: Staple the ticket
     let stapleCmd = "xcrun stapler staple '\(path)'"
     let stapleResult = runShCommand(stapleCmd)
@@ -170,7 +185,7 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
             appState.status = "Notarization staple failed, check Debug console for more info (CMD+D)"
         }
     }
-    
+
     // Step 4: Remove zip
     do {
         if FileManager.default.fileExists(atPath: zipPath) {
@@ -179,7 +194,7 @@ func notarizeApp(path: String, profile: String, appState: AppState) {
     } catch {
         printOS("Failed to remove zip file at path \(zipPath): \(error)")
     }
-    
+
     updateOnMain {
         appState.status = "App has been signed and notarized successfully"
     }

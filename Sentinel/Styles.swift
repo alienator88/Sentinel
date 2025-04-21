@@ -88,27 +88,210 @@ struct RedGreenShield: ToggleStyle {
     }
 }
 
-
-struct DropTarget: View {
-
+struct GridTemplateView: View {
+    @EnvironmentObject var appState: AppState
     let delegate: DropDelegate
-
     let types: [UTType]
+    let quarantine: Bool
+
+    var empty: Bool {
+        quarantine ? appState.quarantineAppName == nil : appState.signAppName == nil
+    }
 
     var body: some View {
-        ZStack {
-            //            RoundedRectangle(cornerRadius: 8)
-            //                .fill(Color("bg").opacity(1))
-            RoundedRectangle(cornerRadius: 8)
-                .strokeBorder(Color.primary.opacity(0.5), style: StrokeStyle(lineWidth: 0.5, dash: [8, 4], dashPhase: 0))
-            //                .strokeBorder(Color("stroke").opacity(1), style: StrokeStyle(lineWidth: 1, dashPhase: 0))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        ZStack(alignment: .center) {
+            // Base rounded rectangle background
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(red: 200/255, green: 224/255, blue: 229/255, opacity: 1))
+
+            GeometryReader { geo in
+                let color = Color.white.opacity(0.5)
+                let size = geo.size
+                let gridCount = 6
+                let spacing = size.width / CGFloat(gridCount)
+                let squareSize = spacing * CGFloat(gridCount - 1) * 0.80
+                let center = CGPoint(x: size.width / 2, y: size.height / 2)
+
+                ZStack {
+                    // Grid lines
+                    Path { path in
+                        for i in 0...gridCount {
+                            let offset = CGFloat(i) * spacing
+                            path.move(to: CGPoint(x: offset, y: 0))
+                            path.addLine(to: CGPoint(x: offset, y: size.height))
+                            path.move(to: CGPoint(x: 0, y: offset))
+                            path.addLine(to: CGPoint(x: size.width, y: offset))
+                        }
+                    }
+                    .stroke(color, lineWidth: 1)
+
+                    // Square
+                    Path { path in
+                        let origin = CGPoint(x: center.x - squareSize / 2, y: center.y - squareSize / 2)
+                        path.addRect(CGRect(origin: origin, size: CGSize(width: squareSize, height: squareSize)))
+                    }
+                    .stroke(color, lineWidth: 1)
+
+                    // Circle same size as square
+                    Circle()
+                        .stroke(color, lineWidth: 1)
+                        .frame(width: squareSize, height: squareSize)
+                        .position(center)
+
+                    // Smaller center circle
+                    Circle()
+                        .stroke(color, lineWidth: 1)
+                        .frame(width: squareSize / 2, height: squareSize / 2)
+                        .position(center)
+
+                    // Diagonal lines
+                    Path { path in
+                        let topLeft = CGPoint(x: center.x - squareSize / 2, y: center.y - squareSize / 2)
+                        let bottomRight = CGPoint(x: center.x + squareSize / 2, y: center.y + squareSize / 2)
+                        let topRight = CGPoint(x: center.x + squareSize / 2, y: center.y - squareSize / 2)
+                        let bottomLeft = CGPoint(x: center.x - squareSize / 2, y: center.y + squareSize / 2)
+                        path.move(to: topLeft)
+                        path.addLine(to: bottomRight)
+                        path.move(to: topRight)
+                        path.addLine(to: bottomLeft)
+                    }
+                    .stroke(color, lineWidth: 1)
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+
+            }
+
+            if empty {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("DROP").offset(x: 1)
+                    Text("HERE").offset(x: 1)
+                }
+                .foregroundStyle(.black.opacity(0.25))
+                .font(.system(size: 14, weight: .semibold))
+            }
+
+
+
+        }
+        .frame(width: 80, height: 80)
+        .padding(.top, 1)
+        .overlay {
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .strokeBorder(Color.white, lineWidth: empty ? 5 : 2)
+                    .shadow(radius: 1, y: 1)
+                if !empty {
+                    if quarantine {
+                        if appState.quarantineUnlocked {
+                            VStack {
+                                HStack {
+                                    Image(systemName: "lock.open.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundStyle(Color(red: 88/255, green: 86/255, blue: 214/255, opacity: 1))
+                                        .bold()
+                                        .offset(x: -4, y: -10)
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                        }
+
+                    } else {
+                        if appState.signUnlocked {
+                            VStack {
+                                HStack {
+                                    Image(systemName: "lock.open.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundStyle(Color(red: 88/255, green: 86/255, blue: 214/255, opacity: 1))
+                                        .bold()
+                                        .offset(x: -4, y: -10)
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
+
+                    if let icon = quarantine ? appState.quarantineAppIcon : appState.signAppIcon {
+                        Image(nsImage: icon)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(5)
+                    }
+
+                }
+
+
+            }
         }
         .onDrop(of: types, delegate: delegate)
     }
 }
 
 
+struct DropBG: View {
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color(nsColor: .textBackgroundColor).opacity(0.8))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(.secondary.opacity(0.5), style: StrokeStyle(lineWidth: 1.5, dash: [8, 4], dashPhase: 0))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+}
+
+
+public struct LearnMorePopover: View {
+    @State private var isPopoverPresented: Bool = false
+    let text: String
+    let prominentText: String
+
+    public var body: some View {
+        Button(action: {
+            self.isPopoverPresented.toggle()
+        }) {
+            Text("Learn more...")
+                .font(.body)
+                .foregroundStyle(.secondary.opacity(0.8))
+        }
+        .buttonStyle(PlainButtonStyle())
+        .onHover { isHovered in
+            if isHovered {
+                NSCursor.pointingHand.push()
+            } else {
+                NSCursor.pop()
+            }
+        }
+        .popover(isPresented: $isPopoverPresented) {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(text)
+                Text(prominentText)
+                    .bold()
+            }
+            .padding()
+            .frame(width: 400)
+        }
+    }
+}
+
+struct UnlockView: View {
+    let text: String
+
+    var body: some View {
+        HStack() {
+            Image(systemName: "lock.open.fill")            
+            Text(text)
+        }
+        .foregroundColor(Color(red: 1/255, green: 99/255, blue: 16/255, opacity: 1))
+    }
+}
 
 func backgroundStyle(forConfiguration configuration: ToggleStyleConfiguration) -> AnyShapeStyle {
     if #available(macOS 13.0, *) {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class AppState: ObservableObject {
     static let shared = AppState()
@@ -15,7 +16,13 @@ class AppState: ObservableObject {
     @Published var status: String = ""
     @Published var isLoading: Bool = false
 
+    @Published var quarantineAppName: String? = nil
+    @Published var quarantineAppIcon: NSImage? = nil
+    @Published var quarantineUnlocked: Bool = false
 
+    @Published var signAppName: String? = nil
+    @Published var signAppIcon: NSImage? = nil
+    @Published var signUnlocked: Bool = false
 
 }
 

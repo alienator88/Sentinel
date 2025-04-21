@@ -5,12 +5,12 @@ import AlinFoundation
 struct SentinelApp: App {
 
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject var appState = AppState.shared
+    @ObservedObject var appState = AppState.shared
     @StateObject private var updater = Updater(owner: "alienator88", repo: "Sentinel")
 
     var body: some Scene {
         WindowGroup {
-            Dashboard()
+            Dashboardv2()
                 .environmentObject(appState)
                 .environmentObject(updater)
                 .sheet(isPresented: $updater.sheet, content: {
