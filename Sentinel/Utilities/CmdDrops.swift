@@ -123,7 +123,7 @@ func CmdRunDrop(cmd: String, path: String, type: cmdType, sudo: Bool = false, ap
 
 func checkQuarantineRemoved(path: String) async -> Bool {
     let out = runShCommand("xattr -p com.apple.quarantine '\(path)'")
-    return !out.standardOutput.contains("com.apple.quarantine")
+    return out.standardOutput.isEmpty
 }
 
 func checkAppSigned(path: String) async -> Bool {
