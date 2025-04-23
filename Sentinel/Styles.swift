@@ -269,7 +269,7 @@ public struct LearnMorePopover: View {
                 NSCursor.pop()
             }
         }
-        .popover(isPresented: $isPopoverPresented) {
+        .popover(isPresented: $isPopoverPresented , arrowEdge: .bottom) {
             VStack(alignment: .leading, spacing: 5) {
                 Text(text)
                 Text(prominentText)
