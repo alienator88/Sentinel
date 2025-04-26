@@ -102,7 +102,7 @@ struct GridTemplateView: View {
         ZStack(alignment: .center) {
             // Base rounded rectangle background
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(red: 200/255, green: 224/255, blue: 229/255, opacity: 1))
+                .fill(Color(red: 200/255, green: 224/255, blue: 229/255, opacity: 0.6))
 
             GeometryReader { geo in
                 let color = Color.white.opacity(0.5)
@@ -162,12 +162,9 @@ struct GridTemplateView: View {
             }
 
             if empty {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("DROP").offset(x: 1)
-                    Text("HERE").offset(x: 1)
-                }
-                .foregroundStyle(.black.opacity(0.25))
-                .font(.system(size: 14, weight: .semibold))
+                VectorDropHere()
+                    .fill(Color.black.opacity(0.25))
+                    .frame(width: 41.30552673339844, height: 37.02809524536133)
             }
 
 
@@ -234,19 +231,19 @@ struct GridTemplateView: View {
 
 
 struct DropBG: View {
-
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color(nsColor: .textBackgroundColor).opacity(0.8))
+//TODO                .background(.ultraThinMaterial)
+                .fill(Color(nsColor: .controlBackgroundColor).opacity(1.0))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             RoundedRectangle(cornerRadius: 8)
-                .strokeBorder(.secondary.opacity(0.5), style: StrokeStyle(lineWidth: 1.5, dash: [8, 4], dashPhase: 0))
+                .strokeBorder(.secondary.opacity(0.25), style: StrokeStyle(lineWidth: 1.5, dash: [8, 4], dashPhase: 0))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
+    
 }
-
 
 public struct LearnMorePopover: View {
     @State private var isPopoverPresented: Bool = false
@@ -286,7 +283,7 @@ struct UnlockView: View {
 
     var body: some View {
         HStack() {
-            Image(systemName: "lock.open.fill")            
+            Image(systemName: "lock.open.fill")
             Text(text)
         }
         .foregroundColor(Color(red: 1/255, green: 99/255, blue: 16/255, opacity: 1))
@@ -416,4 +413,51 @@ struct LabeledDivider: View {
         }
         .frame(minHeight: 35)
     }
+}
+
+private struct PreviewDropDelegate: DropDelegate {
+    func dropEntered(info: DropInfo) {}
+    func dropUpdated(info: DropInfo) -> DropProposal? { return nil }
+    func performDrop(info: DropInfo) -> Bool { return false }
+    func dropExited(info: DropInfo) {}
+    func validateDrop(info: DropInfo) -> Bool { return true }
+}
+
+#Preview("Toggle Styles") {
+    VStack(spacing: 20) {
+        Toggle("Security Shield", isOn: .constant(true))
+            .toggleStyle(RedGreenShield())
+            .frame(width: 80, height: 44)
+        
+        Toggle("Security Shield", isOn: .constant(false))
+            .toggleStyle(RedGreenShield())
+            .frame(width: 80, height: 44    )
+    }
+    .padding()
+}
+
+#Preview("Grid Template") {
+    GridTemplateView(delegate: PreviewDropDelegate(), types: [.application], quarantine: true)
+        .environmentObject(AppState())
+}
+
+#Preview("Other Components") {
+    VStack(spacing: 20) {
+        DropBG()
+            .frame(width: 200, height: 100)
+        
+        LearnMorePopover(text: "This is a sample text", prominentText: "Important information")
+        
+        UnlockView(text: "Unlocked")
+        
+        Button("Simple Button") {}
+            .buttonStyle(SimpleButtonStyle(icon: "star.fill",
+                                        iconFlip: "star",
+                                        label: "Rate",
+                                        help: "Rate the app"))
+        
+        LabeledDivider(label: "Section")
+            .environmentObject(AppState())
+    }
+    .padding()
 }

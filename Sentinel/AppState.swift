@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class AppState: ObservableObject {
-    static let shared = AppState()
+    @MainActor static let shared = AppState()
     @Published var isGatekeeperEnabled: Bool = true
     @Published var isGatekeeperEnabledState: Bool = true
     @Published var hasInitializedGatekeeperState = false
