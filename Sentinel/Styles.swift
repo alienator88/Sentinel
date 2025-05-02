@@ -102,7 +102,7 @@ struct GridTemplateView: View {
         ZStack(alignment: .center) {
             // Base rounded rectangle background
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(red: 200/255, green: 224/255, blue: 229/255, opacity: 1))
+                .fill(Color(red: 200/255, green: 224/255, blue: 229/255, opacity: 0.6))
 
             GeometryReader { geo in
                 let color = Color.white.opacity(0.5)
@@ -235,10 +235,11 @@ struct DropBG: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color(nsColor: .textBackgroundColor).opacity(0.8))
+//TODO                .background(.ultraThinMaterial)
+                .fill(Color(nsColor: .controlBackgroundColor).opacity(1.0))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             RoundedRectangle(cornerRadius: 8)
-                .strokeBorder(.secondary.opacity(0.5), style: StrokeStyle(lineWidth: 1.5, dash: [8, 4], dashPhase: 0))
+                .strokeBorder(.secondary.opacity(0.25), style: StrokeStyle(lineWidth: 1.5, dash: [8, 4], dashPhase: 0))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
