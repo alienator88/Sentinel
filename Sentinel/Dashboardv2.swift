@@ -167,8 +167,8 @@ struct Dashboardv2: View {
 
 
                 }
-                .padding()
-                .frame(width: .infinity, height: 150)
+                .padding(32)
+                .frame(height: 150)
                 .background(
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)
@@ -181,25 +181,37 @@ struct Dashboardv2: View {
                 )
 
             }
-            .padding(.horizontal)
-
-
-            HStack(alignment: .center){
-                if appState.isLoading {
-                    ProgressView().controlSize(.small)
+            Spacer()
+            
+            // Status Bar
+            HStack(alignment: .center, spacing: 4) {
+                if appState.isLoading  {
+                    ProgressView()
+                        .controlSize(.small)
+                        .scaleEffect(0.7)
                 }
                 Text(appState.status)
                     .font(.system(size: 12))
-                    .foregroundStyle(.secondary)
-                    .frame(height: 20)
+                Spacer()
+                Text("Version \(Bundle.main.version)")
+                Text("(Build \(Bundle.main.buildVersion))")
             }
             .padding(.vertical)
-
+            
+            .foregroundStyle(.secondary)
+            .font(.footnote)
+            .frame(height: 24).background(VStack {
+                //TODO divider insets full width Divider()
+                Spacer()
+            })
+            .frame(maxWidth: .infinity, idealHeight: 32)
         }
         .padding()
-        .edgesIgnoringSafeArea(.all)
+        .padding(.bottom, 0) // Remove bottom padding to allow status bar to touch edge
+        .padding([.top , .leading, .trailing])
+        .edgesIgnoringSafeArea(.bottom) // Allow status bar to extend to bottom edge
         .frame(width: 700, height: 630)
-
     }
+}
 
 }
