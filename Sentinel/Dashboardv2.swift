@@ -5,7 +5,6 @@
 //  Created by Alin Lupascu on 4/19/25.
 //
 
-
 import SwiftUI
 import UniformTypeIdentifiers
 import AlinFoundation
@@ -20,10 +19,8 @@ struct Dashboardv2: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-
             // LOGO - TITLEBAR //////////////////////////////////////////////////////
             HStack(alignment: .center, spacing: 0) {
-                Spacer()
 
                 if updater.updateAvailable {
                     UpdateBadge(updater: updater, hideLabel: true)
@@ -42,7 +39,7 @@ struct Dashboardv2: View {
             .frame(maxWidth: .infinity)
 
             Spacer()
-
+            //Main content container
             VStack(alignment: .center, spacing: 20) {
 
                 HStack {
@@ -56,10 +53,9 @@ struct Dashboardv2: View {
                                 .lineLimit(1)
                                 .offset(y: 16) // adjust this value as needed
                         }
-                        .frame(width: 100)
+                        .frame(width: 80)
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.trailing, 10)
+                    .padding(.trailing, 32)
 
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Remove an app from quarantine.\nAllow the unsigned app to launch.")
@@ -76,7 +72,7 @@ struct Dashboardv2: View {
                     }
                     Spacer()
                 }
-                .padding(40)
+                .padding(32)
                 .background(DropBG())
 
                 HStack {
@@ -90,10 +86,9 @@ struct Dashboardv2: View {
                                 .lineLimit(1)
                                 .offset(y: 16) // adjust this value as needed
                         }
-                        .frame(width: 100)
+                        .frame(width: 80)
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.trailing, 10)
+                    .padding(.trailing, 32)
 
                     VStack(alignment: .leading) {
                         Text("Sign app with ad-hoc or developer identity\nto avoid notarization warnings.")
@@ -119,13 +114,13 @@ struct Dashboardv2: View {
                     }
                     Spacer()
                 }
-                .padding(40)
+                .padding(32)
                 .background(DropBG())
 
 
                 // GK STATUS //////////////////////////////////////////////////////
 
-                HStack(spacing: 10) {
+                HStack(spacing: 10  ) {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Danger Zone").textCase(.uppercase)
                             .foregroundStyle(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 0.76))
@@ -138,7 +133,7 @@ struct Dashboardv2: View {
                             .bold()
 
                         Text("Use this as a last resort if the above options are not helping or you have a lot of unsigned apps to run and want to avoid un-quarantining apps every time.")
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(.system(size: 13, weight: .regular))
                             .foregroundStyle(.primary)
                     }
 
@@ -191,12 +186,10 @@ struct Dashboardv2: View {
                         .scaleEffect(0.7)
                 }
                 Text(appState.status)
-                    .font(.system(size: 12))
                 Spacer()
                 Text("Version \(Bundle.main.version)")
                 Text("(Build \(Bundle.main.buildVersion))")
             }
-            .padding(.vertical)
             
             .foregroundStyle(.secondary)
             .font(.footnote)
@@ -206,7 +199,6 @@ struct Dashboardv2: View {
             })
             .frame(maxWidth: .infinity, idealHeight: 32)
         }
-        .padding()
         .padding(.bottom, 0) // Remove bottom padding to allow status bar to touch edge
         .padding([.top , .leading, .trailing])
         .edgesIgnoringSafeArea(.bottom) // Allow status bar to extend to bottom edge
@@ -214,4 +206,9 @@ struct Dashboardv2: View {
     }
 }
 
+#Preview {
+    Dashboardv2()
+        .environmentObject(AppState())
+        .environmentObject(Updater(owner: "alienator88", repo: "Sentinel"))
+        .frame(width: 700, height: 630)
 }

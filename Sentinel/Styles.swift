@@ -415,3 +415,50 @@ struct LabeledDivider: View {
         .frame(minHeight: 35)
     }
 }
+
+private struct PreviewDropDelegate: DropDelegate {
+    func dropEntered(info: DropInfo) {}
+    func dropUpdated(info: DropInfo) -> DropProposal? { return nil }
+    func performDrop(info: DropInfo) -> Bool { return false }
+    func dropExited(info: DropInfo) {}
+    func validateDrop(info: DropInfo) -> Bool { return true }
+}
+
+#Preview("Toggle Styles") {
+    VStack(spacing: 20) {
+        Toggle("Security Shield", isOn: .constant(true))
+            .toggleStyle(RedGreenShield())
+            .frame(width: 80, height: 44)
+        
+        Toggle("Security Shield", isOn: .constant(false))
+            .toggleStyle(RedGreenShield())
+            .frame(width: 80, height: 44    )
+    }
+    .padding()
+}
+
+#Preview("Grid Template") {
+    GridTemplateView(delegate: PreviewDropDelegate(), types: [.application], quarantine: true)
+        .environmentObject(AppState())
+}
+
+#Preview("Other Components") {
+    VStack(spacing: 20) {
+        DropBG()
+            .frame(width: 200, height: 100)
+        
+        LearnMorePopover(text: "This is a sample text", prominentText: "Important information")
+        
+        UnlockView(text: "Unlocked")
+        
+        Button("Simple Button") {}
+            .buttonStyle(SimpleButtonStyle(icon: "star.fill",
+                                        iconFlip: "star",
+                                        label: "Rate",
+                                        help: "Rate the app"))
+        
+        LabeledDivider(label: "Section")
+            .environmentObject(AppState())
+    }
+    .padding()
+}
