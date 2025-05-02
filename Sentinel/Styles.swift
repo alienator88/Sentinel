@@ -162,12 +162,9 @@ struct GridTemplateView: View {
             }
 
             if empty {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("DROP").offset(x: 1)
-                    Text("HERE").offset(x: 1)
-                }
-                .foregroundStyle(.black.opacity(0.25))
-                .font(.system(size: 14, weight: .semibold))
+                VectorDropHere()
+                    .fill(Color.black.opacity(0.25))
+                    .frame(width: 41.30552673339844, height: 37.02809524536133)
             }
 
 
