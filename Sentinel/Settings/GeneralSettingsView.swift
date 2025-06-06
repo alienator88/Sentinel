@@ -46,7 +46,7 @@ struct GeneralSettingsTab: View {
 
                     }
                     HStack {
-                        TextField("Keychain notarization profile", text: $notaryProfile)
+                        TextField("Keychain notarization profile name", text: $notaryProfile)
                             .textFieldStyle(.roundedBorder)
                             .focusable(false)
                         Link("Docs",

@@ -58,7 +58,7 @@ struct Dashboardv2: View {
                     .padding(.trailing, 32)
 
                     VStack(alignment: .leading, spacing: 5) {
-                        Text("Remove an app from quarantine.\nAllow the unsigned app to launch.")
+                        Text("Remove an app from quarantine and allow the unsigned app to launch.")
                             .font(.system(size: 17))
                             .foregroundStyle(.secondary)
                             .bold()
@@ -132,7 +132,7 @@ struct Dashboardv2: View {
                             .font(.system(size: 16))
                             .bold()
 
-                        Text("Use this as a last resort if the above options are not helping or you have a lot of unsigned apps to run and want to avoid un-quarantining apps every time.")
+                        Text("Use this as a last resort if the above options are not helping or you want to avoid un-quarantining apps every time.")
                             .font(.system(size: 13, weight: .regular))
                             .foregroundStyle(.primary)
                     }
@@ -176,32 +176,10 @@ struct Dashboardv2: View {
                 )
 
             }
-            Spacer()
-            
-            // Status Bar
-            HStack(alignment: .center, spacing: 4) {
-                if appState.isLoading  {
-                    ProgressView()
-                        .controlSize(.small)
-                        .scaleEffect(0.7)
-                }
-                Text(appState.status)
-                Spacer()
-                Text("Version \(Bundle.main.version)")
-                Text("(Build \(Bundle.main.buildVersion))")
-            }
-            
-            .foregroundStyle(.secondary)
-            .font(.footnote)
-            .frame(height: 24).background(VStack {
-                //TODO divider insets full width Divider()
-                Spacer()
-            })
-            .frame(maxWidth: .infinity, idealHeight: 32)
+
         }
-        .padding(.bottom, 0) // Remove bottom padding to allow status bar to touch edge
-        .padding([.top , .leading, .trailing])
-        .edgesIgnoringSafeArea(.bottom) // Allow status bar to extend to bottom edge
+        .padding()
+        .edgesIgnoringSafeArea(.all)
         .frame(width: 700, height: 630)
     }
 }
@@ -210,5 +188,5 @@ struct Dashboardv2: View {
     Dashboardv2()
         .environmentObject(AppState())
         .environmentObject(Updater(owner: "alienator88", repo: "Sentinel"))
-        .frame(width: 700, height: 630)
+        .frame(width: 700, height: 650)
 }
