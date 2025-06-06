@@ -18,7 +18,8 @@ struct AboutView: View {
                     Text("(Build \(Bundle.main.buildVersion))").font(.footnote)
                 }
 
-                Text("Made with ❤️ by Alin Lupascu").font(.footnote)
+                Text("Made with ❤️ by Alin Lupascu").font(.caption)
+                Text("With UI/UX contributions from Roman Roan").font(.footnote)
             }
             .padding(.vertical)
 
