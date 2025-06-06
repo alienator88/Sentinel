@@ -48,7 +48,7 @@ A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
    
 > Execute the following command to install via Homebrew:
 ```
-brew install alienator88/homebrew-cask/sentinel-app
+brew install sentinel-gk
 ```
 </details>
 
