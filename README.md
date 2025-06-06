@@ -1,10 +1,10 @@
 # Sentinel
 <p align="center">
-  <img src="https://github.com/alienator88/Sentinel/assets/6263626/2c3d699d-eea6-49db-8a7d-cc66e0ce9b97" width="100" height="100" />
+  <img src="https://github.com/user-attachments/assets/8730f94d-b4d0-432e-a893-68bb735684bd" width="100" height="100" />
    <br />
    <strong>Status: </strong>Maintained 
    <br />
-   <strong>Version: </strong>2.2
+   <strong>Version: </strong>3.0.0
    <br />
    <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
     · 
@@ -28,9 +28,9 @@ A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
 
 ## Screenshots
 
-<img src="https://github.com/user-attachments/assets/913d8415-1d79-48fa-b25c-034cb954d9ba" align="left" width="400" />
+<img src="https://github.com/user-attachments/assets/2b6d1418-b8e5-4da9-afe6-a036ea9d04e1" align="left" width="400" />
 
-<img src="https://github.com/user-attachments/assets/062d1aa5-cb21-4bce-9d26-1f7d8ca85f30" align="center" width="400" />
+<img src="https://github.com/user-attachments/assets/1fd11c44-159b-4d90-80e3-9c0b2c825dc6" align="center" width="400" />
 
 ## Requirements
 - MacOS 13.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than Ventura)
@@ -48,7 +48,7 @@ A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
    
 > Execute the following command to install via Homebrew:
 ```
-brew install alienator88/homebrew-cask/sentinel-app
+brew install sentinel-gk
 ```
 </details>
 
