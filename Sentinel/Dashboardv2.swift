@@ -177,6 +177,26 @@ struct Dashboardv2: View {
 
             }
 
+            Spacer()
+
+            // Status Bar
+            HStack(alignment: .center, spacing: 4) {
+                Spacer()
+                if appState.isLoading  {
+                    ProgressView()
+                        .controlSize(.small)
+                        .scaleEffect(0.7)
+                }
+                Text(appState.status)
+                    .font(.system(size: 12))
+                Spacer()
+            }
+            .padding(.vertical, 5)
+            .foregroundStyle(.secondary)
+            .font(.footnote)
+            .frame(height: 24)
+            .frame(maxWidth: .infinity, idealHeight: 32)
+
         }
         .padding()
         .edgesIgnoringSafeArea(.all)
