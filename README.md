@@ -1,7 +1,9 @@
 # Sentinel
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/8730f94d-b4d0-432e-a893-68bb735684bd" width="100" height="100" />
+  <img src="assets/256×256@2x.png" width="256" height="256" />
    <br />
+     <img src="assets/sentinel.png" width="341" height="70" />
+     <br/>
    <strong>Status: </strong>Maintained 
    <br />
    <strong>Version: </strong>3.0.0
