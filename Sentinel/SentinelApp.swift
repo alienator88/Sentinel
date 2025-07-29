@@ -10,12 +10,19 @@ struct SentinelApp: App {
 
     var body: some Scene {
         WindowGroup {
-            Dashboardv2()
+            Dashboard()
                 .environmentObject(appState)
                 .environmentObject(updater)
                 .sheet(isPresented: $updater.sheet, content: {
                     /// This will show the update sheet based on the frequency check function
                     updater.getUpdateView()
+                })
+                .onAppear {
+                    appState.availableIdentities = loadIdentities()
+                }
+                .handlesExternalEvents(preferring: Set(arrayLiteral: "sentinel"), allowing: Set(arrayLiteral: "*"))
+                .onOpenURL(perform: { url in
+                    handleDeepLinkedApps(url: url, appState: appState)
                 })
         }
         .commands {

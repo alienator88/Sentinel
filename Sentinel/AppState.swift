@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FinderSync
 
 class AppState: ObservableObject {
     static let shared = AppState()
@@ -15,14 +16,30 @@ class AppState: ObservableObject {
     @Published var hasInitializedGatekeeperState = false
     @Published var status: String = ""
     @Published var isLoading: Bool = false
+    @Published var multiDrop: Bool = false
+    @Published var availableIdentities: [String] = []
+    @Published var finderExtensionEnabled: Bool = false
+    @Published var doneQuarantine: Bool = false
+    @Published var doneSign: Bool = false
 
-    @Published var quarantineAppName: String? = nil
-    @Published var quarantineAppIcon: NSImage? = nil
-    @Published var quarantineUnlocked: Bool = false
 
-    @Published var signAppName: String? = nil
-    @Published var signAppIcon: NSImage? = nil
-    @Published var signUnlocked: Bool = false
+    init() {
+        updateExtensionStatus()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateExtensionStatus),
+            name: NSApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+
+    @objc func updateExtensionStatus() {
+        let extensionStatus = FIFinderSyncController.isExtensionEnabled
+        DispatchQueue.main.async {
+            self.finderExtensionEnabled = extensionStatus
+        }
+    }
+
 
 }
 

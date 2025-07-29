@@ -19,7 +19,6 @@ struct AboutView: View {
                 }
 
                 Text("Made with ❤️ by Alin Lupascu").font(.caption)
-                Text("With UI/UX contributions from Roman Roan").font(.caption).foregroundStyle(.secondary)
             }
             .padding(.vertical)
 

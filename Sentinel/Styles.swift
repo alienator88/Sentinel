@@ -88,142 +88,23 @@ struct RedGreenShield: ToggleStyle {
     }
 }
 
-struct GridTemplateView: View {
-    @EnvironmentObject var appState: AppState
-    let delegate: DropDelegate
-    let types: [UTType]
-    let quarantine: Bool
 
-    var empty: Bool {
-        quarantine ? appState.quarantineAppName == nil : appState.signAppName == nil
-    }
+
+
+struct DropTarget: View {
+
+    let delegate: DropDelegate
+
+    let types: [UTType]
 
     var body: some View {
-        ZStack(alignment: .center) {
-            // Base rounded rectangle background
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(red: 200/255, green: 224/255, blue: 229/255, opacity: 0.6))
-
-            GeometryReader { geo in
-                let color = Color.white.opacity(0.5)
-                let size = geo.size
-                let gridCount = 6
-                let spacing = size.width / CGFloat(gridCount)
-                let squareSize = spacing * CGFloat(gridCount - 1) * 0.80
-                let center = CGPoint(x: size.width / 2, y: size.height / 2)
-
-                ZStack {
-                    // Grid lines
-                    Path { path in
-                        for i in 0...gridCount {
-                            let offset = CGFloat(i) * spacing
-                            path.move(to: CGPoint(x: offset, y: 0))
-                            path.addLine(to: CGPoint(x: offset, y: size.height))
-                            path.move(to: CGPoint(x: 0, y: offset))
-                            path.addLine(to: CGPoint(x: size.width, y: offset))
-                        }
-                    }
-                    .stroke(color, lineWidth: 1)
-
-                    // Square
-                    Path { path in
-                        let origin = CGPoint(x: center.x - squareSize / 2, y: center.y - squareSize / 2)
-                        path.addRect(CGRect(origin: origin, size: CGSize(width: squareSize, height: squareSize)))
-                    }
-                    .stroke(color, lineWidth: 1)
-
-                    // Circle same size as square
-                    Circle()
-                        .stroke(color, lineWidth: 1)
-                        .frame(width: squareSize, height: squareSize)
-                        .position(center)
-
-                    // Smaller center circle
-                    Circle()
-                        .stroke(color, lineWidth: 1)
-                        .frame(width: squareSize / 2, height: squareSize / 2)
-                        .position(center)
-
-                    // Diagonal lines
-                    Path { path in
-                        let topLeft = CGPoint(x: center.x - squareSize / 2, y: center.y - squareSize / 2)
-                        let bottomRight = CGPoint(x: center.x + squareSize / 2, y: center.y + squareSize / 2)
-                        let topRight = CGPoint(x: center.x + squareSize / 2, y: center.y - squareSize / 2)
-                        let bottomLeft = CGPoint(x: center.x - squareSize / 2, y: center.y + squareSize / 2)
-                        path.move(to: topLeft)
-                        path.addLine(to: bottomRight)
-                        path.move(to: topRight)
-                        path.addLine(to: bottomLeft)
-                    }
-                    .stroke(color, lineWidth: 1)
-                }
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-
-            }
-
-            if empty {
-                VectorDropHere()
-                    .fill(Color.black.opacity(0.25))
-                    .frame(width: 41.30552673339844, height: 37.02809524536133)
-            }
-
-
-
-        }
-        .frame(width: 80, height: 80)
-        .padding(.top, 1)
-        .overlay {
-            ZStack {
-                RoundedRectangle(cornerRadius: 16)
-                    .strokeBorder(Color.white, lineWidth: empty ? 5 : 2)
-                    .shadow(radius: 1, y: 1)
-                if !empty {
-                    if quarantine {
-                        if appState.quarantineUnlocked {
-                            VStack {
-                                HStack {
-                                    Image(systemName: "lock.open.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20, height: 20)
-                                        .foregroundStyle(Color(red: 88/255, green: 86/255, blue: 214/255, opacity: 1))
-                                        .bold()
-                                        .offset(x: -4, y: -10)
-                                    Spacer()
-                                }
-                                Spacer()
-                            }
-                        }
-
-                    } else {
-                        if appState.signUnlocked {
-                            VStack {
-                                HStack {
-                                    Image(systemName: "lock.open.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20, height: 20)
-                                        .foregroundStyle(Color(red: 88/255, green: 86/255, blue: 214/255, opacity: 1))
-                                        .bold()
-                                        .offset(x: -4, y: -10)
-                                    Spacer()
-                                }
-                                Spacer()
-                            }
-                        }
-                    }
-
-                    if let icon = quarantine ? appState.quarantineAppIcon : appState.signAppIcon {
-                        Image(nsImage: icon)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(5)
-                    }
-
-                }
-
-
-            }
+        ZStack {
+            //            RoundedRectangle(cornerRadius: 8)
+            //                .fill(Color("bg").opacity(1))
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(Color.primary.opacity(0.5), style: StrokeStyle(lineWidth: 0.5, dash: [8, 4], dashPhase: 0))
+            //                .strokeBorder(Color("stroke").opacity(1), style: StrokeStyle(lineWidth: 1, dashPhase: 0))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .onDrop(of: types, delegate: delegate)
     }
@@ -414,51 +295,4 @@ struct LabeledDivider: View {
         }
         .frame(minHeight: 35)
     }
-}
-
-private struct PreviewDropDelegate: DropDelegate {
-    func dropEntered(info: DropInfo) {}
-    func dropUpdated(info: DropInfo) -> DropProposal? { return nil }
-    func performDrop(info: DropInfo) -> Bool { return false }
-    func dropExited(info: DropInfo) {}
-    func validateDrop(info: DropInfo) -> Bool { return true }
-}
-
-#Preview("Toggle Styles") {
-    VStack(spacing: 20) {
-        Toggle("Security Shield", isOn: .constant(true))
-            .toggleStyle(RedGreenShield())
-            .frame(width: 80, height: 44)
-        
-        Toggle("Security Shield", isOn: .constant(false))
-            .toggleStyle(RedGreenShield())
-            .frame(width: 80, height: 44    )
-    }
-    .padding()
-}
-
-#Preview("Grid Template") {
-    GridTemplateView(delegate: PreviewDropDelegate(), types: [.application], quarantine: true)
-        .environmentObject(AppState())
-}
-
-#Preview("Other Components") {
-    VStack(spacing: 20) {
-        DropBG()
-            .frame(width: 200, height: 100)
-        
-        LearnMorePopover(text: "This is a sample text", prominentText: "Important information")
-        
-        UnlockView(text: "Unlocked")
-        
-        Button("Simple Button") {}
-            .buttonStyle(SimpleButtonStyle(icon: "star.fill",
-                                        iconFlip: "star",
-                                        label: "Rate",
-                                        help: "Rate the app"))
-        
-        LabeledDivider(label: "Section")
-            .environmentObject(AppState())
-    }
-    .padding()
 }
