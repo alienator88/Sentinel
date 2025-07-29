@@ -1,10 +1,10 @@
 # Sentinel
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/8730f94d-b4d0-432e-a893-68bb735684bd" width="100" height="100" />
+  <img src="https://github.com/user-attachments/assets/dfea9f1c-d3ab-430e-93e4-c2da358db110" width="128" height="128" />
    <br />
    <strong>Status: </strong>Maintained 
    <br />
-   <strong>Version: </strong>3.0.0
+   <strong>Version: </strong>3.1.0
    <br />
    <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
     · 
@@ -21,6 +21,7 @@ A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
 - 100% Swift
 - Can drop an app in the drop target to unquarantine and optionally auto-open the app after it is unquarantined
 - Can drop an app in the drop target to ad-hoc self sign and replace the certificate
+- Finder extension to easily right click apps and unquarantine
 - Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Sentinel should be ran from /Applications folder to avoid permission issues)
 - Supports macOS Sequoia
 
