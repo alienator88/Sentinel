@@ -9,12 +9,75 @@ import Cocoa
 import FinderSync
 
 class FinderOpen: FIFinderSync {
+    
+    private var directoriesToWatch: Set<URL> = []
 
     override init() {
         super.init()
         NSLog("FinderSync() launched from %@", Bundle.main.bundlePath as NSString)
-        // Set the directory URLs that the Finder Sync extension observes
-        FIFinderSyncController.default().directoryURLs = Set([URL(fileURLWithPath: "/")])
+        
+        // Set up initial directory URLs including all mounted volumes
+        updateWatchedDirectories()
+        
+        // Register for volume mount/unmount notifications
+        setupVolumeMonitoring()
+    }
+    
+    private func updateWatchedDirectories() {
+        directoriesToWatch = [URL(fileURLWithPath: "/")]
+        
+        // Add all currently mounted volumes
+        if let mountedVolumes = FileManager.default.mountedVolumeURLs(
+            includingResourceValuesForKeys: nil,
+            options: [.skipHiddenVolumes]
+        ) {
+            for volume in mountedVolumes {
+                directoriesToWatch.insert(volume)
+            }
+        }
+        
+        FIFinderSyncController.default().directoryURLs = directoriesToWatch
+        NSLog("FinderSync watching directories: %@", directoriesToWatch.map { $0.path }.joined(separator: ", "))
+    }
+    
+    private func setupVolumeMonitoring() {
+        let notificationCenter = NSWorkspace.shared.notificationCenter
+        
+        // Monitor volume mount events
+        notificationCenter.addObserver(
+            forName: NSWorkspace.didMountNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard let self = self else { return }
+            
+            if let volumeURL = notification.userInfo?[NSWorkspace.volumeURLUserInfoKey] as? URL {
+                NSLog("FinderSync: Volume mounted at %@", volumeURL.path)
+                
+                self.directoriesToWatch.insert(volumeURL)
+                FIFinderSyncController.default().directoryURLs = self.directoriesToWatch
+                
+                NSLog("FinderSync: Added volume to watched directories")
+            }
+        }
+        
+        // Monitor volume unmount events
+        notificationCenter.addObserver(
+            forName: NSWorkspace.didUnmountNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard let self = self else { return }
+            
+            if let volumeURL = notification.userInfo?[NSWorkspace.volumeURLUserInfoKey] as? URL {
+                NSLog("FinderSync: Volume unmounted at %@", volumeURL.path)
+                
+                self.directoriesToWatch.remove(volumeURL)
+                FIFinderSyncController.default().directoryURLs = self.directoriesToWatch
+                
+                NSLog("FinderSync: Removed volume from watched directories")
+            }
+        }
     }
 
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
