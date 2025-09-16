@@ -15,6 +15,7 @@
 		C716BB2D2DB2E255004A78E8 /* Gatekeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716BB2C2DB2E251004A78E8 /* Gatekeeper.swift */; };
 		C733F76B29CA59AE00DADADD /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76A29CA59AE00DADADD /* Script.swift */; };
 		C733F76F29CA65AC00DADADD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C733F76E29CA65AC00DADADD /* AppState.swift */; };
+		C7374B672E79C8110015DEED /* Sentinel.icon in Resources */ = {isa = PBXBuildFile; fileRef = C7374B662E79C8110015DEED /* Sentinel.icon */; };
 		C744585F2E382B9500B8D6F1 /* FinderOpen.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C74458572E382B9500B8D6F1 /* FinderOpen.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C74458672E3830E300B8D6F1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74458662E3830E000B8D6F1 /* Utilities.swift */; };
 		C744586F2E38356400B8D6F1 /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744586E2E38356200B8D6F1 /* DeepLink.swift */; };
@@ -63,6 +64,7 @@
 		C716BB2C2DB2E251004A78E8 /* Gatekeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gatekeeper.swift; sourceTree = "<group>"; };
 		C733F76A29CA59AE00DADADD /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		C733F76E29CA65AC00DADADD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		C7374B662E79C8110015DEED /* Sentinel.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Sentinel.icon; sourceTree = "<group>"; };
 		C74458572E382B9500B8D6F1 /* FinderOpen.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FinderOpen.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74458652E382D7300B8D6F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C74458662E3830E000B8D6F1 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				4180AEEC2839A0560054FEA9 /* Utilities */,
 				4180AEAD2839753E0054FEA9 /* SentinelApp.swift */,
 				4180AEB12839753F0054FEA9 /* Assets.xcassets */,
+				C7374B662E79C8110015DEED /* Sentinel.icon */,
 				4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */,
 				C733F76E29CA65AC00DADADD /* AppState.swift */,
 				C78AAAB42BB33F9A002AD918 /* Styles.swift */,
@@ -226,7 +229,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					4180AEA92839753E0054FEA9 = {
 						CreatedOnToolsVersion = 13.4;
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74458732E383D4B00B8D6F1 /* announcements.json in Resources */,
+				C7374B672E79C8110015DEED /* Sentinel.icon in Resources */,
 				4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +380,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -433,6 +438,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -441,18 +447,19 @@
 		4180AEBA2839753F0054FEA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Sentinel;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Sentinel/SentinelApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = BK8443AXLU;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -466,7 +473,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.1.1;
+				MARKETING_VERSION = 3.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -479,18 +486,19 @@
 		4180AEBB2839753F0054FEA9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Sentinel;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Sentinel/SentinelApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = BK8443AXLU;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -504,7 +512,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.1.1;
+				MARKETING_VERSION = 3.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -523,7 +531,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = BK8443AXLU;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -539,7 +547,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.1.0;
+				MARKETING_VERSION = 3.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -561,7 +569,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = BK8443AXLU;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -577,7 +585,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.1.0;
+				MARKETING_VERSION = 3.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
