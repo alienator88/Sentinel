@@ -23,7 +23,6 @@ A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
 - Can drop an app in the drop target to ad-hoc self sign and replace the certificate
 - Finder extension to easily right click apps and unquarantine
 - Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Sentinel should be ran from /Applications folder to avoid permission issues)
-- Supports macOS Sequoia
 
 
 
@@ -32,7 +31,14 @@ A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
 <img src="https://github.com/user-attachments/assets/3cc90bd1-7d9d-43ed-8a0f-7105d72d5eab" align="center" width="400" />
 
 ## Requirements
-- MacOS 13.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than Ventura)
+| macOS Version | Codename | Supported |
+|---------------|----------|-----------|
+| 13.x          | Ventura  | ✅        |
+| 14.x          | Sonoma   | ✅        |
+| 15.x          | Sequoia  | ✅        |
+| 26.x          | Tahoe    | ✅        |
+| TBD           | Beta     | ❌        |
+> Versions prior to macOS 13.0 are not supported due to missing Swift/SwiftUI APIs required by the app.
 
 ## Getting Sentinel
 
