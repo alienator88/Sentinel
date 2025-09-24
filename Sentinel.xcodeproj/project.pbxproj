@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4180AEAE2839753E0054FEA9 /* SentinelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEAD2839753E0054FEA9 /* SentinelApp.swift */; };
-		4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4180AEB12839753F0054FEA9 /* Assets.xcassets */; };
 		4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEEA2839A0280054FEA9 /* AboutCommand.swift */; };
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
 		C708899C2DB42F8800AC3E2B /* DropDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708899B2DB42F8200AC3E2B /* DropDelegates.swift */; };
@@ -19,12 +18,13 @@
 		C744585F2E382B9500B8D6F1 /* FinderOpen.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C74458572E382B9500B8D6F1 /* FinderOpen.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C74458672E3830E300B8D6F1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74458662E3830E000B8D6F1 /* Utilities.swift */; };
 		C744586F2E38356400B8D6F1 /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744586E2E38356200B8D6F1 /* DeepLink.swift */; };
-		C74458732E383D4B00B8D6F1 /* announcements.json in Resources */ = {isa = PBXBuildFile; fileRef = C74458722E383D4B00B8D6F1 /* announcements.json */; };
 		C78AAAB32BB33F84002AD918 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB22BB33F84002AD918 /* UpdateSettingsView.swift */; };
 		C78AAAB52BB33F9A002AD918 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB42BB33F9A002AD918 /* Styles.swift */; };
 		C78AAAB92BB3418E002AD918 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */; };
 		C7BB802A29CA28B400006CDB /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802929CA28B400006CDB /* Dashboard.swift */; };
 		C7BB802C29CA299700006CDB /* CmdDrops.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB802B29CA299700006CDB /* CmdDrops.swift */; };
+		C7BEBE1F2E846A8B00B56DE9 /* Sentinel.icon in Resources */ = {isa = PBXBuildFile; fileRef = C7374B662E79C8110015DEED /* Sentinel.icon */; };
+		C7BEBE212E846AB400B56DE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BEBE202E846AB400B56DE9 /* Assets.xcassets */; };
 		C7EB1E0A2C594BD50085B695 /* AlinFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C7EB1E092C594BD50085B695 /* AlinFoundation */; };
 		C7FBD9EA2DAD722700151934 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FBD9E92DAD721F00151934 /* GeneralSettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -56,7 +56,6 @@
 /* Begin PBXFileReference section */
 		4180AEAA2839753E0054FEA9 /* Sentinel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sentinel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4180AEAD2839753E0054FEA9 /* SentinelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentinelApp.swift; sourceTree = "<group>"; };
-		4180AEB12839753F0054FEA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SentinelApp.entitlements; sourceTree = "<group>"; };
 		4180AEEA2839A0280054FEA9 /* AboutCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommand.swift; sourceTree = "<group>"; };
 		4180AEFA2839A32F0054FEA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		C78AAAB82BB3418E002AD918 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		C7BB802929CA28B400006CDB /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		C7BB802B29CA299700006CDB /* CmdDrops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdDrops.swift; sourceTree = "<group>"; };
+		C7BEBE202E846AB400B56DE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7FBD9E92DAD721F00151934 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,10 +87,18 @@
 			);
 			target = C74458562E382B9500B8D6F1 /* FinderOpen */;
 		};
+		C7BEBE1E2E84694900B56DE9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppGroupDefaults.swift,
+			);
+			target = 4180AEA92839753E0054FEA9 /* Sentinel */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C74458582E382B9500B8D6F1 /* FinderOpen */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C74458602E382B9500B8D6F1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = FinderOpen; sourceTree = "<group>"; };
+		C7BEBE1A2E84693400B56DE9 /* Shared */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C7BEBE1E2E84694900B56DE9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Shared; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 		4180AEA12839753E0054FEA9 = {
 			isa = PBXGroup;
 			children = (
+				C7BEBE1A2E84693400B56DE9 /* Shared */,
 				4180AEAC2839753E0054FEA9 /* Sentinel */,
 				C74458582E382B9500B8D6F1 /* FinderOpen */,
 				4180AEAB2839753E0054FEA9 /* Products */,
@@ -140,11 +149,11 @@
 				C78AAAAD2BB33F2E002AD918 /* Settings */,
 				4180AEEC2839A0560054FEA9 /* Utilities */,
 				4180AEAD2839753E0054FEA9 /* SentinelApp.swift */,
-				4180AEB12839753F0054FEA9 /* Assets.xcassets */,
 				C7374B662E79C8110015DEED /* Sentinel.icon */,
 				4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */,
 				C733F76E29CA65AC00DADADD /* AppState.swift */,
 				C78AAAB42BB33F9A002AD918 /* Styles.swift */,
+				C7BEBE202E846AB400B56DE9 /* Assets.xcassets */,
 			);
 			path = Sentinel;
 			sourceTree = "<group>";
@@ -213,6 +222,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				C74458582E382B9500B8D6F1 /* FinderOpen */,
+				C7BEBE1A2E84693400B56DE9 /* Shared */,
 			);
 			name = FinderOpen;
 			packageProductDependencies = (
@@ -265,9 +275,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C74458732E383D4B00B8D6F1 /* announcements.json in Resources */,
+				C7BEBE212E846AB400B56DE9 /* Assets.xcassets in Resources */,
 				C7374B672E79C8110015DEED /* Sentinel.icon in Resources */,
-				4180AEB22839753F0054FEA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7BEBE1F2E846A8B00B56DE9 /* Sentinel.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +464,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -473,11 +483,12 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "M1 Pro Signed - Sentinel";
+				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -493,7 +504,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -512,11 +523,12 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "M1 Pro Signed - Sentinel";
+				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -531,7 +543,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = BK8443AXLU;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -547,7 +559,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -569,7 +581,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = BK8443AXLU;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -585,7 +597,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alienator88.Sentinel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -1,3 +1,5 @@
+import AlinFoundation
+import FinderSync
 //
 //  GeneralSettingsView.swift
 //  Sentinel
@@ -6,8 +8,6 @@
 //
 import Foundation
 import SwiftUI
-import AlinFoundation
-import FinderSync
 
 struct GeneralSettingsTab: View {
     @EnvironmentObject var appState: AppState
@@ -15,6 +15,8 @@ struct GeneralSettingsTab: View {
     @AppStorage("sentinel.general.devCerts") private var showDevCerts = false
     @AppStorage("sentinel.general.codesignIdentity") private var selectedIdentity = "None"
     @AppStorage("sentinel.general.notaryProfile") private var notaryProfile = ""
+    @State private var enableMountedVolumes = UserDefaults.enableMountedVolumesSync
+    @State private var showAppIconInMenu = UserDefaults.showAppIconInMenu
 
     var body: some View {
         VStack {
@@ -31,7 +33,6 @@ struct GeneralSettingsTab: View {
                             .padding(.trailing)
                     }
 
-
                     Spacer()
 
                     Toggle("", isOn: $autoLaunch)
@@ -42,41 +43,83 @@ struct GeneralSettingsTab: View {
             }
 
             GroupBox {
-                HStack {
-                    HStack(spacing: 0) {
-                        Text("Enable context menu extension for Finder")
-                            .font(.callout)
-                            .foregroundStyle(.primary)
+                VStack(spacing: 10) {
+                    HStack {
+                        HStack(spacing: 0) {
+                            Text("Enable context menu extension for Finder")
+                                .font(.callout)
+                                .foregroundStyle(.primary)
 
-                        InfoButton(text: String(localized: "Enabling this extension will allow you to right click apps in Finder to quickly unquarantine them with Sentinel\n\nSometimes macOS only enables extensions if the main app is in the Applications folder"))
-                        Button {
-                            FIFinderSyncController.showExtensionManagementInterface()
-                        } label: {
-                            Image(systemName: "gear")
+                            InfoButton(
+                                text:
+                                    "Enabling this extension will allow you to right click apps in Finder to quickly unquarantine them with Sentinel\n\nmacOS only enables extensions if the main app is in the Applications folder"
+                            )
+                            Button {
+                                FIFinderSyncController.showExtensionManagementInterface()
+                            } label: {
+                                Image(systemName: "gear")
+                            }
+                            .buttonStyle(.plain)
+                            .padding(.leading, 5)
+                            Spacer()
                         }
-                        .buttonStyle(.plain)
-                        .padding(.leading, 5)
+
                         Spacer()
+
+                        Toggle(
+                            isOn: $appState.finderExtensionEnabled,
+                            label: {
+                            }
+                        )
+                        .toggleStyle(.switch)
+                        .onChange(of: appState.finderExtensionEnabled) { newValue in
+                            if newValue {
+                                manageFinderPlugin(install: true)
+                            } else {
+                                manageFinderPlugin(install: false)
+                            }
+                        }
                     }
 
+                    HStack {
+                        HStack(spacing: 0) {
+                            Text("Enable extension on mounted volumes")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
 
-
-
-                    Spacer()
-
-                    Toggle(isOn: $appState.finderExtensionEnabled, label: {
-                    })
-                    .toggleStyle(.switch)
-                    .onChange(of: appState.finderExtensionEnabled) { newValue in
-                        if newValue {
-                            manageFinderPlugin(install: true)
-                        } else {
-                            manageFinderPlugin(install: false)
+                            InfoButton(text: "When disabled, the extension will only work in regular directories but not on mounted DMG volumes. This can prevent mounted DMG icons from being replaced in the Finder sidebar which is a macOS bug.")
                         }
+
+                        Spacer()
+
+                        Toggle("", isOn: $enableMountedVolumes)
+                            .labelsHidden()
+                            .toggleStyle(.checkbox)
+                            .disabled(!appState.finderExtensionEnabled)
+                            .onChange(of: enableMountedVolumes) { newValue in
+                                UserDefaults.enableMountedVolumesSync = newValue
+                            }
+                    }
+
+                    HStack {
+                        HStack(spacing: 0) {
+                            Text("Show Sentinel app icon in context menu")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+
+                        }
+
+                        Spacer()
+
+                        Toggle("", isOn: $showAppIconInMenu)
+                            .labelsHidden()
+                            .toggleStyle(.checkbox)
+                            .onChange(of: showAppIconInMenu) { newValue in
+                                UserDefaults.showAppIconInMenu = newValue
+                            }
                     }
                 }
                 .padding()
-
 
             }
 
@@ -85,7 +128,11 @@ struct GeneralSettingsTab: View {
                     HStack {
                         HStack(spacing: 0) {
                             Text("Show Apple Development certificates")
-                            InfoButton(text: String(localized: "You cannot notarize apps with Apple Development certificates, using these will fail as they are normally used for local development only and they do not allow notarizing.\n\nIt's recommended to select None or a Developer ID Application certificate if you have one."))
+                            InfoButton(
+                                text: String(
+                                    localized:
+                                        "You cannot notarize apps with Apple Development certificates, using these will fail as they are normally used for local development only and they do not allow notarizing.\n\nIt's recommended to select None or a Developer ID Application certificate if you have one."
+                                ))
                             Spacer()
                         }
 
@@ -98,7 +145,7 @@ struct GeneralSettingsTab: View {
                             .labelsHidden()
                             .toggleStyle(.switch)
                     }
-                    HStack() {
+                    HStack {
                         Text("Code signing identity")
                         Spacer()
                         Picker("", selection: $selectedIdentity) {
@@ -117,12 +164,19 @@ struct GeneralSettingsTab: View {
 
                     HStack(spacing: 0) {
                         Text("Notarization profile")
-                        InfoButton(text: "If you'd like to learn how to notarize an application using a notarization profile, view the Apple documentation below.", extraView: {
-                            Link(destination: URL(string: "https://developer.apple.com/documentation/security/customizing-the-notarization-workflow#Upload-your-app-to-the-notarization-service")!, label: {
-                                Text("Open")
+                        InfoButton(
+                            text:
+                                "If you'd like to learn how to notarize an application using a notarization profile, view the Apple documentation below.",
+                            extraView: {
+                                Link(
+                                    destination: URL(
+                                        string:
+                                            "https://developer.apple.com/documentation/security/customizing-the-notarization-workflow#Upload-your-app-to-the-notarization-service"
+                                    )!,
+                                    label: {
+                                        Text("Open")
+                                    })
                             })
-                        })
-
 
                         Spacer()
                         TextField("Keychain notarization profile name", text: $notaryProfile)
@@ -135,12 +189,9 @@ struct GeneralSettingsTab: View {
                 .padding()
             }
 
-
-
             Spacer()
         }
     }
-
 
 }
 
