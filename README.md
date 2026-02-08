@@ -1,12 +1,10 @@
 # Sentinel
 <p align="center">
-  <img src="assets/256×256@2x.png" width="256" height="256" />
+  <img src="https://github.com/user-attachments/assets/dfea9f1c-d3ab-430e-93e4-c2da358db110" width="128" height="128" />
    <br />
-     <img src="assets/sentinel.png" width="341" height="70" />
-     <br/>
    <strong>Status: </strong>Maintained 
    <br />
-   <strong>Version: </strong>3.0.0
+   <strong>Version: </strong>3.1.4
    <br />
    <a href="https://github.com/alienator88/Sentinel/releases"><strong>Download</strong></a>
     · 
@@ -23,19 +21,24 @@ A GUI for controlling Gatekeeper, unquarantining apps and signing apps.
 - 100% Swift
 - Can drop an app in the drop target to unquarantine and optionally auto-open the app after it is unquarantined
 - Can drop an app in the drop target to ad-hoc self sign and replace the certificate
+- Finder extension to easily right click apps and unquarantine
 - Custom auto-updater that pulls latest release notes and binaries from GitHub Releases (Sentinel should be ran from /Applications folder to avoid permission issues)
-- Supports macOS Sequoia
 
 
 
 ## Screenshots
 
-<img src="https://github.com/user-attachments/assets/2b6d1418-b8e5-4da9-afe6-a036ea9d04e1" align="left" width="400" />
-
-<img src="https://github.com/user-attachments/assets/1fd11c44-159b-4d90-80e3-9c0b2c825dc6" align="center" width="400" />
+<img src="https://github.com/user-attachments/assets/3cc90bd1-7d9d-43ed-8a0f-7105d72d5eab" align="center" width="400" />
 
 ## Requirements
-- MacOS 13.0+ (App uses a lot of newer SwiftUI functions/modifiers which don't work on any OS lower than Ventura)
+| macOS Version | Codename | Supported |
+|---------------|----------|-----------|
+| 13.x          | Ventura  | ✅        |
+| 14.x          | Sonoma   | ✅        |
+| 15.x          | Sequoia  | ✅        |
+| 26.x          | Tahoe    | ✅        |
+| TBD           | Beta     | ❌        |
+> Versions prior to macOS 13.0 are not supported due to missing Swift/SwiftUI APIs required by the app.
 
 ## Getting Sentinel
 

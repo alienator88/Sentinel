@@ -18,9 +18,20 @@ struct DropQuarantine: DropDelegate {
 
         let itemProviders = info.itemProviders(for: [UTType.fileURL])
 
-        guard itemProviders.count == 1 else {
-            return false
+//        guard itemProviders.count == 1 else {
+//            return false
+//        }
+
+        if itemProviders.count == 1 {
+            updateOnMain {
+                appState.multiDrop = false
+            }
+        } else {
+            updateOnMain {
+                appState.multiDrop = true
+            }
         }
+
         for itemProvider in itemProviders {
             itemProvider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, error in
                 guard let data = item as? Data else {
@@ -31,16 +42,9 @@ struct DropQuarantine: DropDelegate {
                     printOS("Error: Not a valid URL.")
                     return
                 }
-                let icon = NSWorkspace.shared.icon(forFile: url.path)
-                let appName = url.deletingPathExtension().lastPathComponent
-
-
 
                 updateOnMain {
-                    appState.quarantineAppIcon = icon
-                    appState.quarantineAppName = appName
                     appState.status = "Attempting to remove app from quarantine"
-                    appState.quarantineUnlocked = false
                     appState.isLoading = true
                 }
                 Task
@@ -77,14 +81,9 @@ struct DropSign: DropDelegate {
                     printOS("Error: Not a valid URL.")
                     return
                 }
-                let icon = NSWorkspace.shared.icon(forFile: url.path)
-                let appName = url.deletingPathExtension().lastPathComponent
 
                 updateOnMain {
-                    appState.signAppIcon = icon
-                    appState.signAppName = appName
                     appState.status = "Attempting to self-sign the app"
-                    appState.signUnlocked = false
                     appState.isLoading = true
                 }
                 Task {

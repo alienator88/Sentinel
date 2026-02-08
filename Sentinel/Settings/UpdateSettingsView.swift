@@ -20,7 +20,7 @@ struct UpdateSettingsTab: View {
                 .padding(5)
                 .padding(.horizontal)
 
-            Divider()
+//            Divider()
 
             RecentReleasesView(updater: updater)
                 .frame(height: 400)
