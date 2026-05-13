@@ -112,7 +112,6 @@ struct DropTarget: View {
 
 
 struct DropBG: View {
-
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
@@ -124,8 +123,8 @@ struct DropBG: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
+    
 }
-
 
 public struct LearnMorePopover: View {
     @State private var isPopoverPresented: Bool = false
@@ -165,7 +164,7 @@ struct UnlockView: View {
 
     var body: some View {
         HStack() {
-            Image(systemName: "lock.open.fill")            
+            Image(systemName: "lock.open.fill")
             Text(text)
         }
         .foregroundColor(Color(red: 1/255, green: 99/255, blue: 16/255, opacity: 1))

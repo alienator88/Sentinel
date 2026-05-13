@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3002E9352F38E9A5008068BA /* 202602.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3002E9342F38E9A5008068BA /* 202602.icon */; };
 		4180AEAE2839753E0054FEA9 /* SentinelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEAD2839753E0054FEA9 /* SentinelApp.swift */; };
 		4180AEEB2839A0280054FEA9 /* AboutCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEEA2839A0280054FEA9 /* AboutCommand.swift */; };
 		4180AEFB2839A32F0054FEA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180AEFA2839A32F0054FEA9 /* AboutView.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3002E9342F38E9A5008068BA /* 202602.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = 202602.icon; sourceTree = "<group>"; };
 		4180AEAA2839753E0054FEA9 /* Sentinel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sentinel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4180AEAD2839753E0054FEA9 /* SentinelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentinelApp.swift; sourceTree = "<group>"; };
 		4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SentinelApp.entitlements; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				4180AEEC2839A0560054FEA9 /* Utilities */,
 				4180AEAD2839753E0054FEA9 /* SentinelApp.swift */,
 				C7374B662E79C8110015DEED /* Sentinel.icon */,
+				3002E9342F38E9A5008068BA /* 202602.icon */,
 				4180AEB62839753F0054FEA9 /* SentinelApp.entitlements */,
 				C733F76E29CA65AC00DADADD /* AppState.swift */,
 				C78AAAB42BB33F9A002AD918 /* Styles.swift */,
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7BEBE212E846AB400B56DE9 /* Assets.xcassets in Resources */,
+				3002E9352F38E9A5008068BA /* 202602.icon in Resources */,
 				C7374B672E79C8110015DEED /* Sentinel.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,7 +461,7 @@
 		4180AEBA2839753F0054FEA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = Sentinel;
+				ASSETCATALOG_COMPILER_APPICON_NAME = 202602;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Sentinel/SentinelApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -497,7 +501,7 @@
 		4180AEBB2839753F0054FEA9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = Sentinel;
+				ASSETCATALOG_COMPILER_APPICON_NAME = 202602;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Sentinel/SentinelApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";

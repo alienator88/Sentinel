@@ -61,6 +61,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             guard !AppState.shared.isLoading else { return }
             updateGatekeeperUI(appState: AppState.shared)
         }
+        
+            // Add window close notification observer
+        NotificationCenter.default.addObserver(
+            forName: NSWindow.willCloseNotification,
+            object: nil,
+            queue: .main
+        ) { _ in
+            if NSApp.windows.isEmpty {
+                NSApp.terminate(nil)
+            }
+        }
     }
 
     // MARK: - File Opening
